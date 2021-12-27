@@ -29,7 +29,7 @@ throw new Exception("List can't be null");
 //1
 public int sizeOfArrayList(List obj) throws Exception {
 
-listCheck(inputList);
+listCheck(obj);
 
 return obj.size();
 
@@ -37,12 +37,11 @@ return obj.size();
 
 //addString2 //addInteger3 //addCustomObj4 //addStringIntegerCustomObj5
 
-public List addingList(List inputList, Object[] objArray) throws Exception {
+public List addingList(List inputList,Object[] objArray) throws Exception {
 
 listCheck(inputList);
 
 Collections.addAll(inputList,objArray);
-
 return inputList;
 
 }
@@ -74,7 +73,7 @@ return findElement;
 }
 
 //9
-public int findLastDuplicates(List inputList,String findStr)throws Exception{
+public int findLastIndex(List inputList,String findStr)throws Exception{
 
   listCheck(inputList);
 
@@ -105,7 +104,7 @@ public List takeSubList(List inputList,int startPosition,int endPosition)throws 
 
   listCheck(inputList);
   
-check.numberRangeCheck(startPosition,endPosition);
+check.rangeValidator(startPosition,endPosition);
 
  int listLength = sizeOfArrayList(inputList);
   
@@ -131,7 +130,7 @@ firstList.addAll(secondList);
 return firstList;
 }
 // 14   
-public List removeList(List addList,float removeFloat)throws Exception{
+public List removeList(List addList,double removeFloat)throws Exception{
 
   listCheck(addList);
   
@@ -175,20 +174,20 @@ firstList.retainAll(secondList);
 return firstList;
 }
 // 19   
-public List removeLong(List myList)throws Exception{
+public List getClear(List inputList)throws Exception{
 
-  listCheck(myList);
+  listCheck(inputList);
   
-myList.clear();
+inputList.clear();
 
-return myList;
+return inputList;
 }
 // 20   
-public boolean containsInList(List myList,String checkStr)throws Exception{
+public boolean containsInList(List inputList,String checkStr)throws Exception{
 
-  listCheck(myList);
+  listCheck(inputList);
   
-boolean checker=myList.contains(checkStr);
+boolean checker=inputList.contains(checkStr);
 
 return checker;
 }

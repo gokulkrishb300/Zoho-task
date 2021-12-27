@@ -49,6 +49,29 @@ scanObj.nextLine();
 return getNumber(input);
 }
 
+public double getDoubleNum(String input) {
+System.out.println(input);
+try{
+double dNum = scanObj.nextDouble();
+scanObj.nextLine();
+return dNum;
+} catch(Exception e) {
+System.out.println("Double input didn't satisfied");
+}
+return getDoubleNum(input);
+}
+
+public long getLongNum(String input) {
+System.out.println(input);
+try{
+long longN = scanObj.nextLong();
+return longN;
+} catch(Exception e) {
+System.out.println("Long input didn't satisfied");
+}
+return getLongNum(input);
+}
+
 
 public void taskDetails() {
 System.out.println("Dial 1  = Display the length of a String without Scanner");

@@ -10,8 +10,15 @@ throw new Exception("Input neither be null nor be empty");
 }
 
 public boolean numberRangeCheck(int primary,int secondary)throws Exception{
-if(secondary >= primary || secondary <= 0 || primary <= 0) {
+if(secondary >= primary || secondary < 0) {
 throw new Exception("Input is out of range");
+}
+return true;
+}
+
+public boolean rangeValidator(int primary , int secondary) throws Exception {
+if(primary > secondary || primary < 0 || secondary < 0) {
+throw new Exception("Input isn't in range");
 }
 return true;
 }
