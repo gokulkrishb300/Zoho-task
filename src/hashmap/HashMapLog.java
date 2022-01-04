@@ -6,15 +6,11 @@ import customexception .CustomException ;
 
 import string.BeginnerProgrammingString;
 
+import utility.Utility;
+
 public class HashMapLog {
 
-BeginnerProgrammingString verifyInput = new BeginnerProgrammingString();
-
-public void nullHashMap(Map map) throws CustomException {
-if(map == null) {
-throw new CustomException ("HashMap can't be null");
-}
-}
+Utility util = new Utility();
 
 public Map<Object,Object> createHashMap() {
 
@@ -27,7 +23,7 @@ return map;
 //1
 public int sizeOfHashMap(Map<Object,Object> map) throws CustomException  {
 
-nullHashMap(map);
+util.utilityNullHashMap(map);
 
 int getLength = map.size();
 
@@ -39,7 +35,7 @@ return getLength;
 
 public Map<Object,Object> addHashMap(Map<Object,Object> map,Object key, Object value) throws CustomException {
 
-nullHashMap(map);
+util.utilityNullHashMap(map);
 
 map.put(key,value);
 
@@ -51,7 +47,7 @@ return map;
 
 public boolean checkKeyMap(Map<Object,Object> map,Object key) throws CustomException {
 
-nullHashMap(map);
+util.utilityNullHashMap(map);
 
 boolean find = map.containsKey(key);
 
@@ -63,7 +59,7 @@ return find;
 
 public boolean checkValueMap(Map<Object,Object> map, Object value) throws CustomException  {
 
-nullHashMap(map);
+util.utilityNullHashMap(map);
 
 boolean find = map.containsValue(value);
 
@@ -76,7 +72,7 @@ return find;
 
 public Object getValueOfKeyMap(Map<Object,Object> map, Object key) throws CustomException  {
 
-nullHashMap(map);
+util.utilityNullHashMap(map);
 
 Object gettingKey = map.get(key);
 
@@ -88,7 +84,7 @@ return gettingKey;
 
 public Object getValueOfNonKeyMap (Map<Object,Object> map ,Object key, Object setValue) throws CustomException  {
 
-nullHashMap(map);
+util.utilityNullHashMap(map);
 
 Object gettingNonKey = map.getOrDefault(key,setValue);
 
@@ -99,7 +95,7 @@ return gettingNonKey;
 
 public Map<Object,Object>  getNonKeyValueMap(Map<Object,Object> map,Object key, Object value) throws CustomException  {
 
-nullHashMap(map);
+util.utilityNullHashMap(map);
 
 map.putIfAbsent(key, value);
 
@@ -111,7 +107,7 @@ return map;
 
 public Map<Object,Object> doRemoveMap(Map<Object,Object> map, Object key) throws CustomException  {
 
-nullHashMap(map);
+util.utilityNullHashMap(map);
 
 map.remove(key);
 
@@ -123,7 +119,7 @@ return map;
 
 public Map doRemoveMatchMap(Map<Object,Object> map, Object key, Object value) throws CustomException  {
 
-nullHashMap(map);
+util.utilityNullHashMap(map);
 
 map.remove(key, value);
 
@@ -135,7 +131,7 @@ return map;
 
 public Map<Object,Object> doReplaceMap(Map<Object,Object> map, Object key ,Object setValue) throws CustomException  {
 
-nullHashMap(map);
+util.utilityNullHashMap(map);
 
 map.replace(key, setValue);
 
@@ -147,7 +143,7 @@ return map;
 
 public Map doSameReplaceMap (Map<Object,Object> map, Object key , Object oldValue, Object setValue) throws CustomException  {
 
-nullHashMap(map);
+util.utilityNullHashMap(map);
 
 map.replace(key, oldValue, setValue) ;
 
@@ -159,9 +155,9 @@ return map;
 
 public Map<Object,Object> putAllHashMap(Map<Object,Object> mapOne, Map<Object,Object> mapTwo) throws CustomException  {
 
-nullHashMap(mapOne);
+util.utilityNullHashMap(mapOne);
 
-nullHashMap(mapTwo);
+util.utilityNullHashMap(mapTwo);
 
 mapOne.putAll(mapTwo);
 
@@ -173,7 +169,7 @@ return mapOne;
 
 public Map<Object,Object> clearMap(Map<Object,Object> map) throws CustomException  {
 
-nullHashMap(map);
+util.utilityNullHashMap(map);
 
 map.clear();
 

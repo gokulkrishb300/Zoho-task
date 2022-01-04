@@ -1,13 +1,18 @@
 package arraylist;
+
 import java.util.*;
+
 import string.BeginnerProgrammingString;
+
+import utility.Utility;
+
+import customexception.CustomException;
 
 public class ArrayMethod {
 
-BeginnerProgrammingString check = new BeginnerProgrammingString();
+Utility util = new Utility();
 
-
-public List createArrayList(){
+public List<Object> createArrayList(){
 
 List<Object> arrObj = new ArrayList<Object>();
 
@@ -15,21 +20,14 @@ return arrObj;
 
 }
 
-public void listCheck(List input) throws Exception {
 
-if(input == null) {
-
-throw new Exception("List can't be null");
-
-}
-}
 
 
 
 //1
-public int sizeOfArrayList(List obj) throws Exception {
+public int sizeOfArrayList( List<Object> obj) throws CustomException {
 
-listCheck(obj);
+util.utilityListCheck(obj);
 
 return obj.size();
 
@@ -37,19 +35,20 @@ return obj.size();
 
 //addString2 //addInteger3 //addCustomObj4 //addStringIntegerCustomObj5
 
-public List addingList(List inputList,Object[] objArray) throws Exception {
+public List<Object> addingList( List<Object> inputList,Object[] objArray) throws CustomException {
 
-listCheck(inputList);
+util.utilityListCheck(inputList);
 
 Collections.addAll(inputList,objArray);
+
 return inputList;
 
 }
 
 //6
-public int findIndex(List inputList,String findElement)throws Exception{
+public int findIndex( List<Object> inputList,String findElement)throws CustomException{
 
-  listCheck(inputList);
+  util.utilityListCheck(inputList);
   
 int indexOfElement=inputList.indexOf(findElement);
 
@@ -59,13 +58,13 @@ return indexOfElement;
 
 
 //8
-public String findElementAtIndex(List inputList,int index)throws Exception{
+public String findElementAtIndex( List<Object> inputList,int index)throws CustomException{
 
-  listCheck(inputList);
+  util.utilityListCheck(inputList);
  
  int listLength = sizeOfArrayList(inputList);
  
-check.numberRangeCheck(listLength,index);
+util.utilityNumberRangeCheck(listLength,index);
 
 String findElement=(String)inputList.get(index);
 
@@ -73,9 +72,9 @@ return findElement;
 }
 
 //9
-public int findLastIndex(List inputList,String findStr)throws Exception{
+public int findLastIndex( List<Object> inputList,String findStr)throws CustomException{
 
-  listCheck(inputList);
+  util.utilityListCheck(inputList);
 
 int lastIndex=inputList.lastIndexOf(findStr);
 
@@ -85,13 +84,13 @@ return lastIndex;
 
  
 //10
-public List insertList(List inputList,int position,String insertStr)throws Exception{
+public List<Object> insertList( List<Object> inputList,int position,String insertStr)throws CustomException{
 
-  listCheck(inputList);
+  util.utilityListCheck(inputList);
   
   int listLength = sizeOfArrayList(inputList);
   
-check.numberRangeCheck(listLength,position);
+util.utilityNumberRangeCheck(listLength,position);
 
 inputList.add(position,insertStr);
 
@@ -100,92 +99,92 @@ return inputList;
 }
 
 // 11   
-public List takeSubList(List inputList,int startPosition,int endPosition)throws Exception{
+public List<Object>takeSubList( List<Object> inputList,int startPosition,int endPosition)throws CustomException{
 
-  listCheck(inputList);
+  util.utilityListCheck(inputList);
   
-check.rangeValidator(startPosition,endPosition);
+util.utilityStartEndPos(startPosition,endPosition);
 
  int listLength = sizeOfArrayList(inputList);
   
-check.numberRangeCheck(listLength, startPosition);
+util.utilityNumberRangeCheck(listLength, startPosition);
 
-check.numberRangeCheck(listLength, endPosition);
+util.utilityNumberRangeCheck(listLength, endPosition);
 
-List subList=inputList.subList(startPosition,endPosition);
+ List<Object> subList=inputList.subList(startPosition,endPosition);
 
 return subList;
 
 }
 
 // 12   
-public List addAllList(List firstList,List secondList)throws Exception{
+public List<Object> addAllList( List<Object> firstList, List<Object> secondList)throws CustomException{
 
-  listCheck(firstList);
+  util.utilityListCheck(firstList);
   
-  listCheck(secondList);
+  util.utilityListCheck(secondList);
   
 firstList.addAll(secondList);
 
 return firstList;
 }
 // 14   
-public List removeList(List addList,double removeFloat)throws Exception{
+public List<Object> removeList( List<Object> addList,double removeFloat)throws CustomException{
 
-  listCheck(addList);
+  util.utilityListCheck(addList);
   
 addList.remove(removeFloat);
 
 return addList;
 }
 // 15   
-public List removeListUsingIndex(List addList,int index)throws Exception{
+public List<Object> removeListUsingIndex( List<Object> addList,int index)throws CustomException{
 
-  listCheck(addList);
+  util.utilityListCheck(addList);
   
 int listLength = sizeOfArrayList(addList);
 
-check.numberRangeCheck(listLength,index);
+util.utilityNumberRangeCheck(listLength,index);
 
 addList.remove(index);
 
 return addList;
 }
 // 17   
-public List removeAllList(List list1,List list2)throws Exception{
+public List<Object> removeAllList( List<Object> list1, List<Object> list2)throws CustomException{
 
-  listCheck(list1);
+  util.utilityListCheck(list1);
   
-  listCheck(list2);
+  util.utilityListCheck(list2);
   
 list1.removeAll(list2);
 
 return list1;
 }
 // 18    
-public List retainAllList(List firstList,List secondList)throws Exception{
+public List<Object> retainAllList( List<Object> firstList, List<Object> secondList)throws CustomException{
 
-  listCheck(firstList);
+  util.utilityListCheck(firstList);
   
-  listCheck(secondList);
+  util.utilityListCheck(secondList);
   
 firstList.retainAll(secondList);
 
 return firstList;
 }
 // 19   
-public List getClear(List inputList)throws Exception{
+public List<Object> getClear( List<Object> inputList)throws CustomException{
 
-  listCheck(inputList);
+  util.utilityListCheck(inputList);
   
 inputList.clear();
 
 return inputList;
 }
 // 20   
-public boolean containsInList(List inputList,String checkStr)throws Exception{
+public boolean containsInList( List<Object> inputList,String checkStr)throws CustomException{
 
-  listCheck(inputList);
+  util.utilityListCheck(inputList);
   
 boolean checker=inputList.contains(checkStr);
 

@@ -6,8 +6,6 @@ import hashmap.HashMapLog;
 
 import input.InputCenter;
 
-//import string.BeginnerProgrammingString;
-
 import customexception.CustomException;
 
 public class HashMapRun {
@@ -137,7 +135,7 @@ try{
 	
 	} catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	}
 	
@@ -166,7 +164,7 @@ try{
 	
 	} catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	} 
 	
@@ -195,7 +193,7 @@ try{
 	
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	}
 }
@@ -223,7 +221,7 @@ try{
 	
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	}
 }
@@ -251,7 +249,7 @@ try{
 	
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	}
 }
@@ -290,7 +288,7 @@ try{
 	
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	} 
 }
@@ -327,7 +325,7 @@ try{
 	
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	}
 }
@@ -346,7 +344,7 @@ try{
     
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	}
 }
@@ -364,7 +362,7 @@ try{
 		
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	}
 }
@@ -388,7 +386,7 @@ try{
 	
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	}
 
@@ -406,7 +404,7 @@ try{
 	
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	} 
 
@@ -428,7 +426,7 @@ try{
 	
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	}
 }
@@ -449,7 +447,7 @@ try{
 	
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	}
 }
@@ -468,7 +466,7 @@ try{
 	
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	} 
 
@@ -490,7 +488,7 @@ try{
 
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	}
 }
@@ -512,7 +510,7 @@ try{
 
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	}
 }
@@ -535,7 +533,7 @@ try{
 
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	}
 }
@@ -560,7 +558,7 @@ try{
 	
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	}
 }
@@ -582,7 +580,7 @@ try{
 	
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
        }
 }
@@ -599,7 +597,7 @@ try{
 
 	}catch(CustomException e) {
 	
-	System.out.println(e);
+	System.out.println(e.getMessage());
 	
 	}
 }

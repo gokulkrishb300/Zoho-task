@@ -2,9 +2,12 @@ package stringbuilderrunner;
 import stringbuilder.IStringBuilder;
 import string.BeginnerProgrammingString;
 import input.InputCenter;
+import utility.Utility;
+import customexception.CustomException;
 
 public class StringBuilderRunner {
 public static void main(String[] args){
+Utility util = new Utility();
 BeginnerProgrammingString bps = new BeginnerProgrammingString();
 IStringBuilder isb = new IStringBuilder();
 InputCenter input = new InputCenter();
@@ -60,7 +63,7 @@ case 2:
             System.out.println("Length of Stringbuilder after append ="+finalLength);
             System.out.println(setBuild);
          } 
-       catch(Exception e) 
+       catch(CustomException e) 
        {
             System.out.println(e.getMessage());
        }    
@@ -92,7 +95,7 @@ case 3:
            System.out.println("Length of Stringbuilder after insert ="+StringBuilderlengthAfterAppend3);
            System.out.println("Final String : " + setBuilderToInsertStr);  
          }   
-       catch(Exception e)
+       catch(CustomException e)
        {
             System.out.println(e.getMessage());
        } 
@@ -125,7 +128,7 @@ case 4:
            
            
          }
-       catch(Exception e)
+       catch(CustomException e)
        {
             System.out.println(e.getMessage());
        }     
@@ -166,7 +169,7 @@ case 5:
            
                  
          }       
-       catch(Exception e)       
+       catch(CustomException e)       
        {
             System.out.println(e.getMessage());
        }       
@@ -203,7 +206,7 @@ case 6:
           
                   
          }      
-       catch(Exception e)      
+       catch(CustomException e)      
        {
             System.out.println(e.getMessage());
        }       
@@ -222,7 +225,7 @@ case 7:
              
           int sbLengthB4Kill =isb.getStringBuilderLength(sbDelete); 
                       
-          bps.numberInputCheck(sbLengthB4Kill, specifyLengthOfInput); 
+          util.utilityNumberRangeCheck(sbLengthB4Kill, specifyLengthOfInput); 
                
           System.out.println("Length : "+ sbLengthB4Kill);
           
@@ -243,7 +246,7 @@ case 7:
           
                   
          }       
-       catch(Exception e)       
+       catch(CustomException e)       
        {
             System.out.println(e.getMessage());
        }
@@ -260,7 +263,7 @@ case 8:
            
            int sbLenB4 =isb.getStringBuilderLength(sbDeleteRepl);     
                    
-           bps.numberInputCheck(sbLenB4,specifyLength);
+           util.utilityNumberRangeCheck(sbLenB4,specifyLength);
                          
            System.out.println("Length : "+ sbLenB4);
            System.out.println(sbDeleteRepl);        
@@ -281,7 +284,7 @@ case 8:
            
                
          }      
-       catch(Exception e)      
+       catch(CustomException e)      
        {
             System.out.println(e.getMessage());
        }       
@@ -316,7 +319,7 @@ case 9:
           
              
          }      
-       catch(Exception e)      
+       catch(CustomException e)      
        {
             System.out.println(e.getMessage());
        }      
@@ -352,7 +355,7 @@ case 10:
           
           
         }     
-       catch(Exception e)       
+       catch(CustomException e)       
        {
             System.out.println(e.getMessage());
        }

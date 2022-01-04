@@ -1,8 +1,10 @@
 package input;
-import string.BeginnerProgrammingString;
-import java.lang.String;
-import java.util.*;
 
+import string.BeginnerProgrammingString;
+
+import java.lang.String;
+
+import java.util.*;
 
 public class InputCenter {
 

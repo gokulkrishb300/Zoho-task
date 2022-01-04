@@ -1,14 +1,23 @@
 package stringRun;
+
 import input.InputCenter;
+
 import java.util.*;
+
 import string.BeginnerProgrammingString;
+
+import customexception.CustomException;
+
+import utility.Utility;
 
 public class Engine {
 
 public static void main(String[] args) {
 
 BeginnerProgrammingString engine = new BeginnerProgrammingString();
+
 Scanner scanObj = new Scanner(System.in);
+
 InputCenter inputCall = new InputCenter();
 
 inputCall.taskDetails();
@@ -28,7 +37,7 @@ case 1 :
 	}
 	
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 	
@@ -43,7 +52,7 @@ case 2 :
 	}
 	System.out.println("Your Task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 break;
@@ -54,7 +63,7 @@ case 3:try{
 	System.out.println(engine.charDetector(str3,num3));
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 break;
@@ -65,7 +74,7 @@ case 4:try{
 System.out.println(engine.numberOfOccurences(str4,ch4));
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 break;
@@ -75,7 +84,7 @@ case 5:try{
 	System.out.println(engine.greatestPosition(str5,ch5));
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 	
@@ -86,7 +95,7 @@ case 6:try{
 	System.out.println(engine.lastNCharacters(str6,num6));
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 	
@@ -97,7 +106,7 @@ case 7:try{
 	System.out.println(engine.firstNCharacters(str7,num7));
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 	
@@ -108,7 +117,7 @@ case 8:try{
     System.out.println(engine.stringReplacer(firstStr8,secondStr8));
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 	
@@ -119,7 +128,7 @@ case 9:try{
  	System.out.println(engine.checkingStart(firstStr9,secondStr9));
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 	
@@ -130,7 +139,7 @@ case 10:try{
 	System.out.println(engine.checkingEnd(firstStr10,secondStr10));
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 	
@@ -141,7 +150,7 @@ case 11:try{
 	System.out.println(engine.upperCaseChanger(str11));
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 	break;
@@ -150,7 +159,7 @@ case 12:try{
 	System.out.println(engine.lowerCaseChanger(str12));
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 	break;
@@ -159,7 +168,7 @@ case 13:try{
 	System.out.println(engine.stringReversing(str13));
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 	
@@ -179,7 +188,7 @@ case 15:try{
 	System.out.println(engine.stringSpaceRemover(str15));
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 	
@@ -191,7 +200,7 @@ case 16:try{
 	System.out.println(s); }
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 	
@@ -206,7 +215,7 @@ case 17:try{
 	}
 	System.out.println(engine.stringMerge(arr));
 	}
-	catch(Exception e){
+	catch(CustomException e){
 	System.out.println(e.getMessage());
 	}
 	
@@ -219,7 +228,7 @@ case 18:try{
 	System.out.println(engine.stringCaseSensitive((firstStr18),(secondStr18)));
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 
@@ -230,7 +239,7 @@ case 19:try{
 	System.out.println(engine.stringCaseInSensitive((firstStr19), (secondStr19)));
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 	
@@ -241,7 +250,7 @@ case 20:try{
 	System.out.println(engine.stringTrimming(str20));
 	System.out.println("Your task "+num+" has been Executed");
 	}
-	catch(Exception e) {
+	catch(CustomException e) {
 	System.out.println(e.getMessage());
 	}
 	break;
