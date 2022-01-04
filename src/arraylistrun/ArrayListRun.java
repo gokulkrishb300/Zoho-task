@@ -5,25 +5,23 @@ import java.util.*;
 
 public class ArrayListRun {
 
-public static void main(String[] args) {
-
 ArrayMethod arrayLog = new ArrayMethod();
 InputCenter input = new InputCenter();
-int number = input.getNumber("enter the dial");
 
-switch(number) {
+private void caseOne() {
 
-case 1 :
-	try {
+try {
 	List lSize = arrayLog.createArrayList();
 	System.out.println(arrayLog.sizeOfArrayList(lSize));
 	System.out.println(lSize);
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-case 2 :
-	try {
+}
+
+private void caseTwo() {
+
+try {
 	List lAddString = arrayLog.createArrayList();
 	int nStrings = input.getNumber("how many String input");
 	String[] addString = new String[nStrings];
@@ -37,10 +35,11 @@ case 2 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	
-	break;
-case 3 :
-	try {
+}
+
+private void caseThree() {
+
+try {
 	List lAddInteger = arrayLog.createArrayList();
 	int nIntegers = input.getNumber("how many Integer input");
 	Integer[] addInteger = new Integer[nIntegers];
@@ -54,8 +53,9 @@ case 3 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-case 4 :
+}
+	
+private void caseFour() {
 	try {
 	List lAddObject = arrayLog.createArrayList();
 	int nObject = input.getNumber("how many Object input");
@@ -71,9 +71,10 @@ case 4 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
 	
-case 5 :
+}
+
+private void caseFive() {
 	try {
 	List lAddAll = arrayLog.createArrayList();
 	int nStringsAll = input.getNumber("how many String input");
@@ -106,10 +107,10 @@ case 5 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-	
-case 6 :
-	try {
+}
+
+private void caseSix() {
+try {
 	List lIndex = arrayLog.createArrayList();
 	int nStringsI = input.getNumber("how mahy String input");
 	
@@ -127,9 +128,10 @@ case 6 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-case 7 :
-	try {
+}
+
+private void caseSeven() {
+try {
 	List lIterator = arrayLog.createArrayList();
 	int nStringIterate = input.getNumber("how many String input");
 	
@@ -148,9 +150,10 @@ case 7 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-case 8 :
-	try {
+}
+
+private void caseEight() {
+try {
 	List lGive = arrayLog.createArrayList();
 	int nStringGive = input.getNumber("how many String input");
 	
@@ -167,9 +170,10 @@ case 8 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-case 9 :
-	try {
+}
+
+private void caseNine() {
+try {
 	List lDuplicate = arrayLog.createArrayList();
 	int nStringDuplicate = input.getNumber("how many String input");
 	
@@ -186,10 +190,10 @@ case 9 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-	
-case 10 :
-	try {
+}
+
+private void caseTen() {
+try {
 	List lPos = arrayLog. createArrayList();
 	int nStringPos = input.getNumber ("how many String input");
 	
@@ -207,9 +211,10 @@ case 10 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-case 11 :
-	try {
+}
+
+private void caseEleven(){
+try {
 	List lNew = arrayLog.createArrayList();
 	int nStringNew = input.getNumber("how many String input");
 	
@@ -227,9 +232,10 @@ case 11 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-case 12 :
-	try {
+}
+
+private void caseTwelve() {
+try {
 	List lFirst = arrayLog.createArrayList();
 	int nFirst = input.getNumber("how many First List String input");
 	
@@ -253,9 +259,10 @@ case 12 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-case 13 :
-	try {
+}
+
+private void caseThirteen() {
+try {
 	
 	List lFirstr = arrayLog.createArrayList();
 	int nFirstr = input.getNumber("how many First List String input");
@@ -280,9 +287,10 @@ case 13 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-case 14 :
-	try {
+}
+
+private void caseFourteen() {
+try {
 	List lRemove = arrayLog.createArrayList();
 	int nRemove = input.getNumber("how many decimal input");
 	
@@ -298,9 +306,10 @@ case 14 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-case 15 :
-	try {
+}
+
+private void caseFifteen() {
+try {
 	List lRemovePos = arrayLog.createArrayList();
 	int nRemovePos = input.getNumber("how many decimal input");
 	
@@ -315,28 +324,10 @@ case 15 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-/*case 16 :
-	try {
-	List lLong = arrayLog.createArrayList();
-	int nLong = input.getNumber("how many long input");
-	Long[] addLong = new Long[nLong];
-	
-	for(int i = 0 ; i < nLong ; i++) {
-	addLong[i] = input.getLongNum("type "+(i)+ " th long");
-	}
-	arrayLog.addingList(lLong , addLong);
-	
-	int firstPos = input.getNumber("Enter initial position");
-	int endPos = input.getNumber("Enter last Position");
-	
-	System.out.println(arrayLog.takeSubList(lLong,firstPos,endPos));
-	} catch(Exception e) {
-	System.out.println(e.getMessage());
-	}
-	break;*/
-case 17 :
-	try {
+}
+
+private void caseSeventeen() {
+try {
 	List lFirstRe = arrayLog.createArrayList();
 	int nFirstRe = input.getNumber("how many firstLi String input");
 	String[] addFirstRe = new String[nFirstRe];
@@ -360,9 +351,10 @@ case 17 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-case 18 :
-	try {
+}
+
+private void caseEighteen() {
+try {
 	List lFirstRet = arrayLog.createArrayList();
 	int nFirstRet = input.getNumber("how many firstLi String input");
 	String[] addFirstRet = new String[nFirstRet];
@@ -387,9 +379,10 @@ case 18 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-case 19 :
-	try {
+}
+
+private void caseNineteen() {
+try {
 	List lLong = arrayLog.createArrayList();
 	int nLong = input.getNumber("how many long input");
 	Long[] addLong = new Long[nLong];
@@ -404,9 +397,10 @@ case 19 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
-	break;
-case 20 :
-	try {
+}
+
+private void caseTwenty() {
+try {
 	List lPresent = arrayLog.createArrayList();
 	int nPresent = input.getNumber("how much String input");
 	String[] addPresent = new String[nPresent];
@@ -420,12 +414,86 @@ case 20 :
 	} catch(Exception e) {
 	System.out.println(e.getMessage());
 	}
+}
+
+public static void main(String[] args) {
+
+ArrayListRun run = new ArrayListRun();
+
+InputCenter input = new InputCenter();
+
+
+int number = input.getNumber("enter the dial");
+
+switch(number) {
+
+case 1 :
+	run.caseOne();
+	break;
+case 2 :
+	run.caseTwo();
+	break;
+case 3 :
+	run.caseThree();
+	break;
+case 4 :
+	run.caseFour();
+	break;
+	
+case 5 :
+	run.caseFive();
+	break;
+	
+case 6 :
+	run.caseSix();
+	break;
+case 7 :
+	run.caseSeven();
+	break;
+case 8 :
+	run.caseEight();
+	break;
+case 9 :
+	run.caseNine();
+	break;
+	
+case 10 :
+	run.caseTen();
+	break;
+case 11 :
+	run.caseEleven();
+	break;
+case 12 :
+	run.caseTwelve();
+	break;
+case 13 :
+	run.caseThirteen();
+	break;
+case 14 :
+	run.caseFourteen();
+	break;
+case 15 :
+	run.caseFifteen();
+	break;
+
+case 17 :
+	run.caseSeventeen();
+	break;
+case 18 :
+	run.caseEighteen();
+	break;
+case 19 :
+	run.caseNineteen();
+	break;
+case 20 :
+	run.caseTwenty();
 	break;
 default :
 	System.out.println("You have hitten an unavailable task");
 	break;
 	} 
 	}
+	
 static String[] forLoop(int limit,String[] stringArray) {
 InputCenter input = new InputCenter();
 for(int i = 0 ; i < limit ; i++) {
