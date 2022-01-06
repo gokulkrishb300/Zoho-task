@@ -1,6 +1,8 @@
 package utility;
 
 
+import java.util.*;
+
 import manualexception.ManualException;
 
 public class Utility {
@@ -20,6 +22,12 @@ public class Utility {
 	public void arrayNullCheck(String[] input) throws ManualException{
 		for(String arrayCheck : input) {
 			stringNullCheck(arrayCheck);
+		}
+	}
+	
+	public void mapNullCheck(Map<Object,Object> map) throws ManualException {
+		if(map == null) {
+			throw new ManualException(map + "map can't be null");
 		}
 	}
 	
