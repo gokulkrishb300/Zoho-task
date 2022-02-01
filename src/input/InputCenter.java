@@ -4,6 +4,8 @@ import java.util.*;
 
 import manualexception.ManualException;
 
+
+
 public class InputCenter {
 
 	Scanner scanObj = new Scanner(System.in);
@@ -47,6 +49,18 @@ public class InputCenter {
 			throw new ManualException("Long only accepted");
 		}
 	
+	}
+	
+	public boolean getBoolean(String input) throws ManualException {
+		System.out.println(input);
+		
+		try {
+			boolean lean = scanObj.nextBoolean();
+			return lean;
+		}
+		catch(Exception e) {
+			throw new ManualException("Boolean only accepted");
+		}
 	}
 	
 	
