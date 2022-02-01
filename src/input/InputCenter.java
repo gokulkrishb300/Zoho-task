@@ -2,66 +2,64 @@ package input;
 
 import java.util.*;
 
-import manualexception.ManualException;
-
-
-
 public class InputCenter {
 
-	Scanner scanObj = new Scanner(System.in);
+	Scanner sc = new Scanner(System.in);
 	
-	public String getString(String input) throws ManualException{
-		System.out.println(input);
+	public int getInt(String statement) {
+		System.out.println(statement);
 		try {
-			String str = scanObj.nextLine();
-			if(!str.isEmpty()) {
-				return str;
-			}
-		}
-			catch(Exception e) {
-				throw new ManualException("String can't be null");
-			}
-		return getString(input);
-	}
+		int integer = sc.nextInt();
 	
-	public int getInt(String input) throws ManualException{
-		System.out.println(input);
-		
-		try {
-			int intNum = scanObj.nextInt();
-			scanObj.nextLine();
-			return intNum;
-		}
-		
-		catch(Exception e) {
-			throw new ManualException("Integer only accepted");
-		}
-		
-	}
-	public long getLong(String input) throws ManualException{
-		System.out.println(input);
-		
-		try {
-			long longNum = scanObj.nextLong();
-			return longNum;
+		return integer;
 		}
 		catch(Exception e) {
-			throw new ManualException("Long only accepted");
+			System.out.println("Only Int");
 		}
-	
+		return getInt(statement);
 	}
 	
-	public boolean getBoolean(String input) throws ManualException {
-		System.out.println(input);
-		
+	public String getString(String statement) {
+		System.out.println(statement);
+		String string = sc.next();
+		return string;
+	}
+	
+	public boolean getBoolean(String statement) {
+		System.out.println(statement);
 		try {
-			boolean lean = scanObj.nextBoolean();
-			return lean;
+			boolean bool = sc.nextBoolean();
+			
+			return bool;
+		} catch(Exception e) {
+			System.out.println("only boolean");
+		}
+		return getBoolean(statement);
+	}
+	
+	public char getChar(String statement) {
+		System.out.println(statement);
+		try {
+			char ch = sc.next().charAt(0);
+			
+			return ch;
 		}
 		catch(Exception e) {
-			throw new ManualException("Boolean only accepted");
+			System.out.println("Only char");
 		}
+		return getChar(statement);
 	}
 	
+	public long getLong(String statement) {
+		System.out.println(statement);
+	try {
+		long lo = sc.nextLong();
+		
+		return lo;
+	} catch(Exception e) {
+		System.out.println("only long");
+	}
+	return getLong(statement);
+	}
 	
 }
