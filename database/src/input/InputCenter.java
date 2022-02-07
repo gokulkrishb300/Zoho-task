@@ -14,9 +14,10 @@ public class InputCenter {
 		System.out.println(input);
 		
 		try {
+			scanObj.nextLine();
 			String str = scanObj.nextLine();
-			//scanObj.nextLine();
-			if(!str.isEmpty()) {
+			
+			if(str!=null) {
 			
 				return str;
 			}

@@ -2,18 +2,13 @@ package dbadvanced;
 
 public class CustomerDetails {
 	
-	private int id;
+	
 	private String name;
 	private int age;
 	private String gender;
 	private long mobile;
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public String getName() {
 		return name;
 	}
@@ -40,7 +35,7 @@ public class CustomerDetails {
 	}
 	@Override
 	public String toString() {
-		return "CustomerDetails [id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", mobile="
+		return "CustomerDetails [name=" + name + ", age=" + age + ", gender=" + gender + ", mobile="
 				+ mobile + "]";
 	}
 }

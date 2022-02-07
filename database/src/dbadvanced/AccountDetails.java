@@ -1,7 +1,8 @@
 package dbadvanced;
 
 public class AccountDetails {
-	private int id;
+	private int custId;
+	private int accId;
 	private long accNum;
 	private String accName;
 	private String branch;
@@ -14,10 +15,10 @@ public class AccountDetails {
 		this.balance = balance;
 	}
 	public int getId() {
-		return id;
+		return accId;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.accId = id;
 	}
 	public long getAccNum() {
 		return accNum;
@@ -37,9 +38,17 @@ public class AccountDetails {
 	public void setBranch(String branch) {
 		this.branch = branch;
 	}
+	
+	public int getAccId() {
+		return accId;
+	}
+	public void setAccId(int accId) {
+		this.accId = accId;
+	}
+	
 	@Override
 	public String toString() {
-		return "AccountDetails [id=" + id + ", accNum=" + accNum + ", accName=" + accName + ", branch=" + branch
-				+ ", balance=" + balance + "]";
+		return "AccountDetails [custId=" + custId + ", accId=" + accId + ", accNum=" + accNum + ", accName=" + accName
+				+ ", branch=" + branch + ", balance=" + balance + "]";
 	}
 }
