@@ -18,7 +18,7 @@ public class LoginRunner {
 	    
 	  	Map<Integer,CustomerDetails> customerMap = api.customerMap();
 	  	
-	  	Map<Integer,AccountDetails> accountMap = api.accountMap();
+	  	Map<Integer,Map<Integer,AccountDetails>> accountMap = api.accountMap();
 	  	
 		private void customerDetail(String about) throws ManualException {
 			
@@ -75,7 +75,7 @@ public class LoginRunner {
 	    		
 	    		accountDetails.setBranch(input.getString("Branch"));
 	    		
-	    		accountMap.put(accountDetails.getId(), accountDetails);
+	    		accountMap.put(detectId,accountDetails.getId(), accountDetails);
 	    			
 	    	}
 	    	

@@ -29,9 +29,10 @@ public class Api{
 		return map;
 	}
 	
-    public Map<Integer,AccountDetails> accountMap() {
+    public Map<Integer, Map<Integer, AccountDetails>> accountMap() {
 		
-		Map<Integer,AccountDetails> map = new HashMap<>();
+    	Map<Integer,Map<Integer,AccountDetails>> map = new HashMap<>();
+		
 		
 		return map;
 	}
@@ -59,7 +60,7 @@ public class Api{
 }
 	
 	public void insideMap() {
-		Map<Object,Map<Object,Object>> map = new HashMap<>();
+		
 	}
 	
 	
