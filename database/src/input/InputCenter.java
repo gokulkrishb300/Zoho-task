@@ -10,11 +10,15 @@ public class InputCenter {
 
 	Scanner scanObj = new Scanner(System.in);
 	
+	public void nextLine() {
+		scanObj.nextLine();
+	}
+	
 	public String getString(String input) throws ManualException{
 		System.out.println(input);
 		
+		
 		try {
-			scanObj.nextLine();
 			String str = scanObj.nextLine();
 			
 			if(str!=null) {
@@ -34,6 +38,7 @@ public class InputCenter {
 		
 		try {
 			int intNum = scanObj.nextInt();
+			scanObj.nextLine();
 			return intNum;
 		}
 		
@@ -49,7 +54,7 @@ public class InputCenter {
 		
 		try {
 			long longNum = scanObj.nextLong();
-			
+			scanObj.nextLine();
 			return longNum;
 		}
 		catch(Exception e) {

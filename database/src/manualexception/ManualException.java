@@ -8,7 +8,7 @@ public class ManualException extends Exception {
 		super(e);
 	}
 	
-	public ManualException(Exception e) {
-		super(e);
-	}
+//	public ManualException(Exception e) {
+//		super(e);
+//	}
 }

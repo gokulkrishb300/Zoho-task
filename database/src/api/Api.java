@@ -1,9 +1,14 @@
 package api;
 
+
+
 import java.util.Map;
+
+import accountdeclare.AccountDetails;
+import accountdeclare.CustomerDetails;
+
 import java.util.HashMap;
-import dbadvanced.AccountDetails;
-import dbadvanced.CustomerDetails;
+
 import manualexception.ManualException;
 import helper.Helper;
 
@@ -15,53 +20,85 @@ public class Api{
 	
 	Helper helper = new Helper();
 	
-	int generator = 1000;
+	int custIdGenerator = 1000;
 	
-//	public Map<Object,Object> createMap() {
-//		Map<Object,Object> map = new HashMap<Object,Object>();
-//		return map;
-//	}
+	int accIdGenerator = 2000;
+    
+	static Map<Integer, CustomerDetails> customerMap = new HashMap<>();
 	
-	public Map<Integer, CustomerDetails> customerMap() {
-		
-		Map<Integer,CustomerDetails> map = new HashMap<>();
-		
-		return map;
-	}
+	//static Map<Integer,AccountDetails> accountMap = new HashMap<>();
 	
-    public Map<Integer, Map<Integer, AccountDetails>> accountMap() {
-		
-    	Map<Integer,Map<Integer,AccountDetails>> map = new HashMap<>();
-		
-		
-		return map;
-	}
+	static Map<Integer,Map<Integer, AccountDetails>> accountMap = new HashMap<>();
 	
+
+    
+    public void customerMapping(int getCustomerId, Object customerInstance) throws ManualException{
+       
+         helper.mapNullCheck(customerMap);
+         
+         customerMap.put(getCustomerId,  (CustomerDetails) customerInstance);
+    }
+	
+    public Map<Integer, Map<Integer,AccountDetails>> accountMapping(AccountDetails accountInstance) throws ManualException {
+    	
+    	int cusId=accountInstance.getCustId();
+    	int accId=accountInstance.getAccId();
+    	helper.mapNullCheck(accountMap);
+    	
+    	Map<Integer,AccountDetails> checkMapped = accountMap.get(cusId);
+    	
+    	if(checkMapped == null) {
+    		
+    		  checkMapped= new HashMap<>();
+    		
+    		  accountMap.put(cusId,checkMapped);
+    	}
+    	
+    	checkMapped.put(accId,accountInstance);
+    	
+    	return accountMap;
+    }
+    
+    
 	public int autoCustId() {
 		
-		return generator++;
+		return custIdGenerator++;
+		
+	}
+	
+	public int autoAccId() {
+		
+		return accIdGenerator++;
 		
 	}
     
-	public int detectCustId(Map<Integer,CustomerDetails> customerMap,int detectId) throws ManualException {
+	public void detectCustId(int detectId) throws ManualException 
+	{
 		
-		helper.mapNullCheck(customerMap);
-		if(customerMap.containsKey(detectId)){
-			
-			return detectId;
-			
-		}else {
-			
-		System.out.println("ID didn't matched");
-		System.exit(0);
-		
-	}
-		return detectId;
+		if(customerMap.get(detectId)==null)
+		{
+			throw new ManualException("ID didn't match");
+		}
+
 }
-	
-	public void insideMap() {
-		
-	}
+	public CustomerDetails retrieveCustomerId(int customerId) throws ManualException {
+	 	   
+	 	   return customerMap.get(customerId);
+	    }
+	 
+	 
+     public AccountDetails retrieveAccountInfo(int customerId,int accountId) throws ManualException {
+    	 
+    	 return  accountMap.get(customerId).get(accountId);
+    	   
+     }
+     	
+     public Map<Integer, AccountDetails> retrieveEntire(int customerId) throws ManualException {
+    	 
+    	 return  accountMap.get(customerId);
+    	 
+    	 
+     }
 	
 	
 }
