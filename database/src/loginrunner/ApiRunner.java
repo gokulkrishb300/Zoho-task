@@ -1,8 +1,5 @@
 package loginrunner;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import accountdeclare.AccountDetails;
 import accountdeclare.CustomerDetails;
 import api.Api;
@@ -40,7 +37,7 @@ public class ApiRunner {
 			
 			customerDetails.setMobile(input.getLong("mobile "));
 			
-			api.customerMapping(customerDetails.getCustId(), customerDetails);
+			api.addCustomer(customerDetails.getCustId(), customerDetails);
 			
 			   }
 		}
@@ -68,11 +65,11 @@ public class ApiRunner {
 	    		
 	    		accountDetails.setAccNum(input.getLong("Account Number"));
 	    		
-	    		accountDetails.setAccName(input.getString("Account Type"));
+	    		accountDetails.setAccType(input.getString("Account Type"));
 	    		
 	    		accountDetails.setBranch(input.getString("Branch"));
 	    		
-	    		api.accountMapping(accountDetails);
+	    		api.addAccount(accountDetails);
 	    		
 	    	}
 	    	
@@ -99,10 +96,40 @@ public class ApiRunner {
         	
         	System.out.println(api.retrieveEntire(input.getInt("Customer ID:")));
         }
-		public static void main(String[] args) throws ManualException{
+        
+        private void status(String about) throws ManualException {
+        	
+        	System.out.println(about);
+        	
+        	System.out.println(api.status(input.getInt("Customer ID: "),input.getInt("Account ID: "),input.getBoolean("Make active(true) or Inactive(false)")));
+        }
+        
+        private void deposit(String about) throws ManualException {
+        	
+        	System.out.println(about);
+        	
+        	System.out.println(api.deposit(input.getInt("Customer ID: "),input.getInt("Account ID: "),input.getLong("how much :")));
+        }
+        
+        private void withdraw(String about) throws ManualException {
+        	
+        	System.out.println(about);
+        	
+        	System.out.println(api.withdraw(input.getInt("Customer ID: "), input.getInt("Account ID: "),input.getLong("Withdrawal amount: ")));
+        }
+        
+        private void balance(String about) throws ManualException {
+        	
+        	System.out.println(about);
+        	
+        	System.out.println(api.balance(input.getInt("Customer ID: "),input.getInt("Account ID: ")));
+        }
+        
+		public static void main(String[] args) {
 			
 			ApiRunner loginRunner = new ApiRunner();
 			
+			try {
 			loginRunner.customerDetail("Customer Details");
 			
 			loginRunner.accountDetail("\nAccount Details");
@@ -111,8 +138,19 @@ public class ApiRunner {
 			
 			loginRunner.retrieveAccountInfo("\nRetrieve Account Info:");
 			
+			loginRunner.status("\nStatus of an account");
+			
+			loginRunner.deposit("\nDeposit to a customer");
+			
+			loginRunner.withdraw("\nWithdrawal from a customer");
+			
+			loginRunner.balance("\nBalance amount of a customer");
+			
 			loginRunner.retrieveEntire("\nRetrieve all about a Customer:");
-				
+			}
+			catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
 			}
 		  }
 	
