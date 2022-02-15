@@ -1,6 +1,6 @@
 package manualexception;
 
-import java.io.IOException;
+
 
 public class ManualException extends Exception {
 

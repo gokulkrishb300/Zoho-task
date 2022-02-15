@@ -2,64 +2,81 @@ package input;
 
 import java.util.*;
 
+import manualexception.ManualException;
+
+
+
 public class InputCenter {
 
-	Scanner sc = new Scanner(System.in);
+	Scanner scanObj = new Scanner(System.in);
 	
-	public int getInt(String statement) {
-		System.out.println(statement);
-		try {
-		int integer = sc.nextInt();
-	
-		return integer;
-		}
-		catch(Exception e) {
-			System.out.println("Only Int");
-		}
-		return getInt(statement);
+	public void nextLine() {
+		scanObj.nextLine();
 	}
 	
-	public String getString(String statement) {
-		System.out.println(statement);
-		String string = sc.next();
-		return string;
-	}
-	
-	public boolean getBoolean(String statement) {
-		System.out.println(statement);
-		try {
-			boolean bool = sc.nextBoolean();
-			
-			return bool;
-		} catch(Exception e) {
-			System.out.println("only boolean");
-		}
-		return getBoolean(statement);
-	}
-	
-	public char getChar(String statement) {
-		System.out.println(statement);
-		try {
-			char ch = sc.next().charAt(0);
-			
-			return ch;
-		}
-		catch(Exception e) {
-			System.out.println("Only char");
-		}
-		return getChar(statement);
-	}
-	
-	public long getLong(String statement) {
-		System.out.println(statement);
-	try {
-		long lo = sc.nextLong();
+	public String getString(String input) throws ManualException{
+		System.out.println(input);
 		
-		return lo;
-	} catch(Exception e) {
-		System.out.println("only long");
+		
+		try {
+			String str = scanObj.nextLine();
+			
+			if(str!=null) {
+			
+				return str;
+			}
+		}
+			catch(Exception e) {
+				scanObj.nextLine();
+				throw new ManualException("String can't be null");
+			}
+		return getString(input);
 	}
-	return getLong(statement);
+	
+	public int getInt(String input) throws ManualException{
+		System.out.println(input);
+		
+		try {
+			int intNum = scanObj.nextInt();
+			scanObj.nextLine();
+			return intNum;
+		}
+		
+		catch(Exception e) {
+			
+			throw new ManualException("Integer only accepted");
+			
+		}
+		
 	}
+	public long getLong(String input) throws ManualException{
+		System.out.println(input);
+		
+		try {
+			long longNum = scanObj.nextLong();
+			scanObj.nextLine();
+			return longNum;
+		}
+		catch(Exception e) {
+			scanObj.nextLine();
+			throw new ManualException("Long only accepted");
+		}
+	
+	}
+	
+	public boolean getBoolean(String input) throws ManualException {
+		System.out.println(input);
+		
+		try {
+			boolean lean = scanObj.nextBoolean();
+		
+			return lean;
+		}
+		
+		catch(Exception e) {
+			throw new ManualException("Boolean only accepted");
+		}
+	}
+	
 	
 }
