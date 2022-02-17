@@ -1,41 +1,252 @@
 package jsonrunner;
+import accountdeclare.*;
+import input.InputCenter;
+import jsonapi.JsonApi;
 import manualexception.ManualException;
 
-
-
-import java.io.FileReader;
-
-import org.json.simple.*;
-import org.json.simple.parser.JSONParser;
-
-
-public class JsonRunner {
-	@SuppressWarnings("unchecked")
-	public static void main(String[] args) throws ManualException {
+public class JsonRunner
+{
+	
+	JsonApi logic=new JsonApi();
+	InputCenter input=new InputCenter();
+	
+	
+	private void putInfo(int size) throws ManualException
+	{
+		for(int i=0;i<size;i++)
+		{
+			CustomerDetails customerObj=new CustomerDetails();
+			
+			
+			customerObj.setName(input.getString("Enter a name for Customer"));
 		
-		JSONParser jsonParser = new JSONParser();
-		
-		try(FileReader readFile = new FileReader("customer.json")){
+			customerObj.setGender(input.getString("Enter gender"));
+			customerObj.setAge(input.getInt("enter age"));
+			customerObj.setMobile(input.getLong("Enter a Mobile Number"));
 			
-			JSONArray customerDetails = (JSONArray) jsonParser.parse(readFile);
-			
-			System.out.println(customerDetails);
-			
-			customerDetails.forEach(cus -> parseCustomerDetails((JSONObject)cus));
-			
+			try
+			{
+				logic.putCustomer(customerObj);
+			}
+			catch(ManualException e)
+			{
+				e.getMessage();
+				e.printStackTrace();
+			}
 		}
-		catch(Exception e) {
+	}
+	
+	private void putAccountInfo(int size) throws ManualException
+	{
+		for(int i=0;i<size;i++)
+		{
+			AccountDetails accountObj=new AccountDetails();
+			
+			accountObj.setCustId(input.getInt("CustomerId"));
+			
+			accountObj.setAccNum(input.getLong("Account num"));
+			
+			accountObj.setBranch(input.getString("Enter a name for Branchname"));
+			
+			accountObj.setBalance(input.getLong("Balance"));
+			
+			accountObj.setAccType(input.getString("Account type"));
+			
+			
+			try
+			{
+				logic.putAccount(accountObj);
+			}
+			catch(ManualException e)
+			{
+				e.getMessage();
+				e.printStackTrace();
+			}
+		}
+	}
+//	
+//	private void getInfo()
+//	{
+//	
+//		int customerId=input.getInt("Enter the Customer customerId :");
+//		try {
+//			System.out.println(logic.putCustomer(customerId));
+//		} catch (ManualException e) 
+//		{
+//			e.getMessage();
+//			e.printStackTrace();
+//		}
+//	}
+	
+//	private void getAccountInfo()
+//	{
+//		System.out.println("Enter the Account customerId :");
+//		int customerId=input.getInt();
+//		System.out.println(logic.accountInfo(customerId));
+//	}
+	
+	
+	private void getAccount() throws ManualException
+	{
+	
+		int customerId=input.getInt("Enter the customer customerId :");
+	
+		int acId=input.getInt("Enter the Account customerId :");
+		try {
+			System.out.println(logic.getAccount(customerId,acId));
+		} catch (ManualException e) {
+			e.getMessage();
 			e.printStackTrace();
 		}
 	}
-	private static void parseCustomerDetails(JSONObject customer) {
+	
+	
+	private void withdraw() throws ManualException
+	{
 		
-		JSONObject customerKey = (JSONObject)customer.get("101");
+		int customerId=input.getInt("Enter customer Id");
 		
-		System.out.println(customerKey.get("name"));
-		System.out.println(customerKey.get("age"));
-		System.out.println(customerKey.get("gender"));
-		System.out.println(customerKey.get("mobile"));
+		int accountId=input.getInt("Enter Account no");
+		
+		long number=input.getLong("Enter a amount for withdrawl");
+		try {
+			System.out.println(logic.withdraw(customerId,accountId,number));
+		} catch (ManualException e) {
+			e.getMessage();
+			e.printStackTrace();
+		}
 	}
 	
+	private void deposit() throws ManualException
+	{
+		
+		int customerId=input.getInt("Enter customer Id");
+	
+		int accountId=input.getInt("Enter Account no");
+	
+		long number=input.getLong("Enter a amount for deposit");
+		try {
+			System.out.println(logic.deposit(customerId,accountId,number));
+		} catch (ManualException e) {
+			e.getMessage();
+			e.printStackTrace();
+		}
+	}
+	
+	private void balance() throws ManualException
+	{
+		
+		int customerId=input.getInt("Enter customer Id");
+		
+		int accountId=input.getInt("Enter Account no");
+		try {
+			System.out.println(logic.getBalance(customerId,accountId));
+		} catch (ManualException e) {
+			e.getMessage();
+			e.printStackTrace();
+		}
+	}
+	
+
+	private void write()
+	{
+		try {
+			logic.storeCustomer();
+			logic.storeAccount();
+			logic.storeKey();
+		} catch (ManualException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void read()
+	{
+		try {
+			System.out.println(logic.readCustomer());
+			System.out.println(logic.readAccount());
+			System.out.println(logic.readKey());
+		} catch (ManualException e) {
+			e.printStackTrace();
+		}
+	}
+	private void load() 
+	{
+		try {
+			logic.fetchDetails();
+		} catch (ManualException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+
+	
+	
+	public static void main(String[] args)throws ManualException{
+		JsonRunner runner = new JsonRunner();
+		
+		InputCenter input=new InputCenter();
+		
+		boolean flag=true;
+
+		
+		while(flag)
+		{
+			int choice=input.getInt("Enter your choice");
+			switch(choice)
+			{
+			
+			
+				case 0:
+					flag=false;
+					System.out.println("Exit");
+					break;
+					
+				
+					
+				case 1:
+					int size=input.getInt("No.of Customer Details");
+					runner.putInfo(size);
+					break;
+					
+				case 2:
+					
+					int num=input.getInt("No.of Account Details");
+					runner.putAccountInfo(num);
+					break;	
+							
+				case 3:
+					runner.getAccount();
+					break;
+					
+				case 4:
+					runner.balance();
+					break;
+					
+				case 5:
+					runner.deposit();
+					break;
+					
+				case 6:
+					runner.withdraw();
+					break;
+					
+				case 7:
+					runner.write();//write
+					break;
+					
+				case 8:
+					runner.read();//read
+					break;
+				
+				case 9:
+					runner.load();//load
+					break;
+		
+				default:
+					System.out.println("Unavailable");
+					break;
+			}
+			
+		}
+	}
 }
