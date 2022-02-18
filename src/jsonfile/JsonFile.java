@@ -1,10 +1,10 @@
 package jsonfile;
 
-import java.io.BufferedReader;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
+
 
 import manualexception.ManualException;
 import org.json.simple.JSONObject;
@@ -25,10 +25,10 @@ public class JsonFile {
 	
 	public JSONObject readJSON(String name)throws ManualException{
 		
-		try(FileReader read = new FileReader(name);)
+		try(FileReader read = new FileReader(name))
 		{
 			JSONParser jsonParser = new JSONParser();
-			Object obj = (Object) jsonParser.parse(read);
+			Object obj =jsonParser.parse(read);
 			JSONObject json=(JSONObject)obj;
 			return json;
 			

@@ -157,6 +157,13 @@ public class JsonRunner
 			e.printStackTrace();
 		}
 	}
+	
+	private void status() throws ManualException {
+		int customerId = input.getInt("Enter CustomerID: ");
+		int accountId = input.getInt("Enter accountID: ");
+		boolean flag = input.getBoolean("Enter true for active or viceversa");
+		logic.accountStatus(customerId, accountId, flag);
+	}
 
 	private void entireCustomerAcc() throws ManualException {
 		int customerId = input.getInt("Enter customerID: ");
@@ -212,30 +219,34 @@ public class JsonRunner
 					break;
 					
 				case 5:
-					runner.deposit();
+					runner.status();
 					break;
 					
 				case 6:
-					runner.withdraw();
+					runner.deposit();
 					break;
 					
 				case 7:
-					runner.write();//write
+					runner.withdraw();
 					break;
 					
 				case 8:
+					runner.write();//write
+					break;
+					
+				case 9:
 					runner.read();//read
 					break;
 				
-				case 9:
+				case 10:
 					runner.load();//load
 					break;
 		
-				case 10:
+				case 11:
 					runner.entireCustomerAcc();
 					break;
 					
-				case 11:
+				case 12:
 					runner.entireCustomer();
 					break;
 					
