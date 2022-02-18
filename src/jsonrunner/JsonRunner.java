@@ -16,12 +16,13 @@ public class JsonRunner
 		for(int i=0;i<size;i++)
 		{
 			CustomerDetails customerObj=new CustomerDetails();
-			
-			
+						
 			customerObj.setName(input.getString("Enter a name for Customer"));
 		
 			customerObj.setGender(input.getString("Enter gender"));
+			
 			customerObj.setAge(input.getInt("enter age"));
+			
 			customerObj.setMobile(input.getLong("Enter a Mobile Number"));
 			
 			try
@@ -43,7 +44,7 @@ public class JsonRunner
 			AccountDetails accountObj=new AccountDetails();
 			
 			accountObj.setCustId(input.getInt("CustomerId"));
-			
+
 			accountObj.setAccNum(input.getLong("Account num"));
 			
 			accountObj.setBranch(input.getString("Enter a name for Branchname"));
@@ -64,28 +65,6 @@ public class JsonRunner
 			}
 		}
 	}
-//	
-//	private void getInfo()
-//	{
-//	
-//		int customerId=input.getInt("Enter the Customer customerId :");
-//		try {
-//			System.out.println(logic.putCustomer(customerId));
-//		} catch (ManualException e) 
-//		{
-//			e.getMessage();
-//			e.printStackTrace();
-//		}
-//	}
-	
-//	private void getAccountInfo()
-//	{
-//		System.out.println("Enter the Account customerId :");
-//		int customerId=input.getInt();
-//		System.out.println(logic.accountInfo(customerId));
-//	}
-	
-	
 	private void getAccount() throws ManualException
 	{
 	
@@ -179,9 +158,19 @@ public class JsonRunner
 		}
 	}
 
+	private void entireCustomerAcc() throws ManualException {
+		int customerId = input.getInt("Enter customerID: ");
+		System.out.println(logic.entireCustomerAccounts(customerId));
+	}
 	
-	
+	private void entireCustomer() throws ManualException {
+		
+		int customerId = input.getInt("Enter CustomerID: ");
+		
+		System.out.println(logic.getCustomerDetails(customerId));
+	}
 	public static void main(String[] args)throws ManualException{
+		
 		JsonRunner runner = new JsonRunner();
 		
 		InputCenter input=new InputCenter();
@@ -242,6 +231,14 @@ public class JsonRunner
 					runner.load();//load
 					break;
 		
+				case 10:
+					runner.entireCustomerAcc();
+					break;
+					
+				case 11:
+					runner.entireCustomer();
+					break;
+					
 				default:
 					System.out.println("Unavailable");
 					break;

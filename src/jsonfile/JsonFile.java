@@ -1,8 +1,10 @@
 package jsonfile;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
 
 import manualexception.ManualException;
 import org.json.simple.JSONObject;
@@ -19,12 +21,17 @@ public class JsonFile {
 			throw new ManualException("Problem in JSON file writing");
 		}
 	}
+   
 	
 	public JSONObject readJSON(String name)throws ManualException{
-		JSONParser parser = new JSONParser();
-		try(FileReader read = new FileReader(name)){
-			JSONObject jsonObj = (JSONObject) parser.parse(read);
-			return jsonObj;
+		
+		try(FileReader read = new FileReader(name);)
+		{
+			JSONParser jsonParser = new JSONParser();
+			Object obj = (Object) jsonParser.parse(read);
+			JSONObject json=(JSONObject)obj;
+			return json;
+			
 		} catch(IOException ioe) {
 			throw new ManualException(ioe);
 		} catch(ParseException pe) {
