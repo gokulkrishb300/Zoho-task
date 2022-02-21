@@ -20,24 +20,24 @@ public class JsonApi{
 	Helper helper = new Helper();
 	Gson gson = new Gson();
 	
-	private int autoCustId = 0;
+	private int autoCustId = 1000;
 	
-	private int autoAccId = 0;
+	private int autoAccId = 2000;
 	
 	 @SuppressWarnings({ "unchecked" })
 	private int generateCustId() throws ManualException 
 	    {
-	    	keyValues.put("customerKey", Integer.toString(autoCustId+1));
-	    	
-	    	return autoCustId++;
+	    	keyValues.put("customerKey", Integer.toString(++autoCustId));
+	    	json.createJSON("KeyDetails.json", keyValues);
+	    	return autoCustId;
 	    }
 	    
 	    @SuppressWarnings({ "unchecked" })
 	private int generateAccId() throws ManualException {
 	    	
-	    	keyValues.put("accountKey", Integer.toString(autoAccId+1));
-	    	
-	    	return autoAccId++;
+	    	keyValues.put("accountKey", Integer.toString(++autoAccId));
+	    	json.createJSON("KeyDetails.json", keyValues);
+	    	return autoAccId;
 	    }
 	    
 
@@ -53,12 +53,10 @@ public class JsonApi{
 	    	String data = gson.toJson(customerInstance);
 	    	
 	    	customer.put(String.valueOf(customerId), data);
+	    	
+	    	json.createJSON("CustomerDetails.json", customer);
 	    }
 	    
-	    public void storeCustomer()throws ManualException
-		{
-			json.createJSON("CustomerDetails.json", customer);
-		}
 	    
 	    public JSONObject readCustomer() throws ManualException {
 	    	
@@ -86,28 +84,20 @@ public class JsonApi{
 			}
 
 	}
-	    @SuppressWarnings({ "unchecked" })
+	   
 	    public void putAccount(AccountDetails accountInstance)throws ManualException {
 	    	
 	    	helper.accountNullCheck(accountInstance);
 	    	
-	    	detectCustId(Integer.toString(accountInstance.getCustId()));
+	    	int customerId = accountInstance.getCustId();
+	    	
+	    	detectCustId(Integer.toString(customerId));
 	    	
 	    	accountInstance.setAccId(generateAccId());
 	    	
 	    	int accountId = accountInstance.getAccId();
 	    	
-	    	JSONObject jsonObj = (JSONObject) account.get(Integer.toString(accountId));
-	    	
-	    	if(jsonObj==null) {
-	    		
-	    		jsonObj = new JSONObject();
-	    		
-	    		account.put(Integer.toString(accountInstance.getCustId()), jsonObj);
-	    	}
-	    	String data = gson.toJson(accountInstance);
-	    	
-	    	jsonObj.put(Integer.toString(accountId), data);
+	    	putAccount(customerId,accountId,accountInstance);
 	    }
 	    
 	    @SuppressWarnings({ "unchecked" })
@@ -124,13 +114,9 @@ public class JsonApi{
 	    	String data = gson.toJson(accountInstance);
 	    	
 	    	jsonObj.put(Integer.toString(accountId),data);
+	    	
+	    	json.createJSON("AccountDetails.json", account);
 	    }
-	    
-
-	public void storeAccount()throws ManualException{
-		
-			json.createJSON("AccountDetails.json", account);
-		}
 	  
 	 public JSONObject readAccount() throws ManualException{
 	    	
@@ -155,13 +141,7 @@ public class JsonApi{
     	
     	autoAccId = account.size();
     }
-    
-   
-    
-	public void storeKey()throws ManualException
-	{
-		json.createJSON("KeyDetails.json", keyValues);
-	}
+  
 	
 	public JSONObject readKey()throws ManualException
 	{
@@ -180,7 +160,7 @@ public class JsonApi{
 			
 			if(customer!=null)
 			{
-				String keyString=(String) keyValues.get("CustomerKey");
+				String keyString=(String) keyValues.get("customerKey");
 				
 				autoCustId=Integer.parseInt(keyString);
 			}
@@ -188,7 +168,7 @@ public class JsonApi{
 			//System.out.println(account);
 			if(account!=null)
 			{
-				String keyString=(String) keyValues.get("AccountKey");
+				String keyString=(String) keyValues.get("accountKey");
 				
 				autoAccId=Integer.parseInt(keyString);
 			}
@@ -239,7 +219,7 @@ public class JsonApi{
     	throw new ManualException("Account is De-activated or null data");
     }
     
-    public boolean deposit(int customerId,int accountId,long amount)throws ManualException
+    public String deposit(int customerId,int accountId,long amount)throws ManualException
 	{
 		AccountDetails accountObj=getAccount(customerId,accountId);
 		
@@ -249,12 +229,12 @@ public class JsonApi{
 		
 		putAccount(customerId,accountId,accountObj);
 		
-		return true;
+		return "Balance: "+accountObj.getBalance();
 		}
 		throw new ManualException("Account deactivated");
 	}
     
-	public boolean withdraw(int customerId,int accountId,long amount)throws ManualException
+	public String withdraw(int customerId,int accountId,long amount)throws ManualException
 	{
 		AccountDetails accountObj=getAccount(customerId,accountId);
 		
@@ -268,7 +248,7 @@ public class JsonApi{
 			
 			putAccount(customerId,accountId,accountObj);
 			
-			return true;
+			return "Balance: " +accountObj.getBalance();
 		}
 		}
 		throw new ManualException("Your balance is lower than the amount you want to withdraw");

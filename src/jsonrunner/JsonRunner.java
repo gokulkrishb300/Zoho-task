@@ -1,3 +1,4 @@
+
 package jsonrunner;
 import accountdeclare.*;
 import input.InputCenter;
@@ -48,8 +49,6 @@ public class JsonRunner
 			accountObj.setAccNum(input.getLong("Account num"));
 			
 			accountObj.setBranch(input.getString("Enter a name for Branchname"));
-			
-			accountObj.setBalance(input.getLong("Balance"));
 			
 			accountObj.setAccType(input.getString("Account type"));
 			
@@ -126,17 +125,6 @@ public class JsonRunner
 		}
 	}
 	
-
-	private void write()
-	{
-		try {
-			logic.storeCustomer();
-			logic.storeAccount();
-			logic.storeKey();
-		} catch (ManualException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	private void read()
 	{
@@ -170,7 +158,7 @@ public class JsonRunner
 		System.out.println(logic.entireCustomerAccounts(customerId));
 	}
 	
-	private void entireCustomer() throws ManualException {
+	private void customerDetails() throws ManualException {
 		
 		int customerId = input.getInt("Enter CustomerID: ");
 		
@@ -231,23 +219,19 @@ public class JsonRunner
 					break;
 					
 				case 8:
-					runner.write();//write
-					break;
-					
-				case 9:
 					runner.read();//read
 					break;
 				
-				case 10:
+				case 9:
 					runner.load();//load
 					break;
 		
-				case 11:
+				case 10:
 					runner.entireCustomerAcc();
 					break;
 					
-				case 12:
-					runner.entireCustomer();
+				case 11:
+					runner.customerDetails();
 					break;
 					
 				default:

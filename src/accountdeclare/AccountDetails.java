@@ -6,8 +6,6 @@ public class AccountDetails {
 	private long accNum;
 	private String accType;
 	private String branch;
-	private long deposit;
-	private long withDraw;
 	private long balance;
 	private boolean status;
 	
@@ -47,18 +45,6 @@ public class AccountDetails {
 	}
 	public void setStatus(boolean status) {
 		this.status = status;
-	}
-	public long getDeposit() {
-		return deposit;
-	}
-	public void setDeposit(long deposit) {
-		this.deposit = deposit;
-	}
-	public long getWithDraw() {
-		return withDraw;
-	}
-	public void setWithDraw(long withDraw) {
-		this.withDraw = withDraw;
 	}
 	public long getBalance() {
 		return balance;
