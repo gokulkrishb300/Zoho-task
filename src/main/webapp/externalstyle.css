@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+
+body {
+font-family: arial;
+}
+
+h2{
+	text-align:center;
+}
+
+
+.floatright{
+	float:right;
+}
+
+select{
+  width:30%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  color:black;
+  margin-left : 30px;
+}
+
+input[type=text], input[type=password], input[type=tel],input[type=number]{
+	width:30%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left : 30px;
+}
+table{
+	width:50%;
+    margin:auto;
+    
+	padding:20px;
+}
+table,th,td{
+	margin-top: 100px;
+	border:2px solid black;
+	text-align:center;
+	border-collapse:collapse;
+	padding:20px;
+}
+
+
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 12px 18px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+
+button:hover {
+  background-color: red;
+}
+
+
+
+legend{
+	text-align:center;
+}
+
+.split {
+  height: 100%;
+  
+  position: fixed;
+  overflow-x: hidden;
+  padding-top: 20px;
+  background-color: #f2f2f2;
+}
+.left{
+	left:0;
+	width: 20%;
+	background-color: #111;
+}
+
+.right{
+	right:0;
+	
+	
+	width: 80%;
+	
+}
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
