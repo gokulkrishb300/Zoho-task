@@ -10,17 +10,17 @@
 <title>Transfer</title>
 <link rel="stylesheet" type="text/css" href=externalstyle.css> 
 </head>
-
+ <%
+ BussinessLayer bus = (BussinessLayer) request.getServletContext().getAttribute("api");
+ request.setAttribute("AccountList", bus.getInfo()); 
+ List<Account> list = (List<Account>) request.getAttribute("AccountList");
+ %>
 
 
 <body>
 
 <h2>Transfer</h2>
- <%
- BussinessLayer bus1 = (BussinessLayer) request.getServletContext().getAttribute("api");
- request.setAttribute("AccountList", bus1.getInfo()); 
- List<Account> list = (List<Account>) request.getAttribute("AccountList");
- %>
+
 	 
 <div class="split right">
 <div class="floatright">

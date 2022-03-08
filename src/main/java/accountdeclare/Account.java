@@ -7,9 +7,10 @@ public class Account implements Serializable
 	private int accountID;
 	private int customerID;
 	private String branchName;
-	private int accNum;
+	
 	private double bankBalance;
 	private boolean status=true;
+	
 	public int getAccountID() {
 		return accountID;
 	}
@@ -28,12 +29,7 @@ public class Account implements Serializable
 	public void setBranchName(String branchName) {
 		this.branchName = branchName;
 	}
-	public int getAccNum() {
-		return accNum;
-	}
-	public void setAccNum(int accNum) {
-		this.accNum = accNum;
-	}
+
 	public double getBankBalance() {
 		return bankBalance;
 	}
@@ -49,7 +45,7 @@ public class Account implements Serializable
 	@Override
 	public String toString() {
 		return "Account [accountID=" + accountID + ", customerID=" + customerID + ", branchName=" + branchName
-				+ ", accNum=" + accNum + ", bankBalance=" + bankBalance + ", status=" + status + "]";
+				+ ", bankBalance=" + bankBalance + ", status=" + status + "]";
 	}
 	
 	

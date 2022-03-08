@@ -31,4 +31,13 @@
   <url-pattern>/transfer</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  <servlet-name>Deactivate</servlet-name>
+  <servlet-class>servlet.Deactivate</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>Deactivate</servlet-name>
+  <url-pattern>/deactivate</url-pattern>
+  </servlet-mapping>
 </web-app>

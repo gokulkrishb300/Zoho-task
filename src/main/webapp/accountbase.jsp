@@ -8,10 +8,16 @@
 <jsp:include page="welcomeadmin.jsp"/>
 <title>account base</title>
 
+ <script>
+ function deactivate() {
+	 
+ }
+ </script>
 
 <link rel="stylesheet" type="text/css" href="externalstyle.css">
 </head>
 <body>
+
 <h2>Account Base</h2>
 
 <div class="split right">
@@ -25,7 +31,7 @@
 <table>
 <tr> <th>AccountID</th>
      <th>CustomerID</th>
-     <th>AccountNum</th>
+  
      <th>Branch</th>
      <th>Balance</th>
      <th>Status</th>
@@ -36,20 +42,20 @@
     Iterator iter = list.iterator();
     while(iter.hasNext()){
 	 Account account = (Account) iter.next();
- 
+	
 %>
 
 <tr>
 <td> <% out.print(account.getAccountID()); %></td>
 <td> <% out.print(account.getCustomerID()); %> </td>
-<td> <% out.print(account.getAccNum()); %></td>
 <td> <% out.print(account.getBranchName()); %></td>
 <td> <% out.print(account.getBankBalance()); %> </td>
-<td> <button>Deactivate</button></td>
+
+<td> <button onclick="window.location.href='deactivate.jsp?customerID=<%=account.getCustomerID()%>&accountID=<%=account.getAccountID()%>';"><% account.isStatus();%>deactivate </button></td>
+
 <%
 }
  %>
- 
 
 
 </table>

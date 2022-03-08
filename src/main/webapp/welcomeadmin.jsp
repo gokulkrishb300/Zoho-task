@@ -22,6 +22,7 @@
    BussinessLayer bus = (BussinessLayer) request.getServletContext().getAttribute("api");
    request.setAttribute("CustomerMap", bus.getCustomerMap());
    request.setAttribute("AccountList", bus.getInfo()); 
+    
 %>
    
 

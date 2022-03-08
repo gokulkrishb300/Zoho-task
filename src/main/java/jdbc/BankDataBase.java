@@ -122,7 +122,7 @@ public class BankDataBase
 				 
 				 accountInfo.setCustomerID(resultSet.getInt("CustomerID"));
 				 
-				 accountInfo.setAccNum(resultSet.getInt("AccountNum"));
+				 
 				 
 				 accountInfo.setBranchName(resultSet.getString("Branch")); 
 				 
@@ -197,8 +197,6 @@ public class BankDataBase
 					 Account accountInfo=new Account();
 					 
 					 accountInfo.setCustomerID(result.getInt("CustomerID"));
-					 
-					 accountInfo.setAccNum(result.getInt("AccountNum"));
 					 
 					 accountInfo.setBranchName(result.getString("Branch"));
 					 
@@ -308,5 +306,6 @@ public class BankDataBase
 	{
 		return accountID;
 	}
+	
 	
 }
