@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Welcome admin!</title>
 <link rel="stylesheet" type="text/css" href="externalstyle.css">
 
@@ -20,7 +21,7 @@
 
  <%
    BussinessLayer bus = (BussinessLayer) request.getServletContext().getAttribute("api");
-   request.setAttribute("CustomerMap", bus.getCustomerMap());
+   request.setAttribute("CustomerMap", bus.getCustomerInfo());
    request.setAttribute("AccountList", bus.getInfo()); 
     
 %>

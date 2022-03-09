@@ -170,11 +170,37 @@ public class BussinessLayer
 		return interfaceObj.readAccountDetails();
 	}
 	
+	public Map<Integer,Customer> readCustomerDetails() throws ManualException{
+		
+		return interfaceObj.readCustomerDetails();
+	}
+	
 	public int getAccountId()
 	{
 		return interfaceObj.getAccountId();
 	}
 	
+	public List<Customer> getCustomerInfo() throws ManualException{
+		
+		List<Customer> list = new ArrayList<>();
+		
+		Map<Integer,Customer> mapObj = readCustomerDetails();
+		
+		for(Integer key: mapObj.keySet()) {
+				
+				Customer customerObj = mapObj.get(key);
+				
+				if(customerObj.getStatus()) {
+					
+					list.add(customerObj);
+				}
+			}
+		
+		return list;
+		}
+	
+	
+
 	public List<Account> getInfo()throws ManualException
 	{
 		List<Account> list=new ArrayList<>();

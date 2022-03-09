@@ -40,4 +40,25 @@
   <servlet-name>Deactivate</servlet-name>
   <url-pattern>/deactivate</url-pattern>
   </servlet-mapping>
+  
+    <servlet>
+  <servlet-name>Adate</servlet-name>
+  <servlet-class>servlet.Adate</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>Adate</servlet-name>
+  <url-pattern>/adate</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>addCustomer</servlet-name>
+  <servlet-class>servlet.AddCustomer</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>addCustomer</servlet-name>
+  <url-pattern>/addcustomer</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

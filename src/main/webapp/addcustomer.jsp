@@ -18,16 +18,13 @@
 
 <div class="split right container">
 
-<form action="customerbase.jsp" method="post">
+<form action="addcustomer" method="post">
 
     <label for="name">Name</label>
-    <input type="text" name="name" placeholder="customer name ..">
+    <input type="text" name="name" placeholder="customer name .."><br>
 
     <label for="address">Address</label>
-    <input type="text" name="address" placeholder="address ..">
-    
-    <label for="gender">Gender</label>
-    <input type="text"  name="gener" placeholder="gender ..">
+    <input type="text" name="address" placeholder="address .."><br>
 
     <label for="mobile">Mobile</label>
     <input type="tel" id="pwd" name="mobile" placeholder="number .."><br>

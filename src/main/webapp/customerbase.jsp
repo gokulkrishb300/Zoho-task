@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="welcomeadmin.jsp"></jsp:include>
+<jsp:include page="welcomeadmin.jsp"/>
 
 <title>customerbase</title>
 <h2>Customer Base</h2>
@@ -35,16 +35,17 @@
       </tr>
  
  <%
- Map<Integer,Customer> map = (Map<Integer,Customer>) request.getAttribute("CustomerMap");
- for(Object key:map.keySet()){
-	 Customer customer = map.get(key);
+ List<Customer> list = (List<Customer>) request.getAttribute("CustomerMap");
+Iterator iter = list.iterator();
+while(iter.hasNext()){
+	 Customer customer = (Customer) iter.next();
 	 %>
 	 
 	 <tr><td><% out.print(customer.getCustomerId()); %></td>
 	     <td><% out.print(customer.getCustomerName()); %></td>
 	     <td><% out.print(customer.getAddress()); %></td>
 	     <td><% out.print(customer.getMobile()); %></td>
-	     <td><button>Deactivate</button></td>
+	     <td><button onclick="window.location.href='deactivatecustomer.jsp?customerID=<%=customer.getCustomerId()%>';"><%customer.getStatus();%>Deactivate</button></td>
 	 </tr>
 	 <% 
 	 }

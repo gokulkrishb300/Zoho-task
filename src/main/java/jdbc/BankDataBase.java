@@ -122,8 +122,6 @@ public class BankDataBase
 				 
 				 accountInfo.setCustomerID(resultSet.getInt("CustomerID"));
 				 
-				 
-				 
 				 accountInfo.setBranchName(resultSet.getString("Branch")); 
 				 
 				 accountInfo.setBankBalance(resultSet.getDouble("Balance"));
@@ -143,15 +141,16 @@ public class BankDataBase
 	
 	public Map<Integer,Customer> readCustomer() throws ManualException
 	{
-		Map<Integer,Customer> customerData=new HashMap<>();
-		
+
 		Connection connection = Connectivity.CONNECT.getConnect();
+		
+		Map<Integer,Customer> customerData=new HashMap<>();
 		
 		try(Statement statement = connection.createStatement())
 		{
 			 String selectQuery="select * from CUSTOMER;";
 			 
-			 ResultSet result=statement.executeQuery(selectQuery);
+			 try (ResultSet result=statement.executeQuery(selectQuery)){
 			
 			 while(result.next())
 			 {
@@ -165,10 +164,13 @@ public class BankDataBase
 				 
 				 customerInfo.setMobile(result.getLong("Mobile"));
 				 
+				 customerInfo.setStatus(result.getBoolean("Status"));
+				 
 				 customerID=result.getInt("CustomerID");
 				 
 				 utility.putCustomerDetails(customerData,customerID,customerInfo);
 			 }
+		}
 			 
 			 return customerData;
 		}
@@ -190,7 +192,7 @@ public class BankDataBase
 		{
 			String sql="select * from ACCOUNT;";
 			
-			try(ResultSet result=statement.executeQuery(sql);)
+			try(ResultSet result=statement.executeQuery(sql))
 			{
 				while(result.next())
 				{
