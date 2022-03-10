@@ -13,7 +13,11 @@ public interface PersistenceLayer
 	
 	public Customer putCustomerDetails(Customer customer)throws ManualException	;
 	
+	public Customer updateCustomerDetails(Customer customer)throws ManualException;
+	
 	public Account putAccountDetails(Account account)throws ManualException;
+	
+	public Account updateAccountDetails(Account account)throws ManualException;
 	
 	public Customer getCustomerDetails(int customerId)throws ManualException;
 	

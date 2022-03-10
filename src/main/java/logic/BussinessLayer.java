@@ -89,9 +89,28 @@ public class BussinessLayer
 		return true;
 	}
 	
+	public boolean updateCustomerDetails(Customer customer)throws ManualException{
+
+		customer=interfaceObj.updateCustomerDetails(customer);
+		
+		cache.putCustomerDetails(customer.getCustomerId(), customer);
+		
+		return true;
+		
+	}
+	
 	public boolean putAccountDetails(Account account)throws ManualException
 	{
 		account=interfaceObj.putAccountDetails(account);
+		
+		cache.putAccountDetails(account.getAccountID(), account);
+		
+		return true;
+	}
+	
+	public boolean updateAccountDetails(Account account)throws ManualException{
+		
+		account= interfaceObj.updateAccountDetails(account);
 		
 		cache.putAccountDetails(account.getAccountID(), account);
 		

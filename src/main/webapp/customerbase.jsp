@@ -20,10 +20,10 @@
 <div class="split right">
 
 <div class="floatright">
-<button style="float:right"onclick="window.location.href='login.jsp';">log out</button>
+<button onclick="window.location.href='login.jsp';">log out</button>
 </div>
 <div class="floatright">
-<button style="float:right"onclick="window.location.href='addcustomer.jsp';">add</button>
+<button onclick="window.location.href='addcustomer.jsp?customerID=0';">add</button>
 </div>
 
 <table>
@@ -41,7 +41,7 @@ while(iter.hasNext()){
 	 Customer customer = (Customer) iter.next();
 	 %>
 	 
-	 <tr><td><% out.print(customer.getCustomerId()); %></td>
+	 <tr><td><button  onclick="window.location.href='addcustomer.jsp?customerID=<%=customer.getCustomerId()%>&name=<%=customer.getCustomerName()%>&address=<%=customer.getAddress()%>&mobile=<%=customer.getMobile()%>';"><% out.print(customer.getCustomerId()); %></button></td>
 	     <td><% out.print(customer.getCustomerName()); %></td>
 	     <td><% out.print(customer.getAddress()); %></td>
 	     <td><% out.print(customer.getMobile()); %></td>

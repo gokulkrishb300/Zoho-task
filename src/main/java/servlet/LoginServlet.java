@@ -62,10 +62,17 @@ public class LoginServlet extends HttpServlet {
 		
 		BussinessLayer logic=(BussinessLayer) request.getServletContext().getAttribute("api");
 		
+		User user=null;
 		
 		try 
 		{
-			User user=logic.getUserDetails(id);
+			user=logic.getUserDetails(id);
+		
+			int customerId=user.getCustomerID();
+			System.out.println(customerId);
+			
+			request.setAttribute("customerId",customerId);
+			
 			
 			if(password.equals(user.getPassword()))
 			{
@@ -79,19 +86,10 @@ public class LoginServlet extends HttpServlet {
 				}
 				else if(user.getRoleID()==2) {
 					
-					int customerId=user.getCustomerID();
-					
-					HttpSession session=request.getSession();
-					
-					session.setAttribute("customerId", customerId);
-					
-					Map <Integer,Account> map=logic.getCustomerAccounts(customerId);
-					
-					request.setAttribute("AccountMap", map);
-					
-					RequestDispatcher dispatch=request.getRequestDispatcher("welcomecustomer.jsp");
+                    RequestDispatcher dispatch=request.getRequestDispatcher("welcomecustomer.jsp");
 					
 					dispatch.forward(request, response);
+				
 				}
 			
 				

@@ -8,11 +8,7 @@
 <jsp:include page="welcomeadmin.jsp"/>
 <title>account base</title>
 
- <script>
- function deactivate() {
-	 
- }
- </script>
+
 
 <link rel="stylesheet" type="text/css" href="externalstyle.css">
 </head>
@@ -22,11 +18,11 @@
 
 <div class="split right">
 <div class="floatright">
-<button style="float:right"onclick="window.location.href='login.jsp';">log out</button>
+<button onclick="window.location.href='login.jsp';">log out</button>
 </div>
 <div class="floatright">
 
-<button style="float:right"onclick="window.location.href='addaccount.jsp?value=0';">add</button>
+<button onclick="window.location.href='addaccount.jsp?accountID=0';">add</button>
 </div>
 
 <table>

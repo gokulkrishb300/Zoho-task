@@ -22,15 +22,15 @@
  List<Account> list = (List<Account>) request.getAttribute("AccountList");
  %>
 <%
+int accountID=Integer.parseInt(request.getParameter("accountID"));
 
-
-if(request.getParameter("accountID")==null){   %>
+if(accountID==0){   %>
 <h2>Add account </h2>
 <div class="split right container">
 <div class="floatright">
-<button style="float:right"onclick="window.location.href='login.jsp';">log out</button>
+<button onclick="window.location.href='login.jsp';">log out</button>
 </div>
-<form action="adate" method="post" >
+<form action="adate?accountID=0" method="post" >
 
     
     
@@ -54,24 +54,39 @@ if(request.getParameter("accountID")==null){   %>
     
   
 
-    <button>Register</button>
+    <button >Register</button>
    
   </form>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <%} 
 else{ %>
 <h2>Update account</h2>
 <div class="split right container">
 <div class="floatright">
-<button style="float:right"onclick="window.location.href='login.jsp';">log out</button>
+<button onclick="window.location.href='login.jsp';">log out</button>
 </div>
-<form action="adate" method="post" >
+<form name="accountID" action="adate?accountID=<%=accountID%>" method="post" >
 
     
     
      <label for="customerID">CustomerID</label>
      
-    <input type="text" name="customerID" id="customerID"  value="<%out.print(request.getParameter("customerID")); %>">
+    <input type="text" name="customerID" id="customerID"  value="<%out.print(request.getParameter("customerID")); %>" >
     <br>
     
     
@@ -94,7 +109,7 @@ else{ %>
     
   
 
-    <button>Register</button>
+    <button >Update</button>
    
   </form>
 </div>

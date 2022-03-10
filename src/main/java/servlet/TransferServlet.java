@@ -52,32 +52,36 @@ public class TransferServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		
+		System.out.println(request.getParameter("value"));
+		
+		int value=Integer.parseInt(request.getParameter("value"));
+		
 		String senderID=request.getParameter("from");
 		
 		int fromID=Integer.parseInt(senderID);
 		
-	
+	    System.out.println(fromID);
 		
 		String receiverID=request.getParameter("to");
 	
 		int toID = Integer.parseInt(receiverID);
 		
-		
+		System.out.println(toID);
 		
 		String transfer = request.getParameter("amount");
 		
 		double amount = Double.parseDouble(transfer);
 		
-	
+	    System.out.println(amount);
 		
 		BussinessLayer bus=(BussinessLayer) request.getServletContext().getAttribute("api");
 		
 		DBLogic db = (DBLogic) request.getServletContext().getAttribute("api1");
 	
 		try {
-			bus.withdraw(db.getCustomerId(fromID), fromID, amount);
+			System.out.println(bus.withdraw(db.getCustomerId(fromID), fromID, amount));
 			
-			bus.deposit(db.getCustomerId(toID), toID, amount);
+			System.out.println(bus.deposit(db.getCustomerId(toID), toID, amount));
 
 		
 			
@@ -85,11 +89,21 @@ public class TransferServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(value==1) 
+		{
+	        response.sendRedirect("accountbase.jsp");
 		
-		RequestDispatcher dispatch=request.getRequestDispatcher("accountbase.jsp");
 		
-		dispatch.forward(request, response);
-		
+		}
+		else if(value==0) {
+			response.sendRedirect("welcomecustomer.jsp");
+			
+			RequestDispatcher req=request.getRequestDispatcher(transfer);
+		}
+		else {
+			
+			out.print("Invalid Transaction");
+		}
 		
 		
 	

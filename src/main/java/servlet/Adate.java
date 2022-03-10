@@ -40,18 +40,23 @@ public class Adate extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		int cusID = Integer.parseInt(request.getParameter("customerID"));
+		int customerID = Integer.parseInt(request.getParameter("customerID"));
 		
+		int accountID = Integer.parseInt(request.getParameter("accountID"));
+		
+		System.out.println("AccountID: " + accountID);
+
 		String branch= request.getParameter("branch");
 		
-		Double balance = Double.parseDouble(request.getParameter("balance"));
+		double balance = Double.parseDouble(request.getParameter("balance"));
 		
-
-		BussinessLayer logic=(BussinessLayer) request.getServletContext().getAttribute("api");
+        BussinessLayer logic=(BussinessLayer) request.getServletContext().getAttribute("api");
 		
 		Account account = new Account();
 		
-		account.setCustomerID(cusID);
+		if(accountID==0) {
+		
+		account.setCustomerID(customerID);
 		
 		account.setBranchName(branch);
 		
@@ -65,6 +70,25 @@ public class Adate extends HttpServlet {
 		}
 		response.sendRedirect("accountbase.jsp");
 				
+	} else {
+		
+		account.setAccountID(accountID);
+	
+		account.setCustomerID(customerID);
+		
+		account.setBranchName(branch);
+		
+		account.setBankBalance(balance);
+		
+		try {
+			logic.updateAccountDetails(account);
+			} catch (ManualException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		response.sendRedirect("accountbase.jsp");
 	}
 
+}
+	
 }

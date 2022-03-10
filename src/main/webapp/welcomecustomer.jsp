@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
     
-<%@ page import="java.util.*,accountdeclare.*" %>
+<%@ page import="java.util.*,accountdeclare.*,logic.*" %>
 
 
 <!DOCTYPE html>
@@ -19,18 +19,26 @@
 <h2>Welcome Customer!</h2>
 
 <div class="split left">
-<button onclick="window.location.href='customertransfer.jsp';">Transfer</button>
+<button name="Transfer" onclick="window.location.href='transfer.jsp?refsan=1';">Transfer</button>
 </div>
 
 <form method= "post">
 <table>
-<tr><th>AccountNum</th>
+<tr><th>AccountID</th>
     <th>Branch</th>
     <th>Balance</th>
 </tr>
 
 <%
-Map<Integer, Account> map = (Map<Integer,Account>)request.getAttribute("AccountMap");
+BussinessLayer bus = (BussinessLayer) request.getServletContext().getAttribute("api");
+
+System.out.println(request.getAttribute("customerId"));
+
+int customerID =(int) request.getAttribute("customerId");
+
+
+
+Map <Integer,Account> map=bus.getCustomerAccounts(customerID);
 
 for(Map.Entry<Integer,Account> entry: map.entrySet()){
 	Account account = entry.getValue();

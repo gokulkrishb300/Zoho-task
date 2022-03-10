@@ -43,6 +43,12 @@ public class AddCustomer extends HttpServlet {
 		
 		BussinessLayer logic=(BussinessLayer) request.getServletContext().getAttribute("api");
 		
+		int customerID = Integer.parseInt(request.getParameter("customerID"));
+		
+		System.out.println("CustomerID: "+customerID);
+		
+		if(customerID==0) {
+		
 		String name = request.getParameter("name");
 		
 		String address = request.getParameter("address");
@@ -66,5 +72,36 @@ public class AddCustomer extends HttpServlet {
 		
 		response.sendRedirect("customerbase.jsp");
 	}
+		
+		else {
+			
+			String name = request.getParameter("name");
+			
+			String address = request.getParameter("address");
+			
+			long mobile = Long.parseLong(request.getParameter("mobile"));
+			
+			Customer customer = new Customer();
+			
+			customer.setCustomerId(customerID);
+			
+			customer.setCustomerName(name);
+			
+			customer.setAddress(address);
+			
+			customer.setMobile(mobile);
+		
+			try {
+				logic.updateCustomerDetails(customer);
+			} catch (ManualException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			response.sendRedirect("customerbase.jsp");
+			
+		}
+	}
+	
 
 }

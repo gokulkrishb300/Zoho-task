@@ -61,4 +61,14 @@
   <url-pattern>/addcustomer</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  <servlet-name>updateCustomer</servlet-name>
+  <servlet-class>servlet.update</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>updateCustomer</servlet-name>
+  <url-pattern>/update</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

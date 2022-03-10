@@ -36,6 +36,21 @@ public class DBLogic implements PersistenceLayer
 		
 		return customer;
 	}
+	
+	public Customer updateCustomerDetails(Customer customer) throws ManualException{
+		
+		int customerId = customer.getCustomerId();
+		
+         String customerName=customer.getCustomerName();
+		
+		String address=customer.getAddress();
+		
+		long mobile=customer.getMobile();
+		
+		dataBase.updateRecord("update CUSTOMER set Name='"+customerName+"',Address='"+address+"',Mobile="+mobile+" where CustomerID="+customerId+";");
+		
+		return customer;
+	}
 	public Account putAccountDetails(Account account)throws ManualException
 	{
 		int customerID=account.getCustomerID();
@@ -45,6 +60,20 @@ public class DBLogic implements PersistenceLayer
 		double bankBalance=account.getBankBalance();
 		
 		dataBase.insertRecord("insert into ACCOUNT(CustomerID,Branch,Balance) values("+ customerID +",'"+ branchName +"',"+ bankBalance +");");
+		
+		return account;
+	}
+	public Account updateAccountDetails(Account account) throws ManualException{
+		
+		int accountID = account.getAccountID();
+		
+        int customerID=account.getCustomerID();
+		
+		String branchName=account.getBranchName();
+		
+		double bankBalance=account.getBankBalance();
+		
+		dataBase.updateRecord("update ACCOUNT set Branch='"+branchName+"',Balance="+bankBalance+" where AccountID="+accountID+" and CustomerID="+customerID+";");
 		
 		return account;
 	}
