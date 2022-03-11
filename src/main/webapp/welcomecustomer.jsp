@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+        <%@page errorPage ="error.jsp"%>
     
 <%@ page import="java.util.*,accountdeclare.*,logic.*" %>
 
@@ -22,7 +22,7 @@
 <button name="Transfer" onclick="window.location.href='transfer.jsp?refsan=1';">Transfer</button>
 </div>
 
-<form method= "post">
+<form action="" method="post">
 <table>
 <tr><th>AccountID</th>
     <th>Branch</th>
@@ -30,15 +30,16 @@
 </tr>
 
 <%
-BussinessLayer bus = (BussinessLayer) request.getServletContext().getAttribute("api");
+if(session.getAttribute("customerId")==null)
+{
+	RequestDispatcher dispatch=request.getRequestDispatcher("login.jsp");
+	
+	dispatch.forward(request, response);
+}
 
-System.out.println(request.getAttribute("customerId"));
-
-int customerID =(int) request.getAttribute("customerId");
 
 
-
-Map <Integer,Account> map=bus.getCustomerAccounts(customerID);
+Map <Integer,Account> map=(Map<Integer,Account>)request.getAttribute("AccountMap");
 
 for(Map.Entry<Integer,Account> entry: map.entrySet()){
 	Account account = entry.getValue();

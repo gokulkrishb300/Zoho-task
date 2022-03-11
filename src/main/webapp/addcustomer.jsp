@@ -16,6 +16,14 @@
 <button onclick="window.location.href='admintransfer.jsp';">Transfer</button>
 </div>
 <%
+
+if(session.getAttribute("customerId")==null)
+{
+	RequestDispatcher dispatch=request.getRequestDispatcher("login.jsp");
+	
+	dispatch.forward(request, response);
+}
+
  BussinessLayer bus = (BussinessLayer) request.getServletContext().getAttribute("api");
  request.setAttribute("AccountList", bus.getInfo()); 
  List<Account> list = (List<Account>) request.getAttribute("AccountList");
@@ -26,19 +34,17 @@ int customerID=Integer.parseInt(request.getParameter("customerID"));
 if(customerID==0){   %>
 <h2>Add Customer</h2>
 <div class="split right container">
-<div class="floatright">
-<button onclick="window.location.href='login.jsp';">log out</button>
-</div>
+
 <form action="addcustomer?customerID=0" method="post">
 
     <label for="name">Name</label>
-    <input type="text" name="name" placeholder="customer name .."><br>
+    <input type="text" name="name" placeholder="customer name .." required><br>
 
     <label for="address">Address</label>
-    <input type="text" name="address" placeholder="address .."><br>
+    <input type="text" name="address" placeholder="address .." required><br>
 
     <label for="mobile">Mobile</label>
-    <input type="tel" id="pwd" name="mobile" placeholder="number .."><br>
+    <input type="tel" id="pwd" name="mobile" placeholder="number .." required><br>
 
     <button >Register</button>
    

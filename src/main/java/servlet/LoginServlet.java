@@ -48,59 +48,99 @@ public class LoginServlet extends HttpServlet {
     		e.printStackTrace();
     	}
     }
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException 
 	{
+		HttpSession session = request.getSession();
 		
-		PrintWriter out = response.getWriter();
+		int invalidate =Integer.parseInt(request.getParameter("invalidate"));
 		
+		if (invalidate ==0) 
+		{
+			session.invalidate();
+			
+			RequestDispatcher dispatch = request.getRequestDispatcher("login.jsp");
+			
+			dispatch.forward(request, response);
+		}
+
+	}
+    
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
+	{		
+		try {
+			
+	    HttpSession session = request.getSession();
+			
 		String userID=request.getParameter("userid");
 		
 		int id=Integer.parseInt(userID);
 		
 		String password=request.getParameter("password");
 		
+		
 		BussinessLayer logic=(BussinessLayer) request.getServletContext().getAttribute("api");
 		
-		User user=null;
+		User user=logic.getUserDetails(id);
 		
-		try 
-		{
-			user=logic.getUserDetails(id);
 		
-			int customerId=user.getCustomerID();
-			System.out.println(customerId);
 			
-			request.setAttribute("customerId",customerId);
-			
-			
-			if(password.equals(user.getPassword()))
+			if(user != null && password.equals(user.getPassword()))
 			{
 				if(user.getRoleID()==1)
 				
 				{	
+					
+					
+					session.setAttribute("session", "session");
+					
 					RequestDispatcher dispatch=request.getRequestDispatcher("accountbase.jsp");
 					
 					dispatch.forward(request, response);
 						
 				}
-				else if(user.getRoleID()==2) {
+				else {
 					
-                    RequestDispatcher dispatch=request.getRequestDispatcher("welcomecustomer.jsp");
+					int customerId = user.getCustomerID();
+					
+					session.setAttribute("customerId", customerId);
+					
+					Map<Integer, Account> map = logic.getCustomerAccounts(customerId);
+					
+					request.setAttribute("AccountMap", map);
+					
+					RequestDispatcher dispatch = request.getRequestDispatcher("welcomecustomer.jsp");
 					
 					dispatch.forward(request, response);
 				
-				}
+				    }
 			
 				
 			}
 			else {
-			      out.println("Neither Customer nor Admin");
+				request.setAttribute("error", "Enter valid information");
+				
+				RequestDispatcher dispatch = request.getRequestDispatcher("login.jsp");
+				
+				dispatch.forward(request, response);
 			}
 			
 		}
+	
 		catch (ManualException e) 
 		{
+			RequestDispatcher dispatch = request.getRequestDispatcher("error.jsp");
+			
+			dispatch.forward(request, response);
+			
+			e.printStackTrace();
+		}
+		catch (Exception e) 
+		{
+			RequestDispatcher dispatch = request.getRequestDispatcher("error.jsp");
+			
+			dispatch.forward(request, response);
 			
 			e.printStackTrace();
 		}

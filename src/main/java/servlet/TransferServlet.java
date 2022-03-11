@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -10,7 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import accountdeclare.Account;
 import logic.BussinessLayer;
 import cache.CacheLayer;
 import logic.DBLogic;
@@ -50,60 +53,85 @@ public class TransferServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		PrintWriter out = response.getWriter();
 		
-		System.out.println(request.getParameter("value"));
 		
+		
+		try {
+			
 		int value=Integer.parseInt(request.getParameter("value"));
 		
 		String senderID=request.getParameter("from");
 		
 		int fromID=Integer.parseInt(senderID);
 		
-	    System.out.println(fromID);
+	 
 		
 		String receiverID=request.getParameter("to");
 	
 		int toID = Integer.parseInt(receiverID);
 		
-		System.out.println(toID);
+
 		
 		String transfer = request.getParameter("amount");
 		
 		double amount = Double.parseDouble(transfer);
 		
-	    System.out.println(amount);
-		
 		BussinessLayer bus=(BussinessLayer) request.getServletContext().getAttribute("api");
 		
 		DBLogic db = (DBLogic) request.getServletContext().getAttribute("api1");
 	
-		try {
-			System.out.println(bus.withdraw(db.getCustomerId(fromID), fromID, amount));
+		
 			
-			System.out.println(bus.deposit(db.getCustomerId(toID), toID, amount));
+			if(value==1) 
+			{
+				 System.out.println(bus.withdraw(db.getCustomerId(fromID), fromID, amount));
+					
+					System.out.println(bus.deposit(db.getCustomerId(toID), toID, amount));
+		
+					RequestDispatcher dispatch=request.getRequestDispatcher("accountbase.jsp");
+					
+					dispatch.forward(request, response);
+			
+			}
+			
+			else if(value==0) {
+				
+              bus.withdraw(db.getCustomerId(fromID), fromID, amount);
+				
+				bus.deposit(db.getCustomerId(toID), toID, amount);
+				
+				HttpSession session = request.getSession();
+				
+				Map<Integer, Account> map = bus.getCustomerAccounts((int)session.getAttribute("customerId"));
+				
+				request.setAttribute("AccountMap", map);
+				
+				RequestDispatcher dispatch=request.getRequestDispatcher("welcomecustomer.jsp");
+				
+				dispatch.forward(request, response);
+				
+			}
 
 		
 			
 		} catch (ManualException e) {
 			// TODO Auto-generated catch block
+			RequestDispatcher dispatch = request.getRequestDispatcher("error.jsp");
+			
+			dispatch.forward(request, response);
+			
 			e.printStackTrace();
 		}
-		if(value==1) 
-		{
-	        response.sendRedirect("accountbase.jsp");
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			RequestDispatcher dispatch = request.getRequestDispatcher("error.jsp");
+			
+			dispatch.forward(request, response);
+			
+			e.printStackTrace();
+		}
 		
 		
-		}
-		else if(value==0) {
-			response.sendRedirect("welcomecustomer.jsp");
-			
-			RequestDispatcher req=request.getRequestDispatcher(transfer);
-		}
-		else {
-			
-			out.print("Invalid Transaction");
-		}
 		
 		
 	

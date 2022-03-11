@@ -1,17 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+    <%@page errorPage ="error.jsp"%>
     <%@ page import ="java.util.*,accountdeclare.*,logic.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href=externalstyle.css> 
+
 <%if(request.getParameter("refsan")==null) {%>
 <jsp:include page="welcomeadmin.jsp"/>
 <title>Transfer</title>
 
 </head>
+<body>
+<% if(session.getAttribute("session")==null)
+	{
+		RequestDispatcher dispatch=request.getRequestDispatcher("login.jsp");
+		dispatch.forward(request, response);
+	}
+	%>
+
  <%
  BussinessLayer bus = (BussinessLayer) request.getServletContext().getAttribute("api");
  request.setAttribute("AccountList", bus.getInfo()); 
@@ -19,15 +28,13 @@
  %>
 
 
-<body>
+
 
 <h2>Admin Transfer</h2>
 
 	 
-<div class="split right">
-<div class="floatright">
-<button onclick="window.location.href='login.jsp';">log out</button>
-</div>
+<div class="split right bg-img">
+
 <form action="transfer?value=1" method="post">
 
 
@@ -71,7 +78,6 @@
  %>
 
 
-<body>
 
 <h2>Customer Transfer</h2>
 
@@ -107,7 +113,7 @@
     <input type="number" id="amount" name="amount" min="1" placeholder="amount here.."><br>
 
     <button>Transfer</button>
-    
+   <button type="reset">Reset</button>
   </form>
 </div>
 <%} %>

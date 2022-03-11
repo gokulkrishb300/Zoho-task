@@ -18,13 +18,15 @@
 
 <div class="split right">
 <div class="floatright">
-<button onclick="window.location.href='login.jsp';">log out</button>
+
 </div>
 <div class="floatright">
 
 <button onclick="window.location.href='addaccount.jsp?accountID=0';">add</button>
 </div>
-
+<div class="floatright">
+<button onclick="window.location.href='inactiveaccount.jsp';">Deactivated Account's</button>
+</div>
 <table>
 <tr> <th>AccountID</th>
      <th>CustomerID</th>
@@ -34,6 +36,14 @@
 </tr>
  
  <%
+ 
+ if(session.getAttribute("customerId")==null)
+ {
+ 	RequestDispatcher dispatch=request.getRequestDispatcher("login.jsp");
+ 	
+ 	dispatch.forward(request, response);
+ }
+
 	List<Account> list = (List<Account>) request.getAttribute("AccountList");
     Iterator iter = list.iterator();
     while(iter.hasNext()){

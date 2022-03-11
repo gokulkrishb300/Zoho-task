@@ -6,12 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="externalstyle.css">
 <jsp:include page="welcomeadmin.jsp"/>
 
 <title>customerbase</title>
 <h2>Customer Base</h2>
 
-<link rel="stylesheet" type="text/css" href="externalstyle.css">
+
 </head>
 <body>
 
@@ -19,13 +20,22 @@
 
 <div class="split right">
 
-<div class="floatright">
-<button onclick="window.location.href='login.jsp';">log out</button>
-</div>
+
+
 <div class="floatright">
 <button onclick="window.location.href='addcustomer.jsp?customerID=0';">add</button>
 </div>
-
+<div class="floatright">
+<button onclick="window.location.href='inactivecustomer.jsp';">Deactivated Customer's</button>
+</div>
+<%
+if(session.getAttribute("customerId")==null)
+{
+	RequestDispatcher dispatch=request.getRequestDispatcher("login.jsp");
+	
+	dispatch.forward(request, response);
+}
+%>
 <table>
       <tr><th>CustomerID</th>
           <th>Name</th>

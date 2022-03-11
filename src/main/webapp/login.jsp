@@ -8,20 +8,33 @@
 </head>
 <body>
 
-<h2>Login Page</h2>
-<form action="checker" method="post" >
-<div class="container">
 
+<div class="bg-img" >
 
-    <label for="id">UrUserID    </label>
-    <input type="number" id="id" name="userid" min="1000" placeholder="id here.."><br>
+<form action="checker" method="post" class="container">
+    <h2>Login Page</h2>
+    <label for="id">UserID    </label>
+    <input type="number" id="id" name="userid" min="1000" placeholder="id here.." required><br>
 
     <label for="pwd">Password</label>
-    <input type="password" id="pwd" name="password" placeholder="password here.."><br>
+    <input type="password" id="pwd" name="password" placeholder="password here.." required><br>
 
-    <button type="submit">Submit</button>
-  
-</div>
+    <button type="submit" class="btn">Submit</button>
+    <button type="reset" class="btn">Reset</button>
+    
+
+
+<% if(request.getAttribute("error")!=null)
+		{%>
+		
+		<p><%out.print(request.getAttribute("error")); %></p>
+		<%} %>
+
 </form>
+</div>
+
+<h6 class="rights">© 2022, Gokul Corporation Pvt. Ltd. All Rights Reserved.</h6>
+
 </body>
+
 </html>

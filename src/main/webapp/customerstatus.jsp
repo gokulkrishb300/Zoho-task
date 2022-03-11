@@ -8,6 +8,14 @@
 <link rel="stylesheet" type="text/css" href="externalstyle.css">
 </head>
 <body>
+<%
+if(session.getAttribute("customerId")==null)
+{
+	RequestDispatcher dispatch=request.getRequestDispatcher("login.jsp");
+	
+	dispatch.forward(request, response);
+}
+%>
 <h2>Customer Status </h2>
 <div class="container">
 <form  method="post">

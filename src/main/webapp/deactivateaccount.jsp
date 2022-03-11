@@ -13,7 +13,14 @@
 <form action="" method = "post">
 
  <%
-     
+ 
+ if(session.getAttribute("customerId")==null)
+ {
+ 	RequestDispatcher dispatch=request.getRequestDispatcher("login.jsp");
+ 	
+ 	dispatch.forward(request, response);
+ }
+
  BussinessLayer bus = (BussinessLayer) request.getServletContext().getAttribute("api");
 int customerID = Integer.parseInt(request.getParameter("customerID"));
 int accountID = Integer.parseInt(request.getParameter("accountID"));

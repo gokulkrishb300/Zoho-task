@@ -216,6 +216,27 @@ public class BussinessLayer
 			}
 		
 		return list;
+		
+		}
+	
+public List<Customer> getDeactivedCustomer() throws ManualException{
+		
+		List<Customer> list = new ArrayList<>();
+		
+		Map<Integer,Customer> mapObj = readCustomerDetails();
+		
+		for(Integer key: mapObj.keySet()) {
+				
+				Customer customerObj = mapObj.get(key);
+				
+				if(!customerObj.getStatus()) {
+					
+					list.add(customerObj);
+				}
+			}
+		
+		return list;
+		
 		}
 	
 	
@@ -235,6 +256,27 @@ public class BussinessLayer
 				Account accountObj=accountMap.get(iter);
 				
 				if(accountObj.isStatus())
+				{
+					list.add(accountObj);
+				}
+			}
+		}
+		return list;
+	}
+	
+	public List<Account> getDeactivatedAccount()throws ManualException
+	{
+		List<Account> list=new ArrayList<>();
+		
+		Map<Integer,Map<Integer,Account>> mapObj=readAccountDetails();
+		
+		for(Integer customerId:mapObj.keySet())
+		{
+			Map<Integer,Account> accountMap=mapObj.get(customerId);
+			for(Integer accountId:accountMap.keySet())
+			{
+				Account accountObj=accountMap.get(accountId);
+				if(!accountObj.isStatus())
 				{
 					list.add(accountObj);
 				}

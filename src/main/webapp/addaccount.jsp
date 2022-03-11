@@ -17,6 +17,14 @@
 <button onclick="window.location.href='admintransfer.jsp';">Transfer</button>
 </div>
  <%
+ 
+ if(session.getAttribute("customerId")==null)
+ {
+ 	RequestDispatcher dispatch=request.getRequestDispatcher("login.jsp");
+ 	
+ 	dispatch.forward(request, response);
+ }
+ 
  BussinessLayer bus = (BussinessLayer) request.getServletContext().getAttribute("api");
  request.setAttribute("AccountList", bus.getInfo()); 
  List<Account> list = (List<Account>) request.getAttribute("AccountList");
@@ -27,20 +35,22 @@ int accountID=Integer.parseInt(request.getParameter("accountID"));
 if(accountID==0){   %>
 <h2>Add account </h2>
 <div class="split right container">
-<div class="floatright">
-<button onclick="window.location.href='login.jsp';">log out</button>
-</div>
+
+<form >
+
+</form>
+
 <form action="adate?accountID=0" method="post" >
 
     
     
      <label for="customerID">CustomerID</label>
-    <input type="text" name="customerID" id="customerID"  min= 1 >
+    <input type="text" name="customerID" id="customerID"  min= 1 required >
     <br>
     
     
     <label for="branch">Branch</label>
-    <select name="branch" id="branch">
+    <select name="branch" id="branch" required>
     <option>branch here..</option>
     <% Iterator iterBranch = list.iterator();
     		while(iterBranch.hasNext()){
@@ -49,7 +59,7 @@ if(accountID==0){   %>
     </select><br>
     
      <label for="balance">Balance</label>
-    <input type="number" name="balance" id="balance" min=1 >
+    <input type="number" name="balance" id="balance" min=1  required>
     <br>
     
   
@@ -77,9 +87,7 @@ if(accountID==0){   %>
 else{ %>
 <h2>Update account</h2>
 <div class="split right container">
-<div class="floatright">
-<button onclick="window.location.href='login.jsp';">log out</button>
-</div>
+
 <form name="accountID" action="adate?accountID=<%=accountID%>" method="post" >
 
     
