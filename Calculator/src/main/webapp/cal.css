@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.centre{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+button{
+	border:1px inset #1f1f7a;
+	background-color:#1f1f7a;
+	color:black;
+	box-shadow:5px;
+}
