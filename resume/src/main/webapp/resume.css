@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+
+body{
+	font-family:Helvetica;
+	
+}
+.centre{
+	text-align:center;
+}
+#myimg{
+	width:180px;
+    height:180px;
+	margin-left:570px;
+	margin-top:-200px;
+}
+h4{
+	padding: 10px 0px 10px 0px;
+	background-color: #e0e0d2;
+	color:black;
+	text-align:center;
+	
+}
+table{
+	border-collapse:collapse;
+}
+th,td{
+    border:2px solid #1f1f7a;
+	padding:6px 8px;	
+}
+
+#date{
+	padding: 10px 0px 10px 0px;
+	color:black;
+	font-weight:bold;
+	font-size:16px;
+}
+
+.contentcenter{
+	border:1px solid black;
+	margin-left:500px;
+	margin-right:500px;
+	padding:20px;
+}
+li{
+	margin-bottom:3px;
+}
+#sign{
+   float:right;
+	color:black;
+	font-weight:bold;
+	font-size:16px;
+	text-align:right;
+	margin-top:-50px;
+	
+}
+#signimg{
+    float:right;
+	width:100px;
+    height:100px;
+}
