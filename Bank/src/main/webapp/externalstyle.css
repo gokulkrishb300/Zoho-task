@@ -1,0 +1,186 @@
+@charset "UTF-8";
+
+
+body {
+font-family: arial;
+}
+
+/* body{
+	background-image:url('https://as2.ftcdn.net/v2/jpg/03/83/84/49/1000_F_383844937_VVv0WYa8qmKZZNfTS3P6dwnIeAzQRg3n.jpg');
+	background-repeat:no-repeat;
+} */
+
+img{
+	opacity:0.5;
+	src:"https://checkyeti.imgix.net/images/optimized/hot-air-balloon-rides-sem-hero.jpg?auto=format,compress&fit=crop&h=600&rect=0,544,3840,1101&dpr=2&q=35";
+	
+}
+.centre{
+
+  margin-top:200px;
+  margin-left:auto;
+  margin-right:auto;
+  width:50%;
+  
+
+}
+p{
+	color:white;
+	font-weight:bold;
+	text-align:center;
+	font-size:25px;
+	background-color:red;
+}
+
+.floatright{
+	float:right;
+}
+
+select{
+  width:30%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  color:black;
+  margin-left : 30px;
+}
+
+
+table{
+	width:50%;
+    margin:auto;
+    
+	padding:20px;
+}
+table,th,td{
+	margin-top: 100px;
+	border:2px solid black;
+	text-align:center;
+	border-collapse:collapse;
+	padding:20px;
+}
+
+
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 12px 18px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+
+button:hover {
+  background-color: red;
+}
+
+
+
+legend{
+	text-align:center;
+}
+
+.split {
+  height: 100%;
+  
+  position:absolute;
+ 
+  padding-top: 20px;
+  background-color: #f2f2f2;
+}
+.left{
+	
+	float:left;
+	width: 20%;
+	background-color: #111;
+}
+
+.right{
+	right:0;
+	float:right;
+	
+	width: 80%;
+	
+}
+
+h2{
+	text-align:center;
+}
+
+.rights{
+	position:absolute;
+	bottom:0;
+	left:650px;
+	
+}
+
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  /* The image used */
+  background-image: url("https://as1.ftcdn.net/v2/jpg/03/03/57/00/1000_F_303570054_NXBYGgQABt5HPUkRgi9SjQVgMbD7iymv.jpg");
+
+  
+  min-height: 980px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  right: 750px;
+  margin: 20px;
+  margin-top:200px;
+  max-width: 300px;
+  padding: 16px;
+  background-color: white;
+  opacity:0.8;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] , input[type=tel],input[type=number],select{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=tel]:focus,input[type=number]:focus,select:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>Bank</display-name>
+  <welcome-file-list>
+    <welcome-file>login.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+  <servlet-name>LoginServlet</servlet-name>
+  <servlet-class>servlet.LoginServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>LoginServlet</servlet-name>
+  <url-pattern>/checker</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+  <servlet-name>Logout</servlet-name>
+  <servlet-class>servlet.Logout</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>Logout</servlet-name>
+  <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>TransferServlet</servlet-name>
+  <servlet-class>servlet.TransferServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>TransferServlet</servlet-name>
+  <url-pattern>/transfer</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>Deactivate</servlet-name>
+  <servlet-class>servlet.Deactivate</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>Deactivate</servlet-name>
+  <url-pattern>/deactivate</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+  <servlet-name>Adate</servlet-name>
+  <servlet-class>servlet.Adate</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>Adate</servlet-name>
+  <url-pattern>/adate</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>addCustomer</servlet-name>
+  <servlet-class>servlet.AddCustomer</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>addCustomer</servlet-name>
+  <url-pattern>/addcustomer</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>updateCustomer</servlet-name>
+  <servlet-class>servlet.update</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>updateCustomer</servlet-name>
+  <url-pattern>/update</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
