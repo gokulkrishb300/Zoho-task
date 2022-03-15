@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.container{
+	border:3px groove black;
+	height:200px;
+	position:relative;
+}
+
+.vertical{
+	top:10%;
+	left:50%;
+	position:absolute;
+}
