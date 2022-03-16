@@ -7,71 +7,77 @@
 <meta charset="UTF-8">
 <title>Trapping Sequence</title>
 <link rel="stylesheet" href="trap.css">
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
 <script>
-function trap(){
-	var a=3,b=5,count=0;
-	while(a<14){
-	let display;
+let map = new Map();
+
+function sumOfDigits(a){
+
+	let sum=0,digit=0;
+	while(a>0){
+		digit = a%10;
+		sum += digit;
+		a=Math.floor(a/10);
+	}
+	return sum;
+	}
+	
+
+function trap(x,n,y){
+	
+	let a=x,b=y;
+
+	while(a<=n){
 	if(a==b){
-		document.getElementById("demo").innerHTML += "<ul><li>("+myFunction(a,b)+")</li></ul>"
-		display =a;	
+		map.set(a,b);
 		b+=2;
-		
 	}
-	
 	else if((a%b)==0 || (b%a)==0){
-		document.getElementById("demo").innerHTML += "<ul><li>("+myFunction(a,b)+")</li></ul>"
-		display = a;
-		b+=2;
-		
-	}
+		map.set(a,b);
 	
+		b+=2;	
+	}
 	else if((sumOfDigits(a))%b==0 || (b%(sumOfDigits(a))==0)){
-		document.getElementById("demo").innerHTML += "<ul><li>("+ myFunction(a,b)+")</li></ul>"
-		display =a;
+		map.set(a,b);
 		b+=2;
 	}
-	
 	else{
+	
 		b--;
 		if(b<3) {
 			b=3;
 		}
 	}
 	a++;
-	count++;
+	}
+	console.log(map.size);	
+	map.forEach(displayMap);
+}
+
+
+
+function displayMap(values,key){
 	
-	}
+	document.getElementById("count").innerHTML ="No.of Traps: "+map.size;
+	document.getElementById("result").innerHTML +="("+ key+","+values+")<br>";
+	console.log(key+" "+values);
 }
-
-function sumOfDigits(a){
-	let sum=0,digit=0;
-	while(a>0){
-		digit = a%10;
-		sum += digit;
-		a/=10;
-	}
-	return sum;
-}
-
-
-
-function myFunction(a,b) {
-  return a +","+ b;
-}
-
-
 
 </script>
 </head>
 <body>
+
 <div class="container">
-<div class="vertical">
-<button onclick="trap()">Generate</button>
-<p id ="result"></p>
-<p id = "count"></p>
-<p id="demo"></p>
+<div class="buttoncenter">
+<button onclick="trap(2,8,3)">Generate</button>
+</div>
+<div class="values">
+<h2 id="count"></h2>
+<h2 id="result"></h2>
 </div>
 </div>
+
+
 </body>
 </html>

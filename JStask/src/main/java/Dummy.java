@@ -8,14 +8,22 @@ public class Dummy {
 		sum+=digit;
 		a/=10;
 		}
-	
-		return sum;
+	   if(sum>=10) {
+		   int summ=0,digits=0;
+			while(sum>0) {
+			digits=sum%10;
+			summ+=digits;
+			sum/=10;
+		}
+			return summ;
+	}
+	   return sum;
 	}
 	
 	
 public static void main(String[] args) {
-	int a=3,b=5,count=0;
-	while(a<14) {
+	int a=2,b=3,count=0;
+	while(a<=8) {
 		if(a==b) {
 			System.out.println("1 trap "+a+" "+b);
 			b+=2;
