@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.container{
+	border:3px groove blue;
+	width: 500px;
+	position:relative;
+	margin:auto;
+}
+
+.buttoncenter{
+	top:15px;;
+	left:45%;
+	position:relative;
+}
+
+.values{
+	top:20px;
+	left:32%;
+	position:relative;
+
+}
