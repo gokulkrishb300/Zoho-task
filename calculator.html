@@ -10,150 +10,14 @@
 	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <title>Calculator</title>
 </head>
-<!-- <script type="text/javascript" src="cal.js">
-</script> -->
 
-<script>
-var result = 0;
-var operator ='';
-function input(values){
-        if(values == '+'){
-        operator = values;
-        add();
-        }
-        else if(values == '-'){
-        operator = values;
-        sub();
-        }
-        else if(values == '*'){
-        operator = values;
-        multiply();
-        }
-        else if(values == '/'){
-        operator = values;
-        divide();
-        }
-        else if(values == '='){
-           if(operator == '+'){
-           storeAdd(document.getElementById("play").value);     //display value 2 get
-           evaluate();
-           }
-           else if(operator == '-'){
-           storeSub(document.getElementById("play").value);
-           evaluate();
-           }
-           else if(operator == '*'){
-           storeMul(document.getElementById("play").value);
-           evaluate();
-           }
-           else if(operator == '/'){
-           storeDiv(document.getElementById("play").value);
-           evaluate();
-           }
-        }
-        else{
-        document.getElementById("play").value += values;       //display value receiver
-        }
-	
-	
-	
-	
-}
-
-function storeAdd(values){
-result += Number(values);
-}
-
-function storeSub(values){
-result = result-values ;
-}
-
-function storeMul(values){
-result = result*values;
-}
-
-function storeDiv(values){
-
-result = result/values;
-}
-
-function add() {
-       
-        storeAdd(document.getElementById("play").value);
-                                                                                  //display value 1 get
-        
-        document.getElementById("play").value = ' ';
-	
-	document.getElementById("add").style.background = "#6699ff";
-	}
-	
-function sub(){
-        if(result == 0){
-        result = Number(document.getElementById("play").value);
-        } else{
-        storeSub(result);
-        }
-        document.getElementById("play").value = ' ';
-        
-	document.getElementById("sub").style.background = "#6699ff";
-	} 
-	
-function multiply(){
-
-        if(result == 0){
-        result = Number(document.getElementById("play").value);
-        } else{
-        storeMul(result);
-        }
-
-        document.getElementById("play").value = ' ';
-        
-	document.getElementById("mul").style.background = "#6699ff";
-	} 
-	
-function divide(){
-
-        if(result == 0){
-        result = Number(document.getElementById("play").value);
-        } else{
-        storeDiv(result);
-        }
-        
-
-        document.getElementById("play").value = ' ';
-        
-	document.getElementById("div").style.background = "#6699ff";
-	}
-
-function evaluate(){
-	document.getElementById("add").style.background = "white";
-	document.getElementById("sub").style.background = "white";
-	document.getElementById("mul").style.background = "white";
-	document.getElementById("div").style.background = "white";
-	
-	
-	
-	   if(operator == '+' || operator == '-'){
-           document.getElementById("play").value = result;
-           }
-           else if(operator == '*' || operator == '/'){
-           document.getElementById("play").value = result;
-           }
-}
-	
-
-
-/* function store(){
-	document.getElement
-}
-	 */
-
+<script src="PhaseOneCal.js">
 
 </script>
 <body>
 	<div class="structure">
 		<div class="display">
-			<input type="text" readonly size="14" id="play" value="">
+			<input type="text" readonly size="14" id="display" placeholder="0">
 		</div>
 		<div class="keys">
 
@@ -168,25 +32,25 @@ function evaluate(){
 				<button onclick="input('4')">4</button>
 				<button onclick="input(5)">5</button>
 				<button onclick="input(6)">6</button>
-				<button id="div" onclick="input('/')">/</button>
+				<button id="div" onclick="symbol('/')">/</button>
 			</p>
 			<p>
 				<button onclick="input(1)">1</button> 
 				<button onclick="input(2)">2</button>
 				<button onclick="input(3)">3</button>
-				<button id="mul" onclick="input('*')">*</button>
+				<button id="mul" onclick="symbol('*')">x</button>
 			</p>
 			<p>
 				<button onclick="input(0)">0</button>
-				<button onclick="input('.')">.</button>
-				<button id="add" onclick="input('+')">+</button>
-				<button id="sub" onclick="input('-')">-</button>
+				<button onclick="symbol('.')">.</button>
+				<button id="add" onclick="symbol('+')">+</button>
+				<button id="sub" onclick="symbol('-')">-</button>
 			</p>
 			<p>
 				<button onclick="input('(')">(</button>
 				<button onclick="input(')')">)</button>
 				<button onclick="input('^')">^</button>
-				<button onclick="input('=')">=</button>
+				<button onclick="equalizer()">=</button>
 			</p>
 		</div>
 	</div>

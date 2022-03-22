@@ -5,7 +5,7 @@ body{
 }
 .structure{
 	background-color:#668099;
-	height:480px;
+	height:550px;
 	width:390px;
 	border-radius:14px;
 	margin:auto;
@@ -13,6 +13,16 @@ body{
 	position:relative;
 }
 
+
+#subdisplay{
+       font-size : 20px;
+       
+}
+
+#display{
+      
+
+}
 .display{
 	position:relative;
 	left:22px;

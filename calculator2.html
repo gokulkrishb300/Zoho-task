@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="cal2.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Cookie&display=swap"
+	rel="stylesheet">
+	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+<title>Calculator</title>
+</head>
+
+<script src="PhaseTwoCal.js">
+
+</script>
+<body>
+	<div class="structure">
+		<div class="display">
+			<input type="text" readonly size="14" id="subdisplay" value="">
+			<input text="text" readonly size="14" id="display" value="">
+		</div>
+		<div class="keys">
+
+			<p>
+				<button onclick="input(7),subdisplay(7)">7</button>
+				<button onclick="input(8),subdisplay(8)">8</button>
+				<button onclick="input(9),subdisplay(9)">9</button>
+				<button onclick="location.reload()">C</button>
+<!-- 				<button onclick="(document.getElementById('play').value= ' ')">C</button> -->
+			</p>
+			<p>
+				<button onclick="input('4'),subdisplay(4)">4</button>
+				<button onclick="input(5),subdisplay(5)">5</button>
+				<button onclick="input(6),subdisplay(6)">6</button>
+				<button id="div" onclick="symbol('/'),subdisplay(7)">/</button>
+			</p>
+			<p>
+				<button onclick="input(1),subdisplay(1)">1</button> 
+				<button onclick="input(2),subdisplay(2)">2</button>
+				<button onclick="input(3),subdisplay(3)">3</button>
+				<button id="mul" onclick="symbol('*'),subdisplay('*')">x</button>
+			</p>
+			<p>
+				<button onclick="input(0),subdisplay(0)">0</button>
+				<button onclick="input('.'),subdisplay('.')">.</button>
+				<button id="add" onclick="symbol('+'),subdisplay('+')">+</button>
+				<button id="sub" onclick="symbol('-'),subdisplay('-')">-</button>
+			</p>
+			<p>
+				<button onclick="input('(')">(</button>
+				<button onclick="input(')')">)</button>
+				<button onclick="input('^')">^</button>
+				<button onclick="evaluater()">=</button>
+			</p>
+		</div>
+	</div>
+</body>
+</html>
+ 
+ 	
