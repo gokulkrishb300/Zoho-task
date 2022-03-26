@@ -3,22 +3,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="cal2.css">
+<link rel="stylesheet" href="cal3.css">
 <link
 	href="https://fonts.googleapis.com/css2?family=Cookie&display=swap"
 	rel="stylesheet">
 	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
-<title>Calculator-2</title>
+<title>Calculator-3</title>
 </head>
 
-<script src="PhaseTwo.js">
+<script type = "text/javascript" src="PhaseThree.js">
 
 </script>
 <body>
 	<div class="structure">
 		<div class="display">
-			<input type="text" readonly size="14" id="subDisplay" value="" placeholder="0">
-			<input text="text" readonly size="14" id="display" value="" placeholder="0">
+			<input type="text" readonly size="14" id="display" placeholder="0">
 		</div>
 		<div class="keys">
 
@@ -26,10 +25,10 @@
 				<button onclick="input(7)">7</button>
 				<button onclick="input(8)">8</button>
 				<button onclick="input(9)">9</button>
-				<button onclick="location.reload()">C</button>
+				<button onclick="location.reload()">AC</button>
 			</p>
 			<p>
-				<button onclick="input(4)">4</button>
+				<button onclick="input('4')">4</button>
 				<button onclick="input(5)">5</button>
 				<button onclick="input(6)">6</button>
 				<button id="/" onclick="symbol('/')">/</button>
@@ -42,15 +41,19 @@
 			</p>
 			<p>
 				<button onclick="input(0)">0</button>
-				<button onclick="input('.')">.</button>
+				<button onclick="symbol('.')">.</button>
 				<button id="+" onclick="symbol('+')">+</button>
 				<button id="-" onclick="symbol('-')">-</button>
 			</p>
 			<p>
-				<button id="equal" onclick="equalizer(true)">=</button>
+			        <button onclick="backspace()">CE</button>
+				<button onclick="parans('(')">(</button>
+				<button onclick="parans(')')">)</button>
+				<button onclick="bodmasFunc()">=</button>
 			</p>
 		</div>
 	</div>
+	<p id="comma"></p>
 </body>
 </html>
  

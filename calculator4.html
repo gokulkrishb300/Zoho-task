@@ -3,18 +3,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="cal.css">
+<link rel="stylesheet" href="cal4.css">
 <link
 	href="https://fonts.googleapis.com/css2?family=Cookie&display=swap"
 	rel="stylesheet">
 	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
-<title>Calculator-1</title>
-
-<script type="text/javascript" src="PhaseOneCal.js">
-
-</script>
+<title>Calculator-4</title>
 </head>
 
+<script src="PhaseOneCal.js">
+
+</script>
 <body>
 	<div class="structure">
 		<div class="display">
@@ -22,14 +21,15 @@
 		</div>
 		<div class="keys">
 
-			<p>     
+			<p>
 				<button onclick="input(7)">7</button>
 				<button onclick="input(8)">8</button>
 				<button onclick="input(9)">9</button>
-				<button onclick="location.reload()">C</button>
+				<button onclick="location.reload()">AC</button>
+<!-- 				<button onclick="(document.getElementById('play').value= ' ')">C</button> -->
 			</p>
 			<p>
-				<button onclick="input(4)">4</button>
+				<button onclick="input('4')">4</button>
 				<button onclick="input(5)">5</button>
 				<button onclick="input(6)">6</button>
 				<button id="div" onclick="symbol('/')">/</button>
@@ -46,8 +46,17 @@
 				<button id="add" onclick="symbol('+')">+</button>
 				<button id="sub" onclick="symbol('-')">-</button>
 			</p>
+                        <p>
+				<button onclick="symbol()">√</button>
+				<button onclick="symbol()">%</button>
+				<button onclick="symbol()">X<sup>2</sup></button>
+				<button onclick="symbol()">X<sup>3</sup></button>
+			</p>
 			<p>
-				<button id="equal" onclick="equalizer()">=</button>
+			        <button onclick="clearEntry()">CE</button>
+				<button onclick="input('(')">(</button>
+				<button onclick="input(')')">)</button>
+				<button onclick="equalizer()">=</button>
 			</p>
 		</div>
 	</div>

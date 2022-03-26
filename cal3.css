@@ -5,19 +5,13 @@ body{
 }
 .structure{
 	background-color:#668099;
-	height:550px;
+	height:480px;
 	width:390px;
 	border-radius:14px;
 	margin:auto;
 	top:200px;
 	position:relative;
 	box-shadow: 20px 20px 10px grey;
-}
-
-
-#subDisplay{
-       font-size : 23px;
-       
 }
 
 .display{
@@ -31,7 +25,7 @@ body{
     height: 60px;
     width:340px; 
     background-color: #e6f2ff;    
-    font-size: 35px;    
+    font-size: 25px;    
     text-align: right; 
     border:none;
  
@@ -64,14 +58,12 @@ button:active {
 button:hover{
 background-color :#ccd9ff;
 	
-} 
-
+}
 ::placeholder{
 color:black;
 }
+
 #equal{
 width: 342px;
-font-size: 34px;
 }
-
 
