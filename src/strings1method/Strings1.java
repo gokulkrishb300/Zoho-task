@@ -1,7 +1,10 @@
 package strings1method;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Stack;
 
 public class Strings1 {
 
@@ -58,35 +61,84 @@ public class Strings1 {
 	    
 	    public String reverseWords(String S) {
 	    	
-	   
-	    int length = S.length();
-	    String reverse = "";
-	    String storeRev[] = new String[length];
-	    int count = 0 ;
-        for(int i = 0 ; i < length ; i++) {
-        int j = i*2;
-        System.out.println(j);
-        	if(S.charAt(i)=='.') {
-
-        	  storeRev[count++] = reverse.substring(0);
-        	  System.out.println(reverse);
-        	}
-        	reverse = S.charAt(i)+reverse;
-        }
-	    System.out.print(Arrays.toString(storeRev));
-	
-	    return reverse;
-	
+	    	Stack<Character> stack = new Stack<Character>();
+	    	
+	    	int length = S.length();
+	    	
+	    	String result ="";
+	    	
+	    	for(int i = 0 ; i < length ; i++) {
+	    		
+	    		if(S.charAt(i)!='.') {
+	    			stack.push(S.charAt(i));
+	    		}
+	    		else {
+	    			while(!stack.isEmpty()) {
+	    				result += stack.pop();
+	    			}
+	    			result+= ".";
+	    		}
+	    	}
+	    	while(!stack.isEmpty()) {
+	    		result += stack.pop();
+	    	}
+	    	return result;
 	    }
 	    
 	    public String reverseWithSpacesIntact(String S) {
 	    	int length = S.length();
-	    	String output ="";
+	    	String result ="";
+	    	int position = 0 ;
+	    	int count = 0;
+	    	char ch[] = new char[length];
+	    	int flag = 1;
+	    	
 	    	for(int i = 0 ; i < length ; i++) {
-	    		output = S.charAt(i) + output;
+	    		if(S.charAt(i) == ' ') {
+	    			position = i;
+	    			count++;
+	    		}
+	    		else {
+	    		 result = S.charAt(i)+result;
+	    		}	
 	    	}
-	    	return output;
-	    }
+	    	
+	    	
+	    	int finalLength = result.length();
+	    	String spaceLetter= "";
+	    	
+	    	for(int i = 0 ; i < finalLength ; i++) {
+	    	if(i == position) {
+	    		spaceLetter =  String.valueOf(result.charAt(i));
+	    		ch[i] = ' ';
+	    	}
+	    	else {
+	    		ch[i]= result.charAt(i);
+	    	
+	    	}
+	    	}
+	    	
+	    	String newResult ="";
+	    	for(int i = 0 ; i < finalLength; i++) {
+	    		if(S.charAt(i)==' ') {
+	    			
+	    			flag = 0;
+	    		}
+	    		if(flag == 0) {
+	    			newResult = spaceLetter;
+	    			System.out.println(newResult);
+	    			
+	    			flag =1;
+	    		}
+	    		
+	    	}
+	    
+	    
+	    	System.out.println("new Result : "+newResult);
+	    	
+	    	
+	    	return String.valueOf(ch)+" "+newResult;
+}
 	    
 	    public String crossPattern(String S) {
 	    	int length = S.length();
@@ -103,20 +155,54 @@ public class Strings1 {
 	    }
 	    
 	    public int maxChars(String s) {
-	    	int length = s.length();
-	    	int count = 0 ;
-	    	for(int i=1;i<length-1;i++) {
-	    		count++;
-	    	}
-	    	if(count>0) {
-	    		return count;
-	    	}
-	    	else {
-	    		return -1;
-	    	}
+	 
+	    	  HashMap<Character,Integer> map = new HashMap<>();
+	          int result=-1;
+	          int length = s.length();
+	          for(int i=0;i<length;i++){
+	              if(map.containsKey(s.charAt(i))){
+	                  result=Math.max(result,i - map.get(s.charAt(i)) - 1);
+	              }
+	              else{
+	              map.put(s.charAt(i),i);
+	              }
+	          }
+	          return result;
 }
 	    
 	    public List<String> find_permutation(String S){
 	    	return null;
 	    }
+	    
+//	    public int[][] searchWord(char[][] grid, String word){
+//	    	
+//	    	return 0;
+//	    }
+	    
+	    public String restoreString(String S, int[] indices) {
+	    	
+	    	int length = indices.length;
+	    	
+	        char ch[] = new char[length];
+	        
+	    	for(int i = 0 ; i < length; i++) {
+	    		ch [indices[i]]= S.charAt(i);
+	    	}
+	         return String.valueOf(ch);
+	    }
+	    
+	 
+	    
+	    public List<List<String>> Anagrams(String[] string_list){
+	    	return null;
+	    }
+	    
+	    public static int wordBreak(String A, ArrayList<String> B) {
+	    	return 0;
+	    }
+	    
+	    public int CountWays(String str) {
+	    	return 0;
+	    }
+	    
 }
