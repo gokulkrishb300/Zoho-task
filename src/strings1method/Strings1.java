@@ -2,9 +2,14 @@ package strings1method;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
+import java.util.TreeSet;
 
 public class Strings1 {
 
@@ -86,93 +91,132 @@ public class Strings1 {
 	    }
 	    
 	    public String reverseWithSpacesIntact(String S) {
+	    
 	    	int length = S.length();
-	    	String result ="";
-	    	int position = 0 ;
-	    	int count = 0;
-	    	char ch[] = new char[length];
-	    	int flag = 1;
+	    	String output = "";
+	    	List<Character> input = new ArrayList<Character>();
 	    	
 	    	for(int i = 0 ; i < length ; i++) {
-	    		if(S.charAt(i) == ' ') {
-	    			position = i;
-	    			count++;
+	    		if(!(S.charAt(i)==' ')) {
+	    			input.add(S.charAt(i));
 	    		}
-	    		else {
-	    		 result = S.charAt(i)+result;
-	    		}	
 	    	}
 	    	
+	    	Collections.reverse(input);
 	    	
-	    	int finalLength = result.length();
-	    	String spaceLetter= "";
-	    	
-	    	for(int i = 0 ; i < finalLength ; i++) {
-	    	if(i == position) {
-	    		spaceLetter =  String.valueOf(result.charAt(i));
-	    		ch[i] = ' ';
-	    	}
-	    	else {
-	    		ch[i]= result.charAt(i);
-	    	
-	    	}
-	    	}
-	    	
-	    	String newResult ="";
-	    	for(int i = 0 ; i < finalLength; i++) {
+	    	for(int i = 0 ; i < length ; i++) {
 	    		if(S.charAt(i)==' ') {
-	    			
-	    			flag = 0;
+	    			input.add(i, ' ');
 	    		}
-	    		if(flag == 0) {
-	    			newResult = spaceLetter;
-	    			System.out.println(newResult);
-	    			
-	    			flag =1;
-	    		}
-	    		
 	    	}
-	    
-	    
-	    	System.out.println("new Result : "+newResult);
 	    	
+	    	for(Character letter : input) {
+	    		output += letter;
+	    	}
 	    	
-	    	return String.valueOf(ch)+" "+newResult;
+	    	return output;
+	    
 }
 	    
 	    public String crossPattern(String S) {
-	    	int length = S.length();
-	    	String output ="";
-	    	for(int i = 0 ; i < length ; i++) {
-	    		output = S.charAt(i) + output+ " ";
-	    	}
-	    	return output;
+	    	
+           int length = S.length();
+	    	
+	    	StringBuilder result =new StringBuilder();
+	    	
+	    	StringBuilder build = new StringBuilder(S);
+	    	
+	    	String reverse = build.reverse().toString();
+		
+			char[] stack = new char[S.length()*S.length()];
+			
+			int count = 0;
+			for (int i = 0; i < length; i++) {
+				for (int j = 0; j < length; j++) {
+					if (i == j) {
+						stack[count++] = S.charAt(i);
+					}
+					else if(i+j == length -1) {
+						stack[count++] = reverse.charAt(i);
+					}
+					else {
+						stack[count++] = ' ';
+					}
+				}
+			}
+			int stackLength = stack.length;
+			
+            for(int i = 0 ; i < stackLength; i++) {
+            	
+            	result.append(stack[i] );
+            }
+	    	return String.valueOf(result);
 	    }
 	    
 	    public boolean kPangram(String str, int k) {
-	    	int length = str.length();
-	    	return true;
+	    	
+	    	int count = 0;
+	    	Set<Character> set = new HashSet<>();
+	    	for(int i = 0 ; i < str.length();i++) {
+	    		if(!(str.charAt(i)==' ')) {
+	    			set.add(str.charAt(i));
+	    			count++;
+	    		}
+	    	}
+	    	
+	    	if(count<26) {
+	    		return false;
+	    	}
+	    	if(k+set.size() >=26) {
+	    		return true;
+	    	}
+	    	return false;
 	    }
 	    
 	    public int maxChars(String s) {
 	 
 	    	  HashMap<Character,Integer> map = new HashMap<>();
+	    	  
 	          int result=-1;
+	          
 	          int length = s.length();
+	          
 	          for(int i=0;i<length;i++){
+	        	  
 	              if(map.containsKey(s.charAt(i))){
-	                  result=Math.max(result,i - map.get(s.charAt(i)) - 1);
+	            	  
+	                  result=Math.max(result,  i - map.get(s.charAt(i)) - 1);
+	                 
 	              }
 	              else{
+	            	  
 	              map.put(s.charAt(i),i);
+	              
 	              }
 	          }
 	          return result;
 }
-	    
-	    public List<String> find_permutation(String S){
-	    	return null;
+	   
+	    public void findpermutation(String s, String ans, ArrayList<String> list){
+	        if(s.length()== 0){
+	            list.add(ans);
+	            return;
+	        }
+	        
+	        for(int i =  0; i < s.length(); i++){
+	            String ros = s.substring(0,i) + s.substring(i+1);
+	            findpermutation(ros,ans + s.charAt(i),list);
+	        }
 	    }
+	    public List<String> find_permutation(String S) {
+	        // Code here
+	        ArrayList<String> list =  new ArrayList<>();
+	        
+	        findpermutation(S,"",list);
+	        Collections.sort(list);
+	        return list;
+	}
+	    	   
 	    
 //	    public int[][] searchWord(char[][] grid, String word){
 //	    	
@@ -194,15 +238,88 @@ public class Strings1 {
 	 
 	    
 	    public List<List<String>> Anagrams(String[] string_list){
-	    	return null;
+	    	
+	    	List<List<String>>res=new ArrayList<>();
+	    	
+	        HashMap<String,List<String>>map=new HashMap<>();
+	        
+	        for(int i=0;i<string_list.length;i++)
+	        {
+	            String word=string_list[i];
+	            
+	            char[] value=word.toCharArray();
+	            
+	            Arrays.sort(value);
+	            
+	            String b=new String(value);
+	            
+	            if(map.containsKey(b))
+	            {
+	                map.get(b).add(word);
+	            }
+	            else
+	            {
+	                List<String>a=new ArrayList<>();
+	                
+	                a.add(string_list[i]);
+	                
+	                map.put(b,a);
+	            }
+	        }
+	        for(Map.Entry<String,List<String>>e:map.entrySet())
+	        {
+	            res.add(e.getValue());
+	        }
+	        return res;
 	    }
 	    
 	    public static int wordBreak(String A, ArrayList<String> B) {
-	    	return 0;
+	    	 int size[]=new int[A.length()];
+	         for(int i=0;i <A.length();i++){
+	             for(int j=0;j<=i;j++){
+	                 if(B.contains(A.substring(j,i+1))){
+	                     size[i]+=j>0?size[j-1]:1;
+	                 }
+	             }
+	         }
+	         return size[A.length()-1];
 	    }
 	    
 	    public int CountWays(String str) {
+	    	
+	    	int input = Integer.parseInt(str);
+	    	
+	        int length = str.length();
+	    	
+	    	String output = "";
+	    	
+	    	char[] letters = new char[length];
+	    	
+	    	if(input < 100) {
+	 
+	              return 1;
+	    	}
+	    	else if(input > 110) {
+	    		for(int i = 0 ; i < length ; i++) {
+	    			
+	    			int number = str.charAt(i);
+	    			
+	    		}
+	    	}
+	    	
+	    	
+	    	System.out.println(output);
+	    	
 	    	return 0;
+	    	
+	    	
 	    }
 	    
 }
+/*
+ * int number = str.charAt(i);
+ * 
+ * letters[i] = (char) (number+48);
+ * 
+ * output += Character.toUpperCase(letters[i]);
+ */

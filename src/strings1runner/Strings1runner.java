@@ -39,6 +39,7 @@ public class Strings1runner {
 			System.out.println(method.maxChars(sc.next()));
 			break;
 		case 8:
+			
 			System.out.println(method.find_permutation(sc.next()));
 			break;
 
@@ -53,12 +54,26 @@ public class Strings1runner {
 		 
 		  System.out.println(method.restoreString(s,indices));
 		  break;
-//	case 11:
-//		System.out.print(method.Anagrams(sc.next()));
-//		break;
-//	case 12:
-//		System.out.println(method.wordBreak(sc.next(),sc.next());
-//		break;
+	case 11:
+	    int N = sc.nextInt();
+	    String[] string_list = new String[N];
+	    for(int i = 0 ; i < N ; i++) {
+	    	string_list[i] = sc.next();
+	    }
+		System.out.print(method.Anagrams(string_list));
+		break;
+   case 12:
+	    System.out.println("arraylist size : ");
+	    ArrayList<String> list = new ArrayList<>();
+	    int n = sc.nextInt();
+	    
+	    for(int i = 0 ; i < n ; i++) {
+	    	String temp = sc.next();
+	    	list.add(temp);
+	    }
+	    String A = sc.next();
+		System.out.println(method.wordBreak(A,list));
+		break;
 		case 13:
 			System.out.println(method.CountWays(sc.next()));
 			break;
