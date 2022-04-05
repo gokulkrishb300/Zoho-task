@@ -62,18 +62,9 @@ public class Strings1runner {
 	    }
 		System.out.print(method.Anagrams(string_list));
 		break;
-   case 12:
-	    System.out.println("arraylist size : ");
-	    ArrayList<String> list = new ArrayList<>();
-	    int n = sc.nextInt();
-	    
-	    for(int i = 0 ; i < n ; i++) {
-	    	String temp = sc.next();
-	    	list.add(temp);
-	    }
-	    String A = sc.next();
-		System.out.println(method.wordBreak(A,list));
-		break;
+//	case 12:
+//		System.out.println(method.wordBreak(sc.next(),sc.next());
+//		break;
 		case 13:
 			System.out.println(method.CountWays(sc.next()));
 			break;

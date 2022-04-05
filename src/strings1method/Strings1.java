@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Stack;
-import java.util.TreeSet;
 
 public class Strings1 {
 
@@ -154,23 +151,8 @@ public class Strings1 {
 	    }
 	    
 	    public boolean kPangram(String str, int k) {
-	    	
-	    	int count = 0;
-	    	Set<Character> set = new HashSet<>();
-	    	for(int i = 0 ; i < str.length();i++) {
-	    		if(!(str.charAt(i)==' ')) {
-	    			set.add(str.charAt(i));
-	    			count++;
-	    		}
-	    	}
-	    	
-	    	if(count<26) {
-	    		return false;
-	    	}
-	    	if(k+set.size() >=26) {
-	    		return true;
-	    	}
-	    	return false;
+	    	int length = str.length();
+	    	return true;
 	    }
 	    
 	    public int maxChars(String s) {
@@ -196,27 +178,29 @@ public class Strings1 {
 	          }
 	          return result;
 }
-	   
-	    public void findpermutation(String s, String ans, ArrayList<String> list){
-	        if(s.length()== 0){
-	            list.add(ans);
-	            return;
-	        }
+	    
+	    public List<String> find_permutation(String S){
+	    	
+	    	int length = S.length();
+	    	String result = "";
+	        char a = 0 ;
+	        char b = 0 ;
+	        char temp;
 	        
-	        for(int i =  0; i < s.length(); i++){
-	            String ros = s.substring(0,i) + s.substring(i+1);
-	            findpermutation(ros,ans + s.charAt(i),list);
-	        }
+	    	List<String> list = new ArrayList<>();
+	    	for(int i = 0 ; i < length ; i++) {
+	    	    result = S.charAt(i)+ result;
+	    	for(int j = 0 ; j < length ; j++) {
+	        
+	            result = S.charAt(j) + result;
+	            list.add(result);
+	    	}
+	    	
+	    	result = "";
+	    	}
+	    	return list;
+	    	
 	    }
-	    public List<String> find_permutation(String S) {
-	        // Code here
-	        ArrayList<String> list =  new ArrayList<>();
-	        
-	        findpermutation(S,"",list);
-	        Collections.sort(list);
-	        return list;
-	}
-	    	   
 	    
 //	    public int[][] searchWord(char[][] grid, String word){
 //	    	
@@ -274,15 +258,7 @@ public class Strings1 {
 	    }
 	    
 	    public static int wordBreak(String A, ArrayList<String> B) {
-	    	 int size[]=new int[A.length()];
-	         for(int i=0;i <A.length();i++){
-	             for(int j=0;j<=i;j++){
-	                 if(B.contains(A.substring(j,i+1))){
-	                     size[i]+=j>0?size[j-1]:1;
-	                 }
-	             }
-	         }
-	         return size[A.length()-1];
+	    	return 0;
 	    }
 	    
 	    public int CountWays(String str) {
@@ -304,6 +280,9 @@ public class Strings1 {
 	    			
 	    			int number = str.charAt(i);
 	    			
+	    			letters[i] = (char) (number+48);
+	    			
+	    			output += Character.toUpperCase(letters[i]);
 	    		}
 	    	}
 	    	
@@ -316,10 +295,3 @@ public class Strings1 {
 	    }
 	    
 }
-/*
- * int number = str.charAt(i);
- * 
- * letters[i] = (char) (number+48);
- * 
- * output += Character.toUpperCase(letters[i]);
- */
