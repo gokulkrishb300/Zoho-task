@@ -32,9 +32,9 @@ public class Strings1runner {
 		case 5:
 			System.out.println(method.crossPattern(sc.next()));
 			break;
-		case 6:
-			System.out.println(method.kPangram(sc.next(), sc.nextInt()));
-			break;
+//		case 6:
+//			System.out.println(method.kPangram(sc.next(), sc.nextInt()));
+//			break;
 		case 7:
 			System.out.println(method.maxChars(sc.next()));
 			break;

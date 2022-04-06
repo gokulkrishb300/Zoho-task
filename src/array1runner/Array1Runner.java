@@ -28,6 +28,28 @@ public static void main(String[] args) {
 		System.out.println(array.findMin(arr, n));
 	}
 		break;
+	case 3:
+	{
+		int size = sc.nextInt();
+		int arr[] = new int[size];
+		for(int i = 0 ; i < size ; i++) {
+			arr[i] = sc.nextInt();
+		}
+		System.out.println(array.majorityElement(arr, size));
+	}
+	break;
+	
+	case 4:
+	{
+		int size = sc.nextInt();
+		int arr[] = new int[size];
+		for(int i = 0 ; i < size ; i++) {
+			arr[i] = sc.nextInt();
+		}
+		int n = sc.nextInt();
+		System.out.println(array.shuffle(arr, n));
+	}
+	break;
 	default:
 		System.out.println("Not available");
 		break;
