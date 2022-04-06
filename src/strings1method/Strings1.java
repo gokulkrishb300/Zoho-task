@@ -294,4 +294,137 @@ public class Strings1 {
 	    	
 	    }
 	    
+	 // recuring function to find
+	    // ways in how many ways a
+	    // string can be decoded of length
+	    // greater than 0 and starting with
+	    // digit 1 and greater.
+	    
+	    static int countDecoding(char[] digits, int n)
+	    {
+	        // base cases
+	        if (n == 0 || n == 1)
+	            return 1;
+
+	        // for base condition "01123" should return 0
+	        if (digits[0] == '0')
+	            return 0;
+
+	        // Initialize count
+	        int count = 0;
+
+	        // If the last digit is not 0, then
+	        // last digit must add to
+	        // the number of words
+	        if (digits[n - 1] > '0')
+	            count = countDecoding(digits, n - 1);
+
+	        // If the last two digits form a number
+	        // smaller than or equal to 26,
+	        // then consider last two digits and recur
+	        if (digits[n - 2] == '1'
+	            || (digits[n - 2] == '2'
+	                && digits[n - 1] < '7'))
+	            count += countDecoding(digits, n - 2);
+
+	        return count;
+	    }
+
+	    // Given a digit sequence of length n,
+	    // returns count of possible decodings by
+	    // replacing 1 with A, 2 with B, ... 26 with Z
+	    static int countWays(char[] digits, int n)
+	    {
+	        if (n == 0 || (n == 1 && digits[0] == '0'))
+	            return 0;
+	        return countDecoding(digits, n);
+	    }
+
+	 	// Rows and columns in the given grid
+	 	static int R, C;
+
+	 	// For searching in all 8 direction
+	 	static int[] x = { -1, -1, -1, 0, 0, 1, 1, 1 };
+	 	static int[] y = { -1, 0, 1, -1, 1, -1, 0, 1 };
+
+	 	// This function searches in all
+	 	// 8-direction from point
+	 	// (row, col) in grid[][]
+	 	static boolean search2D(char[][] grid, int row,
+	 							int col, String word)
+	 	{
+	 		// If first character of word
+	 		// doesn't match with
+	 		// given starting point in grid.
+	 		if (grid[row][col] != word.charAt(0))
+	 			return false;
+
+	 		int len = word.length();
+
+	 		// Search word in all 8 directions
+	 		// starting from (row, col)
+	 		for (int dir = 0; dir < 8; dir++) {
+	 			// Initialize starting point
+	 			// for current direction
+	 			int k, rd = row + x[dir], cd = col + y[dir];
+
+	 			// First character is already checked,
+	 			// match remaining characters
+	 			for (k = 1; k < len; k++) {
+	 				// If out of bound break
+	 				if (rd >= R || rd < 0 || cd >= C || cd < 0)
+	 					break;
+
+	 				// If not matched, break
+	 				if (grid[rd][cd] != word.charAt(k))
+	 					break;
+
+	 				// Moving in particular direction
+	 				rd += x[dir];
+	 				cd += y[dir];
+	 			}
+
+	 			// If all character matched,
+	 			// then value of must
+	 			// be equal to length of word
+	 			if (k == len)
+	 				return true;
+	 		}
+	 		return false;
+	 	}
+
+	 	// Searches given word in a given
+	 	// matrix in all 8 directions
+	 	static void patternSearch(
+	 		char[][] grid,
+	 		String word)
+	 	{
+	 		// Consider every point as starting
+	 		// point and search given word
+	 		for (int row = 0; row < R; row++) {
+	 			for (int col = 0; col < C; col++) {
+	 				if (grid[row][col]==word.charAt(0) &&
+	 					search2D(grid, row, col, word))
+	 						System.out.println(
+	 							"pattern found at " + row + ", " + col);
+	 			}
+	 		}
+	 	}
+
+	 	// Driver code
+		/*
+		 * public static void main(String args[]) { R = 3; C = 13; char[][] grid = { {
+		 * 'G', 'E', 'E', 'K', 'S', 'F', 'O', 'R', 'G', 'E', 'E', 'K', 'S' }, { 'G',
+		 * 'E', 'E', 'K', 'S', 'Q', 'U', 'I', 'Z', 'G', 'E', 'E', 'K' }, { 'I', 'D',
+		 * 'E', 'Q', 'A', 'P', 'R', 'A', 'C', 'T', 'I', 'C', 'E' } };
+		 * patternSearch(grid, "GEEKS"); System.out.println(); patternSearch(grid,
+		 * "EEE"); }
+		 */
+	 
+
+	 // This code is contributed by rachana soma
+
+	    
 }
+
+
