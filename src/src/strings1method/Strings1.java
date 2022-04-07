@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
 
 public class Strings1 {
@@ -150,9 +152,24 @@ public class Strings1 {
 	    	return String.valueOf(result);
 	    }
 	    
-	    public boolean kPangram(String str, int k) {
-	    	int length = str.length();
-	    	return true;
+	    boolean kPangram(String str, int k) 
+	    {
+	     int count = 0 ;
+	     Set<Character> set = new HashSet<>();
+	     
+	     for(int i = 0 ; i < str.length(); i++){
+	         if(str.charAt(i)!=' '){
+	             set.add(str.charAt(i));
+	             count++;
+	         }
+	     }
+	     if(count<26){
+	         return false;
+	     }
+	     if(k+set.size()>=26){
+	         return true;
+	     }
+	     return false;
 	    }
 	    
 	    public int maxChars(String s) {
@@ -179,28 +196,33 @@ public class Strings1 {
 	          return result;
 }
 	    
-	    public List<String> find_permutation(String S){
-	    	
-	    	int length = S.length();
-	    	String result = "";
-	        char a = 0 ;
-	        char b = 0 ;
-	        char temp;
+	    public void findpermutation(String s, String ans, ArrayList<String> list){
+	        if(s.length()== 0){
+	            
+	            list.add(ans);
+	            
+	            return;
+	        }
 	        
-	    	List<String> list = new ArrayList<>();
-	    	for(int i = 0 ; i < length ; i++) {
-	    	    result = S.charAt(i)+ result;
-	    	for(int j = 0 ; j < length ; j++) {
-	        
-	            result = S.charAt(j) + result;
-	            list.add(result);
-	    	}
-	    	
-	    	result = "";
-	    	}
-	    	return list;
-	    	
+	        for(int i =  0; i < s.length(); i++){
+	            
+	            String ros = s.substring(0,i) + s.substring(i+1);
+	            
+	            findpermutation(ros,ans + s.charAt(i),list);
+	        }
 	    }
+	    public List<String> find_permutation(String S) {
+	        // Code here
+	        ArrayList<String> list =  new ArrayList<>();
+	        
+	        findpermutation(S,"",list);
+	        
+	       
+	        
+	        return list;
+	    }
+	    	
+	    
 	    
 //	    public int[][] searchWord(char[][] grid, String word){
 //	    	
@@ -235,7 +257,7 @@ public class Strings1 {
 	            
 	            Arrays.sort(value);
 	            
-	            String b=new String(value);
+	            String b= String.valueOf(value);
 	            
 	            if(map.containsKey(b))
 	            {
@@ -294,4 +316,136 @@ public class Strings1 {
 	    	
 	    }
 	    
+	 // recuring function to find
+	    // ways in how many ways a
+	    // string can be decoded of length
+	    // greater than 0 and starting with
+	    // digit 1 and greater.
+	    
+	    static int countDecoding(char[] digits, int n)
+	    {
+	        // base cases
+	        if (n == 0 || n == 1)
+	            return 1;
+
+	        // for base condition "01123" should return 0
+	        if (digits[0] == '0')
+	            return 0;
+
+	        // Initialize count
+	        int count = 0;
+
+	        // If the last digit is not 0, then
+	        // last digit must add to
+	        // the number of words
+	        if (digits[n - 1] > '0')
+	            count = countDecoding(digits, n - 1);
+
+	        // If the last two digits form a number
+	        // smaller than or equal to 26,
+	        // then consider last two digits and recur
+	        if (digits[n - 2] == '1'
+	            || (digits[n - 2] == '2'
+	                && digits[n - 1] < '7'))
+	            count += countDecoding(digits, n - 2);
+
+	        return count;
+	    }
+
+	    // Given a digit sequence of length n,
+	    // returns count of possible decodings by
+	    // replacing 1 with A, 2 with B, ... 26 with Z
+	    static int countWays(char[] digits, int n)
+	    {
+	        if (n == 0 || (n == 1 && digits[0] == '0'))
+	            return 0;
+	        return countDecoding(digits, n);
+	    }
+
+	 	// Rows and columns in the given grid
+	 	static int R, C;
+
+	 	// For searching in all 8 direction
+	 	static int[] x = { -1, -1, -1, 0, 0, 1, 1, 1 };
+	 	static int[] y = { -1, 0, 1, -1, 1, -1, 0, 1 };
+
+	 	// This function searches in all
+	 	// 8-direction from point
+	 	// (row, col) in grid[][]
+	 	static boolean search2D(char[][] grid, int row,
+	 							int col, String word)
+	 	{
+	 		// If first character of word
+	 		// doesn't match with
+	 		// given starting point in grid.
+	 		if (grid[row][col] != word.charAt(0))
+	 			return false;
+
+	 		int len = word.length();
+
+	 		// Search word in all 8 directions
+	 		// starting from (row, col)
+	 		for (int dir = 0; dir < 8; dir++) {
+	 			// Initialize starting point
+	 			// for current direction
+	 			int k, rd = row + x[dir], cd = col + y[dir];
+
+	 			// First character is already checked,
+	 			// match remaining characters
+	 			for (k = 1; k < len; k++) {
+	 				// If out of bound break
+	 				if (rd >= R || rd < 0 || cd >= C || cd < 0)
+	 					break;
+
+	 				// If not matched, break
+	 				if (grid[rd][cd] != word.charAt(k))
+	 					break;
+
+	 				// Moving in particular direction
+	 				rd += x[dir];
+	 				cd += y[dir];
+	 			}
+
+	 			// If all character matched,
+	 			// then value of must
+	 			// be equal to length of word
+	 			if (k == len)
+	 				return true;
+	 		}
+	 		return false;
+	 	}
+
+	 	// Searches given word in a given
+	 	// matrix in all 8 directions
+	 	static void patternSearch(
+	 		char[][] grid,
+	 		String word)
+	 	{
+	 		// Consider every point as starting
+	 		// point and search given word
+	 		for (int row = 0; row < R; row++) {
+	 			for (int col = 0; col < C; col++) {
+	 				if (grid[row][col]==word.charAt(0) &&
+	 					search2D(grid, row, col, word))
+	 						System.out.println(
+	 							"pattern found at " + row + ", " + col);
+	 			}
+	 		}
+	 	}
+
+	 	// Driver code
+		/*
+		 * public static void main(String args[]) { R = 3; C = 13; char[][] grid = { {
+		 * 'G', 'E', 'E', 'K', 'S', 'F', 'O', 'R', 'G', 'E', 'E', 'K', 'S' }, { 'G',
+		 * 'E', 'E', 'K', 'S', 'Q', 'U', 'I', 'Z', 'G', 'E', 'E', 'K' }, { 'I', 'D',
+		 * 'E', 'Q', 'A', 'P', 'R', 'A', 'C', 'T', 'I', 'C', 'E' } };
+		 * patternSearch(grid, "GEEKS"); System.out.println(); patternSearch(grid,
+		 * "EEE"); }
+		 */
+	 
+
+	 // This code is contributed by rachana soma
+
+	    
 }
+
