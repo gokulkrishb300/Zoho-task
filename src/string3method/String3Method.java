@@ -1,7 +1,9 @@
 package string3method;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class String3Method {
 	   int lps(String s) {
@@ -117,7 +119,7 @@ public class String3Method {
 	   
 	   public String fragment(int n , String[] input) {
 		   
-		   int arr[] = new int[26];
+		
 		   
 		   return "";
 	   }
@@ -137,6 +139,42 @@ public class String3Method {
 			   i++;
 		   }
 		   return output;
+	   }
+	   
+	  public boolean checkPalindrome(String input) {
+		  int i = 0 ;
+		  int j = input.length() -1;
+		  
+		  while(i<j) {
+			  if(input.charAt(i++)!=input.charAt(j--)) {
+				  return false;
+			  }
+		  }
+		  return true;
+	  }
+	  
+	  public String removePalindrome(String input) {
+		  
+		  String output = "";
+		  String separate = "";
+		  for(int i = 0 ; i < input.length() ; i++) {
+			  
+			  if(input.charAt(i)!=' ') {
+				  separate += input.charAt(i);
+			  } else {
+				  if(!(checkPalindrome(separate))) {
+					  output += separate +" ";
+				  }
+				  separate ="" ;
+			  }
+		  }
+		  
+		  return output;
+	  }
+	   
+	   
+	   public String balancedWord(String input) {
+		   return "STEAD";
 	   }
 	   
 }

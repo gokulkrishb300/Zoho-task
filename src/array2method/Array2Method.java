@@ -104,7 +104,50 @@ public void mismatch(char[] Arr1 , char[] Arr2) {
 	
 }
 
+public void rotate(int[] arr,int rotate) {
+	int[] output = new int[arr.length];
+	int count = 0;
+	for(int i = rotate ; i < arr.length ; i++) {
+		output[count++] = arr[i];
+	}
+	for(int i = 0 ; i < rotate ; i++) {
+		output[count++] = arr[i];
+	}
+	
+	for(int i = 0 ; i < arr.length ; i++) {
+		System.out.print(output[i]+" ");
+	}
+}
 
+public void duplicate(int[] arr) {
+	
+	for(int i = 0 ; i < arr.length ; i++) {
+		for(int j = 0 ; j < arr.length ; j++) {
+			if( i == j ) { continue; }
+			if(arr[i] < arr[j]) {
+				int temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+	}
+	
+	int count = 1;
+		for(int i = 0 ; i < arr.length-1 ; i++) {
+			if(arr[i]==arr[i+1]) {
+				count++;
+			}else {
+		    System.out.println(arr[i]+" "+count);
+					count = 1;
+				}	
+		if(i == arr.length -2 && count >1) {
+				System.out.println(arr[i]+" "+count);
+			
+		}
+		}
+	
+		
+}
 }
 
 
@@ -117,6 +160,18 @@ public void mismatch(char[] Arr1 , char[] Arr2) {
 
 
 
+//   2 3 6 2 2 1 6
+//   3 2 6 2 2 1 6
+//   6 2 3 2 2 1 6 i = 0
+//   
+//=> 6 2 3 2 2 1 6
+//   
+//=> 2 6 3 2 2 1 6
+//=> 3 2 6 2 2 1 6
+//=> 2 2 6 6 2 1 3
+//=> 2 2 2 6 6 1 3
+//=> 1 2 2 2 6 6 3
+//=> 1 2 2 2 3 6 6
 
 
 

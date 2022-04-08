@@ -8,7 +8,7 @@ public static void main(String[] args) {
 	String3Method method = new String3Method();
 	
 	int dial = sc.nextInt();
-			sc.nextLine();
+			
 	switch(dial) {
 	case 1:
 	{
@@ -32,9 +32,34 @@ public static void main(String[] args) {
 	
 	case 3:
 	{
+		sc.nextLine();
 		String str1 = sc.nextLine();
 		String str2  = sc.nextLine();
 		System.out.println(method.unMatchPair(str1, str2));
+	}
+	break;
+	
+	case 4:
+	{
+		sc.nextLine();
+		String input = sc.nextLine();
+		System.out.println(method.removePalindrome(input));
+	}
+	break;
+	
+	case 5:
+	{
+		sc.nextLine();
+		String input = sc.nextLine();
+		System.out.println(method.balancedWord(input));
+	}
+	break;
+	
+	case 6:
+	{
+		sc.nextLine();
+		String input = sc.nextLine();
+		System.out.println(method.removePalindrome(input));
 	}
 	break;
 }

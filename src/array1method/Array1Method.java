@@ -1,8 +1,12 @@
 package array1method;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Array1Method {
 
@@ -151,4 +155,132 @@ public class Array1Method {
 
            return output;
         }
+        
+      public  int getPairsCount(int[] arr, int n, int k) {
+            // code here
+             HashMap <Integer, Integer> nums = new HashMap<>();
+            
+            int ans = 0;
+            
+            for (int i = 0; i < n ; i++){
+                if (nums.containsKey(k - arr[i])){
+                    ans += nums.get(k - arr[i]);
+                }
+                
+                if (nums.containsKey(arr[i]))
+                    nums.put(arr[i], nums.get(arr[i]) + 1);
+                    
+                else
+                    nums.put(arr[i], 1);
+            }
+            
+            return ans;
+        }
+      
+      
+      public int minimum_difference(int[] nums)
+      {
+         
+      Arrays.sort(nums);
+      
+      int diff = Integer.MAX_VALUE;
+      int length = nums.length;
+      for(int i = 0 ; i < length -1 ;i++){
+          if(nums[i+1] - nums[i] < diff ){
+              diff = nums[i+1] - nums[i];
+          }
+      }
+      return diff;
+      }
+      
+      public ArrayList<Integer> leaders(int arr[], int n){
+          // Your code here
+          
+          ArrayList<Integer> list = new ArrayList<>();
+         
+         int leader = arr[n-1];
+         list.add(leader);
+         
+         for(int i = n-2 ; i >= 0 ; i--){
+             if(arr[i]>=leader){
+                 leader = arr[i];
+                 list.add(leader);
+             }
+         }
+         Collections.reverse(list);
+         return list;
+      }
+      
+      public int minDist(int a[], int n ,int x, int y) {
+    	  
+    	  int start = -1;
+    	  int end = -1;
+    	  
+    	  int small = Integer.MAX_VALUE;
+    	  
+    	  for(int i = 0 ; i < n ;i++) {
+    		  
+    		  if(a[i] == x) {
+    			  start = i;
+    		  }
+    		  else if(a[i] == y) {
+    			  end = i;
+    		  }
+    		  
+    		  if(start!=-1 && end!=-1) {
+    			  small = Math.min(small, Math.abs(end-start));
+    		  }
+    	  }
+    	
+    	  
+    	  return small == Integer.MAX_VALUE ? -1 : small;
+      }
+      
+      void rearrange(int a[], int n) {
+          // code here
+          int[] even = new int[n];
+          int[] odd = new int[n];
+          int e=0, o=0;
+          for(int i=0; i<n; i++){
+              if(a[i]>=0)
+              even[e++]=a[i];
+              else
+              odd[o++]=a[i];
+          }
+          int k=0, l=0;
+          for(int i=0; i<n; i++){
+              if(k<e)
+              a[i]=even[k++];
+              else
+              i--;
+              if(l<o)
+              a[i+1]=odd[l++];
+              else
+              i--;
+            i++;  
+          }
+      }
+      
+      public boolean findsum(int arr[],int n)
+      {
+          //Your code here
+       Set<Integer> set = new HashSet<>();
+       
+       int sum = 0 ;
+       
+       set.add(0);
+       
+       for(int i = 0 ; i < n ; i++){
+           
+           sum += arr[i];
+           
+           if(set.contains(sum)){
+               
+              return true;
+           }
+           set.add(sum);
+       }
+       
+       return false;
+      }
 }

@@ -52,6 +52,27 @@ public static void main(String[] args) {
 		method.mismatch(Arr1, Arr2);
 	}
 	break;
+	case 4:
+	{
+		int N = sc.nextInt();
+		int[] arr = new int[N];
+		for(int i = 0 ; i < N ; i++) {
+			arr[i] = sc.nextInt();
+		}
+		int rotate = sc.nextInt();
+		method.rotate(arr,rotate);
+	}
+	break;
+	case 5:
+	{
+		int N = sc.nextInt();
+		int[] arr = new int[N];
+		for(int i = 0 ; i < N ; i++) {
+			arr[i] = sc.nextInt();
+		}
+		method.duplicate(arr);
+	}
+	break;
 }
 }
 }
