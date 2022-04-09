@@ -59,7 +59,7 @@ public static void main(String[] args) {
 		for(int i = 0 ; i < N ; i++) {
 			arr[i] = sc.nextInt();
 		}
-		int rotate = sc.nextInt();
+		int rotate = N;
 		method.rotate(arr,rotate);
 	}
 	break;
@@ -73,6 +73,38 @@ public static void main(String[] args) {
 		method.duplicate(arr);
 	}
 	break;
+	case 6:
+	{
+		int N = sc.nextInt();
+		int[] arr = new int[N];
+		for(int i = 0 ; i < N ; i++) {
+			arr[i] = sc.nextInt();
+		}
+		int target = sc.nextInt();
+		method.sumPair(arr, target);
+	}
+	break;
+	case 7:
+	{
+		int N = sc.nextInt();
+		int[] arr = new int[N*N];
+		for(int i = 0 ; i < N ; i++) {
+			arr[i] = sc.nextInt();
+		}
+		method.sumOfDigits(arr,N);
+	}
+	break;
+	case 8:
+	{
+		int N = sc.nextInt();
+		int[] arr = new int[N];
+		for(int i = 0 ; i < N ; i++) {
+			arr[i] = sc.nextInt();
+		}
+		method.minDiff(arr);
+	}
+	break;
 }
-}
+	sc.close();
+} 
 }
