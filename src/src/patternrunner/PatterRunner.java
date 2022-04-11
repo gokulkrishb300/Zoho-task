@@ -30,13 +30,31 @@ public static void main(String[] args) {
 	case 4:
 	{
 		int n = sc.nextInt();
-		method.pyramidpattern(n);
+		method.diamond(n);
 	}
 	break;
 	case 5:
 	{
 		int n = sc.nextInt();
-		method.pyramidpattern(n);
+		method.rightPascal(n);
+	}
+	break;
+	case 6:
+	{
+		int n = sc.nextInt();
+		method.sandGlass(n);
+	}
+	break;
+	case 7:
+	{
+		int n = sc.nextInt();
+		method.triangle(n);
+	}
+	break;
+	case 0:
+	{
+		int n = sc.nextInt();
+		method.testing(n);
 	}
 	break;
 	}
