@@ -18,40 +18,24 @@ public class Array2Method {
     }
     
    public void closestPair(int[] arr,int N,int X) {
-		
-		int sum = 0;
-	    int count = 0;
-	    int[] result = new int[N*(N-1)];
-	    int[] antiResult = new int[N*(N-1)];
-	    int counter = 0;
-		for(int i = 0 ; i < N ; i++) {
-			for(int j = i+1 ; j < N ; j++) {
-				sum = arr[i] + arr[j];
-		
-				if(sum < X) {
-					result[count++] = sum;
-				}else {
-					antiResult[counter++] = sum;
-				}
-		}
-		
-	}
-		int length = result.length;
-		int antiLength = antiResult.length;
-	    int near = largest(result,length);
-		int far = smallest(antiResult,antiLength);
-	    for(int i = 0 ; i < N ; i++) {
-			for(int j = i+1 ; j < N ; j++) {
-				sum = arr[i] + arr[j];
-		
-				if(sum == near) {
-					System.out.println("pair ( "+ arr[i]+"," + arr[j]+" )");
-				}else if(sum == far) {
-					System.out.println("pair ( "+arr[i]+","+arr[j]+")");
-				}
-		}
-		
-	}
+
+	   
+	   int sum = 0;
+	   int max = Integer.MIN_VALUE;
+
+	   String output = "";
+	   for(int i = 0 ; i < N ; i++) {
+		   for(int j = i+1 ; j < N ; j++) {
+			   sum = arr[i] + arr[j];
+			   max = Math.max(max, sum);
+			   if(X > max) {
+				   output = arr[i] +" "+ arr[j];
+			   }
+			
+			   
+		   }
+	   }
+	   System.out.println(output);
 		
 }
 
@@ -78,24 +62,26 @@ public void clock(int N , int[] A) {
 
 public void mismatch(char[] Arr1 , char[] Arr2) {
 	
-	if(Arr1.length!= Arr2.length) {
-		System.out.println("Invalid Array");
-		
-	}
-	String result = "";
+
+	String output = "";
+	String arr2 = "";
     int i = 0;
     int N = Arr1.length;
     
 	while(i<N) {
-		if(Arr1[i]==Arr2[i]) {
-			i++;
-			continue;
+		if(Arr1[i]!=Arr2[i]) {
+		output += Arr1[i]+"";
+		arr2 += Arr2[i]+"";
 		} 
-		System.out.print(Arr1[i]+""+Arr2[i]+", ");
+		else if(output.length()>0){
+			output +=","+arr2+",";
+			arr2 ="";
+		} else if(i == N-1) { output += "."; }
 		i++;
-		
 	}
-	
+	int length = output.length();
+	String modified = output.substring(0,length-1);
+	System.out.println(modified+".");
 }
 
 public void rotate(int[] arr,int rotate) {
@@ -206,37 +192,103 @@ public void sumOfDigits(int arr[],int N) {
 public void minDiff(int arr[]) {
 int length = arr.length;
 int min = Integer.MAX_VALUE;
-
+String output = "";
 
   for(int i = 0 ; i < length ; i++) {
 	  for(int j = i+1 ; j < length ;j++) {
 	
   if(arr[i]==0 || arr[j]==0) {continue;}
-  int diff = arr[i] - arr[j];
-  if(diff>=0) {
+  int diff = Math.abs(arr[i] - arr[j]);
+  if(min > diff) {
   min = Math.min(min, diff);
+  output = arr[i]+" "+arr[j];
   }
   }
-}
-
- 
+  }
   
-  for(int i = 0 ; i < length ; i++) {
-	  for(int j = i+1 ; j < length ;j++) {
-	
-  if(arr[i]==0 || arr[j]==0) {continue;}
-  int diff = arr[i] - arr[j];
-
-   if(min == Math.abs(diff)) {
-	
-	   System.out.println(arr[i]+" "+arr[j]);
-   }
-	  }
-  }
-
+  System.out.println(output);
 
 }
 
+public void leftRotate(int rotate , int arr[]) {
+	int length = arr.length;;
+	
+	
+	while(rotate>0) {
+	
+	for(int i = 0 ; i < length-1 ; i++) {
+		int temp = arr[i];
+		arr[i] =arr[i+1];
+		arr[i+1] = temp;
+	}
+	
+	rotate--;
+	}
+	
+	for(int i = 0 ;i < length ; i++) {
+		System.out.print(arr[i]+" ");
+	}
+}
+
+public void possibleWay(int n , int m , int arr[]) {
+	
+	Arrays.sort(arr);
+	for(int i = 0 ; i < m ; i++) {
+		int iter = n , sum = 0 ;
+		String output = "";
+		while(iter>0) {
+			 sum += arr[i];
+			  output +=arr[i]+" ";
+			if(sum == n) {
+				System.out.println(output);
+				break;
+			}
+			iter--;
+		}
+	}
+	
+	for(int i = 0 ; i < m ; i++) {
+	    int sum = 0;
+		for(int j = i+1 ; j < m ; j++) {
+			sum += arr[i]+arr[j];
+			if(sum == n) {
+				System.out.println(arr[i]+" "+arr[j]);
+				break;
+			}
+			sum = 0;
+		}
+	}
+	
+	for(int i = 0 ; i < m-1 ; i++) {
+		int sum = 0, iter = n;
+		while(iter>0) {
+			sum += arr[i] + arr[i] + arr[i+1];
+			if(sum == n) {
+		    System.out.println(arr[i] +" "+ arr[i] +" "+ arr[i+1]);
+			break;
+			}
+			iter--;
+		}
+	}
+}
+
+public void ueiOperation(List list1 , List list2) {
+
+}
+
+public void triangleNum(int N, int arr[]) {
+	int count = 0;
+	for(int i = 0 ; i < N-1 ; i++) {
+		for(int j = 0 ; j < N ; j++) {
+			if(i==j) {
+				System.out.print(arr[count++]+" ");
+			} else {
+				System.out.print(" ");
+			}
+		}
+		System.out.println();
+	}
+}
 
 }
 

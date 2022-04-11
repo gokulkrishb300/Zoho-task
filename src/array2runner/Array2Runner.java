@@ -42,10 +42,8 @@ public static void main(String[] args) {
 	    for(int i = 0 ; i < N ; i++) {
 			Arr1[i] = sc.next().charAt(0);
 		}
-	   
-	    int M = sc.nextInt();
-		char[] Arr2 = new char[M];
-		for(int i = 0 ; i < M ; i++) {
+		char[] Arr2 = new char[N];
+		for(int i = 0 ; i < N ; i++) {
 			Arr2[i] = sc.next().charAt(0);
 		}
 		
@@ -102,6 +100,54 @@ public static void main(String[] args) {
 			arr[i] = sc.nextInt();
 		}
 		method.minDiff(arr);
+	}
+	break;
+	case 9 :
+	{
+		int N = sc.nextInt();
+		int[] A = new int[N];
+		for(int i = 0 ; i < N ; i++) {
+			A[i] = sc.nextInt();
+		}
+		
+		method.triangleNum(N, A);
+	}
+	break;
+	case 10 :
+	{
+		int N = sc.nextInt();
+		int[] A = new int[N];
+		for(int i = 0 ; i < N ; i++) {
+			A[i] = sc.nextInt();
+		}
+		int rotate = sc.nextInt();
+		method.leftRotate(rotate, A);
+	}
+	break;
+	case 11 :
+	{
+		int n = sc.nextInt();
+		int m = sc.nextInt();
+		int[] A = new int[m];
+		for(int i = 0 ; i < m ; i++) {
+			A[i] = sc.nextInt();
+		}
+		method.possibleWay(n, m, A);
+	}
+	break;
+	case 12 :
+	{
+		List<Integer> list1 = new ArrayList<>();
+		int n = sc.nextInt();
+		for(int i = 0 ; i < n ; i++) {
+			list1.add(sc.nextInt());
+		}
+		List<Integer> list2 = new ArrayList<>();
+		int m = sc.nextInt();
+		for(int i = 0 ; i < m ; i++) {
+			list2.add(sc.nextInt());
+		}
+		method.ueiOperation(list1, list2);
 	}
 	break;
 }
