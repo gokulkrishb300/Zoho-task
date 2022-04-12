@@ -51,10 +51,60 @@ public static void main(String[] args) {
 		method.triangle(n);
 	}
 	break;
-	case 0:
+	case 8:
 	{
 		int n = sc.nextInt();
-		method.testing(n);
+		method.diamondEmpty(n);
+	}
+	break;
+	case 9:
+	{
+		int n = sc.nextInt();
+		method.numberPattern(n);
+	}
+	break;
+	case 10:
+	{
+		int n = sc.nextInt();
+		method.printPascal(n);
+	}
+	break;
+	case 11:
+	{
+		int n = sc.nextInt();
+		method.diamondNumber(n);
+	}
+	break;
+	case 12:
+	{
+		int n = sc.nextInt();
+		method.zPattern(n);
+	}
+	break;
+	case 13:
+	{
+		int n = sc.nextInt();
+		method.xAndO(n);
+	}
+	break;
+	case 14:
+	{
+		int n = sc.nextInt();
+		method.spiral(n);
+	}
+	break;
+	case 15:
+	{
+		sc.nextLine();
+		String input = sc.nextLine();
+		method.oddLength(input);
+	}
+	break;
+	case 16:
+	{
+		sc.nextLine();
+		String input = sc.nextLine();
+		method.alpha(input);
 	}
 	break;
 	}
