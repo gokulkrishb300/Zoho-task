@@ -104,7 +104,7 @@ public static void main(String[] args) {
 	{
 		sc.nextLine();
 		String input = sc.nextLine();
-		method.alpha(input);
+		//method.alpha(input);
 	}
 	break;
 	}

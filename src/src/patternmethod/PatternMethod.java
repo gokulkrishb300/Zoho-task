@@ -5,6 +5,7 @@ import java.util.List;
 
 public class PatternMethod {
 
+	
 	public void pyramidpattern(int n) {
 		
 		for(int i = n-1 ; i >= 0 ; i-- ) {
@@ -346,7 +347,8 @@ public class PatternMethod {
     	for(int k = 0 ; k < length ; k++) {
     		if(k==i || k==j) {
     			System.out.print(input.charAt(k));
-    		}
+    		} 
+    		
     	}
     	System.out.println();
     }
