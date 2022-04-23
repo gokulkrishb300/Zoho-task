@@ -1,10 +1,21 @@
 package accountdeclare;
 
 public class Transaction {
+	private int accId;
+
 	private int fromAcc;
 	private int toAcc;
-	private double money;
-	private String timeAndDate;
+	private int transferredAmount;
+	private int balance;
+	private String type;
+	private Object timeAndDate;
+	
+	public int getAccId() {
+		return accId;
+	}
+	public void setAccId(int accId) {
+		this.accId = accId;
+	}
 	public int getFromAcc() {
 		return fromAcc;
 	}
@@ -17,21 +28,34 @@ public class Transaction {
 	public void setToAcc(int toAcc) {
 		this.toAcc = toAcc;
 	}
-	public double getMoney() {
-		return money;
+	public int getTransferredAmount() {
+		return transferredAmount;
 	}
-	public void setMoney(double money) {
-		this.money = money;
+	public void setTransferredAmount(int transferredAmount) {
+		this.transferredAmount = transferredAmount;
 	}
-	public String getTimeAndDate() {
+	public int getBalance() {
+		return balance;
+	}
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public Object getTimeAndDate() {
 		return timeAndDate;
 	}
-	public void setTimeAndDate(String timeAndDate) {
+	public void setTimeAndDate(Object timeAndDate) {
 		this.timeAndDate = timeAndDate;
 	}
 	@Override
 	public String toString() {
-		return "Transaction [fromAcc=" + fromAcc + ", toAcc=" + toAcc + ", money=" + money + ", timeAndDate="
-				+ timeAndDate + "]";
+		return "Transaction [accId=" + accId + ", fromAcc=" + fromAcc + ", toAcc=" + toAcc + ", transferredAmount="
+				+ transferredAmount + ", balance=" + balance + ", type=" + type + ", timeAndDate=" + timeAndDate + "]";
 	}
+
 }

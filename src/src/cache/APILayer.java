@@ -1,64 +1,65 @@
 package cache;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import accountdeclare.*;
 
 public class APILayer {
 
 	CacheLayer cache = new CacheLayer();
 
-	public boolean customerRegister(Customer customer) {
+	public boolean register(Customer customer,Account account) throws Exception {
 
-		return cache.customerRegister(customer);
+		return cache.register(customer,account);
 	}
 
+	
 	public boolean loginVerification(int customerId, int password) throws Exception {
 
 		return cache.loginVerification(customerId, password);
 	}
 
-	  
-	  public boolean addAccount(Account account) throws Exception {
-	  
-	  return cache.addAccount(account);
-	  }
-	  
-	
+	public boolean addAccount(Account account) throws Exception {
 
-		public boolean balance(Account account,int accountId) throws Exception {
-
-			return cache.balance(account,accountId);
-		}
-
-	public boolean transfer(Map<Integer, Map<Integer, Account>> accountMap, int fromAcc, int toAcc, double amount)
-			throws Exception {
-
-		if (fromAcc <= 1000) {
-			throw new Exception("Invalid From account");
-		}
-		if (toAcc <= 1000) {
-			throw new Exception("Invalid To Account");
-		}
-		if (amount <= 0) {
-			throw new Exception("Transaction canceled for following amount");
-		}
-
-		if (accountMap.containsKey(fromAcc)) {
-			if (accountMap.containsKey(toAcc)) {
-				if (amount > 0) {
-					accountMap.get(fromAcc);
-					// double toBal = accountMap.get(toAcc).getBalance()+amount;
-					return true;
-				} else {
-					throw new Exception("Invalid amount");
-				}
-			} else {
-				throw new Exception("To Account not available");
-			}
-		} else {
-			throw new Exception("From Account not available");
-		}
+		return cache.addAccount(account);
 	}
+
+	public boolean accountDetails(int accountId) throws Exception {
+
+		return cache.accountDetails(accountId);
+	}
+	
+	public boolean transfer(int fromAcc, int toAcc, double amount) throws Exception {
+		
+		return cache.transfer(fromAcc, toAcc, amount);
+	}
+
+	public boolean balance(int accountId) throws Exception {
+
+		return cache.balance(accountId);
+	}
+	
+	public boolean deposit(int accountId, double amount) throws Exception {
+		
+		return cache.deposit(accountId,amount);
+	}
+	
+	public boolean withDraw(int accountId, double amount) throws Exception {
+		
+		return cache.withDraw(accountId, amount);
+	}
+	
+	public boolean loan(Loan loan) throws Exception {
+		
+		return cache.loan(loan);
+	}
+	
+	public boolean appliedLoan() throws Exception {
+		
+		return cache.appliedLoan();
+	}
+	
+	public boolean entireAccountDetails(int customerID) throws Exception {
+		
+		return cache.entireAccountDetails(customerID);
+	}
+
 }

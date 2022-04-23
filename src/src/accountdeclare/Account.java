@@ -3,9 +3,16 @@ package accountdeclare;
 public class Account {
 	private int accountId;
     private int customerId;
+    private String accType;
     private String branchName;
-    private boolean status;
+    private boolean status = true;
     private double balance;
+	public String getAccType() {
+		return accType;
+	}
+	public void setAccType(String accType) {
+		this.accType = accType;
+	}
 	public int getAccountId() {
 		return accountId;
 	}
@@ -38,7 +45,8 @@ public class Account {
 	}
 	@Override
 	public String toString() {
-		return "Account [accountId=" + accountId + ", customerId=" + customerId + ", branchName=" + branchName
-				+ ", status=" + status + ", balance=" + balance + "]";
+		return "Account [accountId=" + accountId + ", customerId=" + customerId + ", accType=" + accType
+				+ ", branchName=" + branchName + ", status=" + status + ", balance=" + balance + "]";
 	}
+
 }

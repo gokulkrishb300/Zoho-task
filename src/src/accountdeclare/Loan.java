@@ -2,22 +2,36 @@ package accountdeclare;
 
 public class Loan {
 	private int accountId;
-	private String name;
+	private long voterId;
 	private long aadhar;
-	private String address;
-	private String gender;
-	private long mobile;
+	private long pancard;
+	private long incomeTax;
+	private String loanType;
+	private double amount;
+	
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+	public String getLoanType() {
+		return loanType;
+	}
+	public void setLoanType(String loanType) {
+		this.loanType = loanType;
+	}
 	public int getAccountId() {
 		return accountId;
 	}
 	public void setAccountId(int accountId) {
 		this.accountId = accountId;
 	}
-	public String getName() {
-		return name;
+	public long getVoterId() {
+		return voterId;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setVoterId(long voterId) {
+		this.voterId = voterId;
 	}
 	public long getAadhar() {
 		return aadhar;
@@ -25,29 +39,24 @@ public class Loan {
 	public void setAadhar(long aadhar) {
 		this.aadhar = aadhar;
 	}
-	public String getAddress() {
-		return address;
+	public long getPancard() {
+		return pancard;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setPancard(long pancard) {
+		this.pancard = pancard;
 	}
-	public String getGender() {
-		return gender;
+	public long getIncomeTax() {
+		return incomeTax;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public long getMobile() {
-		return mobile;
-	}
-	public void setMobile(long mobile) {
-		this.mobile = mobile;
+	public void setIncomeTax(long incomeTax) {
+		this.incomeTax = incomeTax;
 	}
 	@Override
 	public String toString() {
-		return "Loan [accountId=" + accountId + ", name=" + name + ", aadhar=" + aadhar + ", address=" + address
-				+ ", gender=" + gender + ", mobile=" + mobile + "]";
+		return "Loan [accountId=" + accountId + ", voterId=" + voterId + ", aadhar=" + aadhar + ", pancard=" + pancard
+				+ ", incomeTax=" + incomeTax + ", loanType=" + loanType + ", amount=" + amount + "]";
 	}
+
 	
-	
+		
 }

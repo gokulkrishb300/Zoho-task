@@ -8,7 +8,9 @@ Scanner sc = new Scanner(System.in);
 		try {
 			int num = sc.nextInt();
 			sc.nextLine();
+		
 			return num;
+			
 		} catch(Exception e) {
 			sc.nextLine();
 			System.out.println("Integer input only");
@@ -20,7 +22,7 @@ Scanner sc = new Scanner(System.in);
 		System.out.println(input);
 		try {
 			String value = sc.nextLine();
-			if(value!=null) {
+			if(value!=null && !value.isEmpty()) {
 			return value;
 			}
 		}
