@@ -1,5 +1,8 @@
 package cache;
 
+import java.util.List;
+import java.util.Map;
+
 import accountdeclare.*;
 
 public class APILayer {
@@ -42,7 +45,7 @@ public class APILayer {
 		return cache.deposit(accountId,amount);
 	}
 	
-	public boolean withDraw(int accountId, double amount) throws Exception {
+	public String withDraw(int accountId, double amount) throws Exception {
 		
 		return cache.withDraw(accountId, amount);
 	}
@@ -52,17 +55,17 @@ public class APILayer {
 		return cache.loan(loan);
 	}
 	
-	public boolean transMap(int accountId) throws Exception {
+	public List<Transaction> transMap(int accountId) throws Exception {
 		
 		return cache.transMap(accountId);
 	}
 	
-	public boolean appliedLoan() throws Exception {
+	public Map<String, Loan> appliedLoan() throws Exception {
 		
 		return cache.appliedLoan();
 	}
 	
-	public boolean entireAccountDetails(int customerID) throws Exception {
+	public Map<Integer, Account> entireAccountDetails(int customerID) throws Exception {
 		
 		return cache.entireAccountDetails(customerID);
 	}

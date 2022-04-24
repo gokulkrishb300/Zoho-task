@@ -1,6 +1,8 @@
 package cache;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import accountdeclare.*;
@@ -30,6 +32,8 @@ public class CacheLayer {
 		return ++transId;
 	}
 
+	List<Transaction> list = new ArrayList<>();
+	
 	Map<Integer, Customer> customerMap = new HashMap<>();
 
  Map<Integer, Map<Integer, Account>> accountMap = new HashMap<>();
@@ -42,7 +46,7 @@ public class CacheLayer {
 	
 	Map<String,Loan> loans = new HashMap<>();
 	
-	Map<Integer,Map<Integer, Transaction>> transMap = new HashMap<>();
+	Map<Integer,List<Transaction>> transMap = new HashMap<>();
 	
 
 	public boolean register(Customer customer,Account account) throws Exception {
@@ -183,16 +187,16 @@ public class CacheLayer {
 				
 				transaction.setResult("Invalid To Account");
 				
-				Map<Integer,Transaction> mapObj = transMap.get(fromAcc);
+				List<Transaction> mapObj = transMap.get(fromAcc);
 				
 				if(mapObj == null) {
 					
-					mapObj = new HashMap<>();
+					mapObj = new ArrayList<>();
 					
 					transMap.put(fromAcc, mapObj);
 				}
 				
-				mapObj.put(transaction.getTransId(), transaction);
+				mapObj.add(transaction);
 				
 			throw new Exception("Invalid To Account");	
 			}
@@ -219,17 +223,17 @@ public class CacheLayer {
 				
 				transaction.setResult("Insufficient Balance");
 				
-				Map<Integer,Transaction> mapObj = transMap.get(fromAcc);
+				List<Transaction> mapObj = transMap.get(fromAcc);
 				
 				if(mapObj == null) {
 					
-					mapObj = new HashMap<>();
+					mapObj = new ArrayList<>();
 					
 					transMap.put(fromAcc, mapObj);
-					
 				}
 				
-				mapObj.put(transaction.getTransId(), transaction);
+				mapObj.add(transaction);
+				
 				
 				
 				throw new Exception("Insufficient Balance to Transfer");
@@ -258,16 +262,16 @@ public class CacheLayer {
 				
 				transaction.setResult("Negative amount");
 				
-				Map<Integer,Transaction> mapObj = transMap.get(fromAcc);
+				List<Transaction> mapObj = transMap.get(fromAcc);
 				
 				if(mapObj == null) {
 					
-					mapObj = new HashMap<>();
+					mapObj = new ArrayList<>();
 					
 					transMap.put(fromAcc, mapObj);
 				}
 				
-				mapObj.put(transaction.getTransId(), transaction);
+				mapObj.add(transaction);
 				
 				throw new Exception("Transaction canceled for negative amount");
 			}
@@ -296,13 +300,16 @@ public class CacheLayer {
 				
 				transaction.setResult("Same Account Transfer");
 				
-				Map<Integer,Transaction> mapObj = transMap.get(fromAcc);
+				List<Transaction> mapObj = transMap.get(fromAcc);
 				
 				if(mapObj == null) {
-					mapObj = new HashMap<>();
+					
+					mapObj = new ArrayList<>();
+					
 					transMap.put(fromAcc, mapObj);
 				}
-				mapObj.put(transaction.getTransId(), transaction);
+				
+				mapObj.add(transaction);
 				
 				throw new Exception("Same Account Transfer Failed");
 			}
@@ -337,13 +344,16 @@ public class CacheLayer {
 					
 						transaction.setStatus(true);
 						
-						Map<Integer,Transaction> mapObj = transMap.get(fromAcc);
+						List<Transaction> mapObj = transMap.get(fromAcc);
 						
 						if(mapObj == null) {
-							mapObj = new HashMap<>();
+							
+							mapObj = new ArrayList<>();
+							
 							transMap.put(fromAcc, mapObj);
 						}
-						mapObj.put(transaction.getTransId(), transaction);
+						
+						mapObj.add(transaction);
 						
 						return true;
 					
@@ -378,15 +388,16 @@ public class CacheLayer {
 				
 				transaction.setResult("negative balance");
 				
-				Map<Integer,Transaction> mapObj = transMap.get(accountId);
+				List<Transaction> mapObj = transMap.get(accountId);
 				
 				if(mapObj == null) {
 					
-					mapObj = new HashMap<>();
+					mapObj = new ArrayList<>();
 					
 					transMap.put(accountId, mapObj);
 				}
-				mapObj.put(transaction.getTransId(), transaction);
+				
+				mapObj.add(transaction);
 
 				throw new Exception("Invalid Amount || Transaction Failed");
 			}
@@ -421,16 +432,16 @@ public class CacheLayer {
 				
 				transaction.setResult("Credit Success");
 				
-				Map<Integer,Transaction> mapObj = transMap.get(accountId);
+				List<Transaction> mapObj = transMap.get(accountId);
 				
 				if(mapObj == null) {
 					
-					mapObj = new HashMap<>();
+					mapObj = new ArrayList<>();
 					
 					transMap.put(accountId, mapObj);
 				}
-				mapObj.put(transaction.getTransId(), transaction);
 				
+				mapObj.add(transaction);
 		    	
 				System.out.println("Current Balance: "+ balance);
 				
@@ -440,7 +451,7 @@ public class CacheLayer {
 			throw new Exception("Invalid Acount ID || Transaction Failed");
 		}
 		
-		public boolean withDraw(int accountId, double amount) throws Exception{
+		public String withDraw(int accountId, double amount) throws Exception{
 			
 			double balance = insideMap.get(accountId).getBalance();
 			
@@ -467,15 +478,16 @@ public class CacheLayer {
 					
 					transaction.setResult("Negative amount");
 					
-					Map<Integer,Transaction> mapObj = transMap.get(accountId);
+					List<Transaction> mapObj = transMap.get(accountId);
 					
 					if(mapObj == null) {
 						
-						mapObj = new HashMap<>();
+						mapObj = new ArrayList<>();
 						
 						transMap.put(accountId, mapObj);
 					}
-					mapObj.put(transaction.getTransId(), transaction);
+					
+					mapObj.add(transaction);
 					
 				throw new Exception("Invalid amount || Transaction Failed");
 			}
@@ -508,15 +520,16 @@ public class CacheLayer {
 						
 						transaction.setResult("Insufficient Balance");
 						
-						Map<Integer,Transaction> mapObj = transMap.get(accountId);
+						List<Transaction> mapObj = transMap.get(accountId);
 						
 						if(mapObj == null) {
 							
-							mapObj = new HashMap<>();
+							mapObj = new ArrayList<>();
 							
 							transMap.put(accountId, mapObj);
 						}
-						mapObj.put(transaction.getTransId(), transaction);
+						
+						mapObj.add(transaction);;
 						
 					
 					throw new Exception("Insufficient balance || Transaction Failed");
@@ -548,43 +561,38 @@ public class CacheLayer {
 					
 					transaction.setResult("Success");
 					
-					Map<Integer,Transaction> mapObj = transMap.get(accountId);
+					List<Transaction> mapObj = transMap.get(accountId);
 					
 					if(mapObj == null) {
 						
-						mapObj = new HashMap<>();
+						mapObj = new ArrayList<>();
 						
 						transMap.put(accountId, mapObj);
 					}
-					mapObj.put(transaction.getTransId(), transaction);
+					
+					mapObj.add(transaction);
 					
 
-				System.out.println("Current Balance : "+balance);
+				return "Current Balance : "+balance;
 				
-				return true;
+			
 			}
 			
 			throw new Exception("Invalid Account Id || Transaction Failed");
 		}
 		
-		public boolean transMap(int accountId) throws Exception {
+		public List<Transaction> transMap(int accountId) throws Exception {
 			
 			if(transMap.containsKey(accountId)) {
 				
 				if(transMap.get(accountId) == null) {
 					
-					System.out.println("No Transaction done");
+					throw new Exception("No Transaction done");
 					
-					return true;
+			
 				} else {
 					
-					
-					
-					
-						System.out.println(transMap.get(accountId));
-					
-				
-				return true;
+				 return transMap.get(accountId);
 				
 				}
 			}
@@ -628,27 +636,27 @@ public class CacheLayer {
 			System.out.println("--- Submission Success ---");
 			System.out.println("--- Wait for approval ---");
 			
-			return true;
+	        return true;
 		}
 		
-		public boolean appliedLoan() throws Exception {
+		public Map<String, Loan> appliedLoan() throws Exception {
 			
 			if(loans == null || loans.isEmpty()) {
 				throw new Exception("No loans applied");
 			} 
 			
-			System.out.println(loans);
+			return loans;
 			
-			return true;
+	
 		}
 		
-		public boolean entireAccountDetails(int customerId) throws Exception{
+		public Map<Integer, Account> entireAccountDetails(int customerId) throws Exception{
 			
 			if(accountMap.containsKey(customerId)) {
 				
-				System.out.println(accountMap.get(customerId));
+				return accountMap.get(customerId);
 				
-				return true;
+	
 			}
 			throw new Exception("Invalid CustomerID");
 		}
