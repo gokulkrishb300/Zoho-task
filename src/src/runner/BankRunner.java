@@ -59,14 +59,20 @@ public class BankRunner {
 		while (condition) {
 			
 			initial();     
+			
+			String choiceSt = input.string("Enter here...");
 	    
-			int choice = input.number("Enter here...");
+			int choice = Integer.valueOf(choiceSt);
 
 			if (choice == 1) {
+				
+				String accountIdSt = input.string("Enter account ID ");
 
-				int accountId = input.number("Enter account ID ");
+				int accountId = Integer.valueOf(accountIdSt);
+				
+				String password = input.string("Enter Password");
 
-				int pwd = input.number("Enter Password ");
+				int pwd = Integer.valueOf(password);
 					
 				try {
 				 api.loginVerification(accountId, pwd);
@@ -77,6 +83,8 @@ public class BankRunner {
 						while (conditioner) {
 							
 							Account account = new Account();
+							
+							
 							
 							intermediate();
 
@@ -142,13 +150,12 @@ public class BankRunner {
 							
 							if(choose == 5 ) {
 								
-								Transaction transaction = new Transaction();
-								
-								long millis   = System.currentTimeMillis();
-								
-							    java.util.Date date = new java.util.Date(millis); 
-							    
-							    transaction.setTimeAndDate(date);
+								try {
+									api.transMap(accountId);
+								}
+								catch(Exception e) {
+									System.out.println(e.getMessage());
+								}
 							    
 							}
 							

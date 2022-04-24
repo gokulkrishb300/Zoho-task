@@ -52,6 +52,11 @@ public class APILayer {
 		return cache.loan(loan);
 	}
 	
+	public boolean transMap(int accountId) throws Exception {
+		
+		return cache.transMap(accountId);
+	}
+	
 	public boolean appliedLoan() throws Exception {
 		
 		return cache.appliedLoan();
