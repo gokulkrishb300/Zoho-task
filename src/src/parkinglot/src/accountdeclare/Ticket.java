@@ -1,14 +1,29 @@
 package accountdeclare;
 
+import java.util.Date;
+
 public class Ticket {
 private int ticketId;
-private Object time;
+private long time;
 private float dollar;
 private boolean status;
-private String vehicleModel;
+private String vehicleType;
 private String vehicleNum;
 private int floor;
 private float paidAmount;
+private String cashType;
+
+
+
+
+
+
+public String getCashType() {
+	return cashType;
+}
+public void setCashType(String cashType) {
+	this.cashType = cashType;
+}
 
 public float getPaidAmount() {
 	return paidAmount;
@@ -28,11 +43,11 @@ public int getTicketId() {
 public void setTicketId(int ticketId) {
 	this.ticketId = ticketId;
 }
-public Object getTime() {
+public long getTime() {
 	return time;
 }
-public void setTime(Object time) {
-	this.time = time;
+public void setTime(long millis) {
+	this.time = millis;
 }
 public float getDollar() {
 	return dollar;
@@ -46,11 +61,11 @@ public boolean isStatus() {
 public void setStatus(boolean status) {
 	this.status = status;
 }
-public String getVehicleModel() {
-	return vehicleModel;
+public String getVehicleTYpe() {
+	return vehicleType;
 }
-public void setVehicleModel(String vehicleModel) {
-	this.vehicleModel = vehicleModel;
+public void setVehicleModel(String vehicleType) {
+	this.vehicleType = vehicleType;
 }
 public String getVehicleNum() {
 	return vehicleNum;
@@ -58,12 +73,16 @@ public String getVehicleNum() {
 public void setVehicleNum(String vehicleNum) {
 	this.vehicleNum = vehicleNum;
 }
+java.util.Date date = new java.util.Date(getTime());
 @Override
 public String toString() {
-	return "Ticket [ticketId=" + ticketId + ", time=" + time + ", dollar=" + dollar + ", status=" + status
-			+ ", vehicleModel=" + vehicleModel + ", vehicleNum=" + vehicleNum + ", floor=" + floor + ", paidAmount="
-			+ paidAmount + "]";
+	return "Ticket [ticketId=" + ticketId + ", time=" + date + ", dollar=" + dollar + ", status=" + status
+			+ ", vehicleType=" + vehicleType + ", vehicleNum=" + vehicleNum + ", floor=" + floor + ", paidAmount="
+			+ paidAmount + ", cashType=" + cashType + "]";
 }
+
+
+
 
 
 
