@@ -3,17 +3,24 @@ package accountdeclare;
 public class Ticket {
 
 	private int ticketId;
+	private int customerId;
 	private String vehicleNum;
 	private String vehicleType;
-	private String cashType;
 	private long time;
 	private int floor;
 	private int slot;
+	private boolean electricPanel;
 	public int getTicketId() {
 		return ticketId;
 	}
 	public void setTicketId(int ticketId) {
 		this.ticketId = ticketId;
+	}
+	public int getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 	public String getVehicleNum() {
 		return vehicleNum;
@@ -26,12 +33,6 @@ public class Ticket {
 	}
 	public void setVehicleType(String vehicleType) {
 		this.vehicleType = vehicleType;
-	}
-	public String getCashType() {
-		return cashType;
-	}
-	public void setCashType(String cashType) {
-		this.cashType = cashType;
 	}
 	public long getTime() {
 		return time;
@@ -51,11 +52,19 @@ public class Ticket {
 	public void setSlot(int slot) {
 		this.slot = slot;
 	}
+	public boolean isElectricPanel() {
+		return electricPanel;
+	}
+	public void setElectricPanel(boolean electricPanel) {
+		this.electricPanel = electricPanel;
+	}
 	@Override
 	public String toString() {
-		return "Ticket [ticketId=" + ticketId + ", vehicleNum=" + vehicleNum + ", vehicleType=" + vehicleType
-				+ ", cashType=" + cashType + ", time=" + time + ", floor=" + floor + ", slot=" + slot + "]";
+		return "Ticket [ticketId=" + ticketId + ", customerId=" + customerId + ", floor=" + floor + ", slot=" + slot
+				+ ", electricPanel=" + electricPanel + "]";
 	}
+
 	
+		
 	
 }

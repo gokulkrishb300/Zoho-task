@@ -1,21 +1,21 @@
 package accountdeclare;
 
 public class Slot {
+	private int floor;
 	private int slotNumber;
-	private int space;
 	private String vehicleModel;
 	private boolean electricPanel;
+	public int getFloor() {
+		return floor;
+	}
+	public void setFloor(int floor) {
+		this.floor = floor;
+	}
 	public int getSlotNumber() {
 		return slotNumber;
 	}
 	public void setSlotNumber(int slotNumber) {
 		this.slotNumber = slotNumber;
-	}
-	public int getSpace() {
-		return space;
-	}
-	public void setSpace(int space) {
-		this.space = space;
 	}
 	public String getVehicleModel() {
 		return vehicleModel;
@@ -31,9 +31,10 @@ public class Slot {
 	}
 	@Override
 	public String toString() {
-		return "Slot [slotNumber=" + slotNumber + ", space=" + space + ", vehicleModel=" + vehicleModel
+		return "Slot [floor=" + floor + ", slotNumber=" + slotNumber + ", vehicleModel=" + vehicleModel
 				+ ", electricPanel=" + electricPanel + "]";
 	}
+	
 	
 	
 	
