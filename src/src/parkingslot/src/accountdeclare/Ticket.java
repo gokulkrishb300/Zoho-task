@@ -6,7 +6,7 @@ public class Ticket {
 	private int customerId;
 	private String vehicleNum;
 	private String vehicleType;
-	private long time;
+	private long entryTime;
 	private int floor;
 	private int slot;
 	private boolean electricPanel;
@@ -34,11 +34,12 @@ public class Ticket {
 	public void setVehicleType(String vehicleType) {
 		this.vehicleType = vehicleType;
 	}
-	public long getTime() {
-		return time;
+	
+	public long getEntryTime() {
+		return entryTime;
 	}
-	public void setTime(long time) {
-		this.time = time;
+	public void setEntryTime(long entryTime) {
+		this.entryTime = entryTime;
 	}
 	public int getFloor() {
 		return floor;

@@ -18,9 +18,9 @@ public class CacheLayer {
 	Map<Integer,Customer> customerMap = new HashMap<>();
 	
 	Map<String,Integer> vehicleMap = new HashMap<>();
-
-	List<Slot> bookedSlot = new ArrayList<>();
-
+	
+	Map<Long,Integer> mobileNoMap = new HashMap<>();
+	
 	private int ticketId = 1000;
 
 	private int ticketId() {
@@ -33,6 +33,8 @@ public class CacheLayer {
 
 		return ++customerId;
 	}
+	
+	double charge = 0;
 
 	public Map<Integer, Map<String, List<Slot>>> bluePrint(int floor, int spot) {
 		int k = 1;
@@ -91,6 +93,7 @@ public class CacheLayer {
 	}
 
 	public Map<Integer, Map<String, List<Slot>>> showBluePrint() {
+		
 		return bluePrint;
 	}
 
@@ -107,70 +110,24 @@ public class CacheLayer {
 
 		return vehicleMap.get(vehicleType);
 	}
-
-	public Map<Integer, List<Slot>> searchVehicleSlots(String vehicleModel) throws ManualException {
-
-		Map<Integer, List<Slot>> tempMap = new HashMap<>();
-
-		for (int i = 0; i < bluePrint.size(); i++) {
-
-			tempMap.put(i, bluePrint.get(i).get(vehicleModel));
-
-		}
-
-		return tempMap;
-	}
-
-	int i = 0;
 	
-	public Ticket bookTicket(Ticket ticket,Customer customer) throws ManualException {
-
-		String vehicleModel = vehicleModel(ticket.getVehicleType());
-
-		int size = bluePrint.get(i).get(vehicleModel).size();
-
-		if (size == 0) {
-			i++;
-		}
-
-		if (size == 0 && i == bluePrint.size()) {
-			i = 0;
-			throw new ManualException("Parking Slot filled for " + vehicleModel);
-		}
-
-		Slot slot = bluePrint.get(i).get(vehicleModel).remove(0);
-		
-		ticket.setTicketId(ticketId());
-
-		ticket.setTime(System.currentTimeMillis());
-
-		ticket.setFloor(slot.getFloor());
-
-		ticket.setSlot(slot.getSlotNumber());
-		
-		ticket.setElectricPanel(slot.isElectricPanel());
-
-		ticketMap.put(ticket.getTicketId(), ticket);
-		
-		bookedSlot.add(slot);
-		
-		customerMap.put(customer.getCustomerId(),customer);
-		
-		vehicleMap.put(ticket.getVehicleNum(), ticket.getCustomerId());
-
-		return ticket;
-	}
-	
-	public String checkVehicle(String vehicleNum) throws ManualException {
-		
+	public String checkVehicle(String vehicleNum)  {
 		
 		if(vehicleMap.containsKey(vehicleNum)) {
 			
 			return "Welcome "+customerMap.get(vehicleMap.get(vehicleNum)).getName();
 		}
-		return "New Customer";
+		return "Check through mobile No.";
 	}
-
+	
+	public String mobileNoCheck(long mobile)  {
+		
+		if(mobileNoMap.containsKey(mobile)) {
+			return "Welcome "+ customerMap.get(mobileNoMap.get(mobile)).getName();
+		}
+		return "The following one is a New Customer";
+	}
+	
 	public Map<Integer, Ticket> ticketList() throws ManualException {
 
 		if (ticketMap.isEmpty()) {
@@ -189,14 +146,15 @@ public class CacheLayer {
 	public String getTicket(int ticketId) throws ManualException {
 		
 		if(!ticketMap.containsKey(ticketId)) {
+			
 			throw new ManualException("TicketId not found");
 		}
-		System.out.println(ticketMap);
+	
 		Ticket ticket = ticketMap.get(ticketId);
 		
 		int floor = ticket.getFloor();
 		
-		String vehicleModel = vehicleModel(ticket.getVehicleType());
+		String vehicleModel = ticket.getVehicleType();
 		
 		int slotNo = ticket.getSlot();
 		
@@ -214,47 +172,68 @@ public class CacheLayer {
 		
 		bluePrint.get(floor).get(vehicleModel).add(slot);
 		
-		long time = (System.currentTimeMillis() - ticket.getTime())/1000/60;
+		long time = (System.currentTimeMillis() - ticket.getEntryTime())/1000/60;
 		
-		double wallet = customerMap.get(ticket.getCustomerId()).getWallet();
+		Customer customer = customerMap.get(ticket.getCustomerId());
 		
+		double wallet = customer.getWallet();
 		
+		double amount = wallet;
+		
+		double fee = 0.0;
 		
 		if(time == 0 || time == 1) {
-			wallet = wallet - 4.0;
-			if(wallet < 0) {
-				return -(wallet)+" $ needed";
+			fee = 4.0;
+			amount = amount - fee;
+			customer.setWallet(amount);
+			
+			if(amount < 0) {
+				charge = fee;
+				 customer.setWallet(wallet);
+				return -(amount)+" $ needed";
 			} 
 		}
 		if(time == 2) {
-			wallet = wallet - 7.50;
-			if(wallet < 0) {
-				return -(wallet)+" $ needed";
+			fee= 7.5;
+			amount = amount - fee;
+			customer.setWallet(amount);
+			if(amount < 0) {
+				charge = fee;
+				customer.setWallet(wallet);
+				return -(amount)+" $ needed";
 			} 
 		}
 		if(time == 3) {
-			wallet = wallet - 11.5;
-			if(wallet < 0) {
-				return -(wallet)+" $ needed";
+			fee = 11.5;
+			amount = amount - fee;
+			customer.setWallet(amount);
+			if(amount < 0) {
+				charge = fee;
+				customer.setWallet(wallet);
+				return -(amount)+" $ needed";
 			} 
 		}
 		if(time >3) {
-			
-			for(long i = time ; i >=3 ; i++) {
-				wallet = wallet - 2;
+			for(long i = time ; i >3 ; i--) {
+				amount = amount - 2.0;
 			}
-			wallet = wallet - 11.5;
-			if(wallet < 0) {
-				return -(wallet)+" $ needed";
+			amount = amount - 11.5;
+			fee = amount;
+			customer.setWallet(amount);
+			if(amount < 0) {
+				charge = fee;
+				customer.setWallet(wallet);
+				return -(amount)+" $ needed";
 			}
 		}
-			return "Thank You";
+		wallet = customer.getWallet();
+		return fee+" $ deducted for "+time+" hours"+"\n"+"Your new wallet balance is "+wallet+"$.\n"+" Thank You";
 	}
 	
 	public Object addCustomer(Customer customer) throws ManualException {
 		
 		customer.setCustomerId(customerId());
-		
+	
 		customerMap.put(customer.getCustomerId(), customer);
 		
 		if(customer.getWallet()<0) {
@@ -301,24 +280,24 @@ public class CacheLayer {
 		
 	}
 	
-	public Object premiumCustomer(Ticket ticket) throws ManualException {
-	
-		String vehicleModel = vehicleModel(ticket.getVehicleType());
+	public Ticket newCustomerBooking(Ticket ticket,Customer customer) throws ManualException {
 
-		int size = bluePrint.get(i).get(vehicleModel).size();
-
-		if (size == 0) {
-			i++;
-		}
-
-		if (size == 0 && i == bluePrint.size()) {
-			i = 0;
-			throw new ManualException("Parking Slot filled for " + vehicleModel);
-		}
-
-		Slot slot = bluePrint.get(i).get(vehicleModel).remove(0);
+		localMethod(ticket);
 		
-		ticket.setTicketId(ticketId());
+		int customerId = customer.getCustomerId();
+		
+		mobileNoMap.put(customer.getMobile(), customerId);
+		
+		customerMap.put(customerId,customer);
+		
+		vehicleMap.put(ticket.getVehicleNum(), customerId);
+
+		return ticket;
+	}
+
+	public Ticket carNoBooking(Ticket ticket) throws ManualException {
+		
+		localMethod(ticket);
 		
 		String vehicleNum = ticket.getVehicleNum();
 		
@@ -326,20 +305,24 @@ public class CacheLayer {
 		
 		ticket.setCustomerId(customerId);
 
-		ticket.setTime(System.currentTimeMillis());
-
-		ticket.setFloor(slot.getFloor());
-
-		ticket.setSlot(slot.getSlotNumber());
-		
-		ticket.setElectricPanel(slot.isElectricPanel());
-
 		ticketMap.put(ticket.getTicketId(), ticket);
-		
-		bookedSlot.add(slot);
 		
 		return ticket;
 		
+	}
+	
+	public Ticket mobileNoBooking(Ticket ticket,Long mobile) throws ManualException {
+		
+		localMethod(ticket);
+		
+	int customerId = mobileNoMap.get(mobile);
+		
+		ticket.setCustomerId(customerId);
+
+		ticketMap.put(ticket.getTicketId(), ticket);
+		
+		return ticket;
+
 	}
 	
 	public Map<String, Integer> premiumId() throws ManualException {
@@ -350,4 +333,78 @@ public class CacheLayer {
 		return vehicleMap;
 	}
 	
+	
+	
+	private void localMethod(Ticket ticket) throws ManualException {
+		
+		int i = 0;
+		
+		String vehicleModel = ticket.getVehicleType();
+		
+		//int size = bluePrint.get(i).get(vehicleModel).size();
+		
+		List<Slot> tempList = bluePrint.get(i).get(vehicleModel);
+
+				if (tempList.isEmpty()) {
+					i++;
+				}
+		if ( tempList.isEmpty() && i == bluePrint.size()-1) {
+				
+					throw new ManualException("Parking Slot filled for " + vehicleModel);
+				}
+						
+				Slot slot = bluePrint.get(i).get(vehicleModel).remove(0);
+				
+				ticket.setTicketId(ticketId());
+				
+				ticket.setEntryTime(System.currentTimeMillis());
+
+				ticket.setFloor(slot.getFloor());
+
+				ticket.setSlot(slot.getSlotNumber());
+				
+				ticket.setElectricPanel(slot.isElectricPanel());
+				
+				ticketMap.put(ticket.getTicketId(), ticket);
+	}
+	
+	
+	
+	public String cashPay(double cash) throws ManualException {
+		
+		if(cash < 0) {
+			throw new ManualException("Invalid Cash");
+		}
+
+		double balance = charge - cash;
+		
+		return "Cash Payment Succeed"+ "\n"+"Remaining balance "+balance;
+		
+	}
+	
+	public String creditPay(int ticketId, double cash,String creditNo) throws ManualException {
+		
+		String credit = String.valueOf(creditNo);
+		
+		if(credit.length() != 16) {
+			throw new ManualException("Invalid credit card");
+		}
+		
+		if(cash < 0) {
+			throw new ManualException("Invalid Cash");
+		}
+		
+		Ticket ticket = ticketMap.get(ticketId);
+		
+		int customerId = ticket.getCustomerId();
+		
+		payCustomerPortal(customerId, cash);
+		
+		getTicket(ticketId);
+		
+		charge = 0;
+		
+		return "Credit card Payment Succeed";
+		
+	}
 }

@@ -31,15 +31,24 @@ public class Runner {
 		
 	}
 	
+	public static void payment() {
+		System.out.println("1) Cash");
+		System.out.println("2) Credit");
+		System.out.println();
+	}
+
 public static void main(String[] args) throws ManualException{
 	
 	ApiLayer api = new ApiLayer();
 	InputCenter input = new InputCenter();
 	
 	String vehicleModel = "";
-	String vehicleType = "";
+	
+	long mobileNum = 0;
+	
 	
 	int noOfFloor = input.number("No.Of Floor: ");
+	
 	int spot = input.number("No.Of Spots: ");
 	
 	System.out.println(api.bluePrint(noOfFloor,spot));
@@ -56,86 +65,98 @@ public static void main(String[] args) throws ManualException{
 		
 		if(select == 1) {
 			boolean conditioner = true;
+			
 			while(conditioner) {
 				vehicle();
 				int choose = input.number("");
 				
 				if(choose == 1) {
-					vehicleType = "van";
-				   vehicleModel = api.vehicleModel(vehicleType);
-				   System.out.println(api.searchVehicleSlots(vehicleModel));
-				
+				   vehicleModel = api.vehicleModel("van");
 				}
 				
 				if(choose == 2) {
-					vehicleType = "car";
-					vehicleModel = api.vehicleModel(vehicleType);
-					System.out.println(api.searchVehicleSlots(vehicleModel));
-				
+					vehicleModel = api.vehicleModel("car");
+
 				}
 				
 				if(choose == 3) {
-					vehicleType = "truck";
-					vehicleModel = api.vehicleModel(vehicleType);
-					System.out.println(api.searchVehicleSlots(vehicleModel));
-					
+					vehicleModel = api.vehicleModel("truck");
+
 				}
 				
 				if(choose == 4) {
-					vehicleType = "motorcycle";
-					vehicleModel = api.vehicleModel(vehicleType);
-					System.out.println(api.searchVehicleSlots(vehicleModel));
 					
+					vehicleModel = api.vehicleModel("motorcycle");
 				}
 				
 				if(choose == 5) {
-					vehicleType = "electric";
-					vehicleModel = api.vehicleModel(vehicleType);
-					System.out.println(api.searchVehicleSlots(vehicleModel));
 					
+					vehicleModel = api.vehicleModel("electric");	
 				}
 				
 				if(choose == 6) {
-					vehicleType = "tricycle";
-					vehicleModel = api.vehicleModel(vehicleType);
-					System.out.println(api.searchVehicleSlots(vehicleModel));
-				
+					
+					vehicleModel = api.vehicleModel("tricycle");
 				}
 				if(choose >6) {
 					conditioner = false;
 					System.out.println("Give Following Vehicles");
 				}
-			
+				
+				System.out.println("Verify through VehicleNo.");
 				
 				
 				Ticket ticket = new Ticket();
 				
-				ticket.setVehicleNum(input.string("Vehicle No."));
+				ticket.setVehicleNum(input.string(""));
 	
-				ticket.setVehicleType(vehicleType);
-			
-				String vehicleCheck = api.checkVehicle(ticket.getVehicleNum());
+				ticket.setVehicleType(vehicleModel);
 				
+				String vehicleCheck = api.checkVehicle(ticket.getVehicleNum());
+					
+				System.out.println(vehicleCheck);
+
 				if(vehicleCheck.startsWith("Welcome")) {
 					
-					System.out.println(vehicleCheck);
-					
 					try {
-					System.out.println(api.premiumCustomer(ticket));
+					System.out.println(api.carNoBooking(ticket));
+					conditioner = false;
 					} catch(ManualException e) {
+						conditioner = false;
 						System.out.println(e.getMessage());
 					}
-					
-					
-				} else {
+				} 
 				
+				else  {
+					
+					mobileNum = input.longVal("");
+				
+					String mobileNoCheck = api.mobileNoCheck(mobileNum);
+					
+					System.out.println(mobileNoCheck);
+					
+					if(mobileNoCheck.startsWith("Welcome")) {
+						
+					
+						try {
+							System.out.println(api.mobileNoBooking(ticket,mobileNum));
+							conditioner = false;
+							
+						
+						} catch(ManualException e) {
+							conditioner = false;
+							System.out.println(e.getMessage());
+						}
+					}
+				}
+				
+		
+				if(conditioner) {
 				Customer customer = new Customer();
 				
                 customer.setName(input.string("Name..."));
 				
-				customer.setMobile(input.longVal("Mobile number..."));
-				
-				customer.setWallet(input.doubleVal("deposit..."));
+				customer.setMobile(mobileNum);
 				
 				try {
 				api.addCustomer(customer);
@@ -144,14 +165,17 @@ public static void main(String[] args) throws ManualException{
 			
 				System.out.println();
 					
-		     	System.out.println(api.bookTicket(ticket,customer));
+		     	System.out.println(api.newCustomerBooking(ticket,customer));
+		     	
+		    	conditioner = false;
 				}
 				catch(ManualException e) {
+					conditioner = false;
 					System.out.println(e.getMessage());
 				}		
+				}
 			}
 			}
-		}
 		if(select == 2) {
 			try {
 			System.out.println(api.ticketList());
@@ -166,6 +190,7 @@ public static void main(String[] args) throws ManualException{
 				System.out.println(api.customerInfoPortal(customerId));
 				
 				boolean condit = true;
+				
 				while(condit) {
 					System.out.println("1) Would you like to deposit ?");
 					System.out.println("2) Exit the Portal");
@@ -188,11 +213,38 @@ public static void main(String[] args) throws ManualException{
 	
 		}
 		if(select == 4) {
+			try {
 			System.out.println(api.premiumVehicle());
+			}
+			catch(ManualException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 		if(select == 5) {
 		try {
-			System.out.println(api.getTicket(input.number("Enter ticketId: ")));
+			int ticketId = input.number("Enter ticketId: ");
+			String result = api.getTicket(ticketId);
+			System.out.println(result);
+			if(result.endsWith("needed")) {
+				
+				boolean flag = true;
+				
+				while(flag) {
+					payment();
+					int pay = input.number("");
+					if(pay ==1 ) {
+						double cash = input.doubleVal("enter cash ");
+						System.out.println(api.cashPay(cash));
+						flag = false;
+					}
+					if(pay == 2) {
+						String credit = input.string("Enter credit card no.");
+						double amount = input.doubleVal("amount");
+						System.out.println(api.creditPay(ticketId, amount, credit));
+						flag = false;
+					}
+				}
+			}
 		}catch(ManualException e) {
 			System.out.println(e.getMessage());
 		}
