@@ -2,70 +2,49 @@ package accountdeclare;
 
 public class Ticket {
 
-	private int ticketId;
-	private int customerId;
-	private String vehicleNum;
-	private String vehicleType;
-	private long entryTime;
-	private int floor;
-	private int slot;
-	private boolean electricPanel;
-	public int getTicketId() {
-		return ticketId;
+	private int ticket;
+	private int noOfPassenger;
+	private long time;
+	private double amount;
+	private String ticketType;
+	public int getTicket() {
+		return ticket;
 	}
-	public void setTicketId(int ticketId) {
-		this.ticketId = ticketId;
+	public void setTicket(int ticket) {
+		this.ticket = ticket;
 	}
-	public int getCustomerId() {
-		return customerId;
+	public int getNoOfPassenger() {
+		return noOfPassenger;
 	}
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+	public void setNoOfPassenger(int noOfPassenger) {
+		this.noOfPassenger = noOfPassenger;
 	}
-	public String getVehicleNum() {
-		return vehicleNum;
+	public long getTime() {
+		java.util.Date date = new java.util.Date(time);
+		return time;
 	}
-	public void setVehicleNum(String vehicleNum) {
-		this.vehicleNum = vehicleNum;
+	public void setTime(long time) {
+		this.time = time;
 	}
-	public String getVehicleType() {
-		return vehicleType;
+	public double getAmount() {
+		return amount;
 	}
-	public void setVehicleType(String vehicleType) {
-		this.vehicleType = vehicleType;
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+	public String getTicketType() {
+		return ticketType;
+	}
+	public void setTicketType(String ticketType) {
+		this.ticketType = ticketType;
 	}
 	
-	public long getEntryTime() {
-		return entryTime;
-	}
-	public void setEntryTime(long entryTime) {
-		this.entryTime = entryTime;
-	}
-	public int getFloor() {
-		return floor;
-	}
-	public void setFloor(int floor) {
-		this.floor = floor;
-	}
-	public int getSlot() {
-		return slot;
-	}
-	public void setSlot(int slot) {
-		this.slot = slot;
-	}
-	public boolean isElectricPanel() {
-		return electricPanel;
-	}
-	public void setElectricPanel(boolean electricPanel) {
-		this.electricPanel = electricPanel;
-	}
+	java.util.Date date = new java.util.Date(time);
+	
 	@Override
 	public String toString() {
-		return "Ticket [ticketId=" + ticketId + ", customerId=" + customerId + ", floor=" + floor + ", slot=" + slot
-				+ ", electricPanel=" + electricPanel + "]";
+		return "Ticket [ticket=" + ticket + ", noOfPassenger=" + noOfPassenger + ", time=" + date + ", amount=" + amount
+				+ ", ticketType=" + ticketType + "]";
 	}
-
-	
-		
 	
 }

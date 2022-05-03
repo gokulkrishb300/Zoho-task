@@ -1,78 +1,103 @@
 package input;
 import java.util.*;
 
-public class InputCenter {
+public class InputCenter{
+Scanner sc = new Scanner(System.in);
 
-	Scanner sc = new Scanner(System.in);
-	
-	public int number(String input) {
-		System.out.println(input);
-		try {
-			int num = sc.nextInt();
-			sc.nextLine();
-			return num;
-		}
-		catch(Exception e) {
-			sc.nextLine();
-			System.out.println("Integer input only");
-		}
-		return number(input);
-	}
-	
-	public String string(String input) {
-		System.out.println(input);
-		try {
-			String value = sc.nextLine();
-			if(value!= null && !value.isEmpty()) {
-				return value;
-			}
-		}
-		catch(Exception e) {
-			System.out.println("String input only");
-		}
-		return string(input);
-	}
-	
-	public double doubleVal(String input) {
-		System.out.println(input);
+public int number(String input) {
+	System.out.println(input);
 	
 	try {
-		double value = sc.nextDouble();
+	int number = sc.nextInt();
+	sc.nextLine();
+	return number;
+	}
+	catch(Exception e) {
+		
 		sc.nextLine();
-		return value;
+		System.out.println("number type only accepted");
+	}
+	
+	return number(input);
+}
+
+public long longVal(String input) {
+	System.out.println(input);
+	
+	try {
+	long number = sc.nextLong();
+	sc.nextLine();
+	return number;
 	}
 	catch(Exception e) {
 		sc.nextLine();
-		System.out.println("Double input only");
+		System.out.println("long type only accepted");
 	}
+	
+	return longVal(input);
+}
+
+public float floatVal(String input) {
+	System.out.println(input);
+	
+	try {
+    float number = sc.nextFloat();
+	sc.nextLine();
+	return number;
+	}
+	catch(Exception e) {
+		sc.nextLine();
+		System.out.println("float type only accepted");
+	}
+	
+	return floatVal(input);
+}
+
+public double doubleVal(String input) {
+	System.out.println(input);
+	
+	try {
+    double number = sc.nextDouble();
+	sc.nextLine();
+	return number;
+	}
+	catch(Exception e) {
+		sc.nextLine();
+		System.out.println("double type only accepted");
+	}
+	
 	return doubleVal(input);
 }
+
+public String stringInput(String input) {
+	System.out.println(input);
 	
-	public long longVal(String input) {
-		System.out.println(input);
-		try {
-			long value = sc.nextLong();
-			sc.nextLine();
-			return value;
-		}
-		catch(Exception e) {
-			sc.nextLine();
-			System.out.println("Long input only");
-		}
-		return longVal(input);
+	try {
+    String value = sc.nextLine();
+	if(!value.isEmpty() || value != null)
+	return value;
+	}
+	catch(Exception e) {
+		sc.nextLine();
+		System.out.println("String type only accepted");
 	}
 	
-	public float floatVal(String input) {
-		System.out.println(input);
-		try {
-			float value = sc.nextFloat();
-			sc.nextLine();
-			return value;
-		} 
-		catch(Exception e) {
-			sc.nextLine();
-			System.out.println("Float input only");
-		}
-		return floatVal(input);
+	return stringInput(input);
+}
+
+public char charInput(String input) {
+	System.out.println(input);
+	
+	try {
+    char value = sc.next().charAt(0);
+	return value;
+    
 	}
+	catch(Exception e) {
+		sc.nextLine();
+		System.out.println("char type only accepted");
+	}
+	
+	return charInput(input);
+}
 }

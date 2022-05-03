@@ -1,45 +1,24 @@
 package accountdeclare;
 
 public class Slot {
-	private int floor;
-	private int slotNumber;
-	private String vehicleModel;
-	private boolean electricPanel;
-	public int getFloor() {
-		return floor;
+
+	private int slotNo;
+	private String preference;
+	public int getSlotNo() {
+		return slotNo;
 	}
-	public void setFloor(int floor) {
-		this.floor = floor;
+	public void setSlotNo(int slotNo) {
+		this.slotNo = slotNo;
 	}
-	public int getSlotNumber() {
-		return slotNumber;
+	public String getPreference() {
+		return preference;
 	}
-	public void setSlotNumber(int slotNumber) {
-		this.slotNumber = slotNumber;
-	}
-	public String getVehicleModel() {
-		return vehicleModel;
-	}
-	public void setVehicleModel(String vehicleModel) {
-		this.vehicleModel = vehicleModel;
-	}
-	public boolean isElectricPanel() {
-		return electricPanel;
-	}
-	public void setElectricPanel(boolean electricPanel) {
-		this.electricPanel = electricPanel;
+	public void setPreference(String preference) {
+		this.preference = preference;
 	}
 	@Override
 	public String toString() {
-		return "Slot [floor=" + floor + ", slotNumber=" + slotNumber + ", vehicleModel=" + vehicleModel
-				+ ", electricPanel=" + electricPanel + "]";
+		return "Slot [slotNo=" + slotNo + ", preference=" + preference + "]";
 	}
-	
-	
-	
-	
-	
-
-	
 	
 }

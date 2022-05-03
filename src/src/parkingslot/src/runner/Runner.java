@@ -1,268 +1,123 @@
 package runner;
-
-import manualexception.ManualException;
-import accountdeclare.Customer;
-import accountdeclare.Ticket;
-import cache.*;
+import cache.ApiLayer;
 import input.InputCenter;
-
+import accountdeclare.*;
 public class Runner {
 	
-	public static void initial() {
+	public static void menu() {
+		System.out.println("1) Book");
+		System.out.println("2) Cancel");
+		System.out.println("3) Show Booked Tickets");
+		System.out.println("4) Show Available Tickets");
+		System.out.println("5) Exit");
 		System.out.println();
-
-		System.out.println("1) Entry");
-		System.out.println("2) Show Booked Tickets");
-		System.out.println("3) Customer Info Panel");
-		System.out.println("4) Premium Vehicles");
-		System.out.println("5) Customer Exit");
-		System.out.println("6) BluePrint");
-		System.out.println("7) Exit");
-		System.out.println();
-	}
-	public static void vehicle() {
-		
-		System.out.println("1) van");
-		System.out.println("2) car");
-		System.out.println("3) truck");
-		System.out.println("4) motorcycle");
-		System.out.println("5) electric");
-		System.out.println("6) tricycle");
-		
 	}
 	
-	public static void payment() {
-		System.out.println("1) Cash");
-		System.out.println("2) Credit");
-		System.out.println();
+	public static void berth() {
+		System.out.println("1) lower");
+		System.out.println("2) middle");
+		System.out.println("3) upper");
+		System.out.println("4) rac");
+		System.out.println("5) sideUpper");
 	}
-
-public static void main(String[] args) throws ManualException{
 	
-	ApiLayer api = new ApiLayer();
+public static void main(String[] args) {
+	
 	InputCenter input = new InputCenter();
+	ApiLayer api = new ApiLayer();
 	
-	String vehicleModel = "";
+	int compet = input.number("No.of Compet's : ");
 	
-	long mobileNum = 0;
+	int waiting_list = input.number("Waiting-List limit : ");
 	
+	if(compet <1 || waiting_list < 1) {
+		System.out.println("Give Proper Value");
+		System.exit(0);
+	}
 	
-	int noOfFloor = input.number("No.Of Floor: ");
+	System.out.println(api.bluePrint(compet, waiting_list));
 	
-	int spot = input.number("No.Of Spots: ");
+	String berth = "";
 	
-	System.out.println(api.bluePrint(noOfFloor,spot));
+	boolean flag = true;	
 	
-	
-	boolean condition = true;
-	
-
-	while(condition) {
+	while(flag) {
 		
-		initial();
+		menu();
+		int operation = input.number("input here..");
 		
-		int select = input.number("");
-		
-		if(select == 1) {
-			boolean conditioner = true;
+		if(operation == 1) {
 			
-			while(conditioner) {
-				vehicle();
-				int choose = input.number("");
-				
-				if(choose == 1) {
-				   vehicleModel = api.vehicleModel("van");
-				}
-				
-				if(choose == 2) {
-					vehicleModel = api.vehicleModel("car");
-
-				}
-				
-				if(choose == 3) {
-					vehicleModel = api.vehicleModel("truck");
-
-				}
-				
-				if(choose == 4) {
-					
-					vehicleModel = api.vehicleModel("motorcycle");
-				}
-				
-				if(choose == 5) {
-					
-					vehicleModel = api.vehicleModel("electric");	
-				}
-				
-				if(choose == 6) {
-					
-					vehicleModel = api.vehicleModel("tricycle");
-				}
-				if(choose >6) {
-					conditioner = false;
-					System.out.println("Give Following Vehicles");
-				}
-				
-				System.out.println("Verify through VehicleNo.");
-				
-				
-				Ticket ticket = new Ticket();
-				
-				ticket.setVehicleNum(input.string(""));
-	
-				ticket.setVehicleType(vehicleModel);
-				
-				String vehicleCheck = api.checkVehicle(ticket.getVehicleNum());
-					
-				System.out.println(vehicleCheck);
-
-				if(vehicleCheck.startsWith("Welcome")) {
-					
-					try {
-					System.out.println(api.carNoBooking(ticket));
-					conditioner = false;
-					} catch(ManualException e) {
-						conditioner = false;
-						System.out.println(e.getMessage());
-					}
-				} 
-				
-				else  {
-					
-					mobileNum = input.longVal("");
-				
-					String mobileNoCheck = api.mobileNoCheck(mobileNum);
-					
-					System.out.println(mobileNoCheck);
-					
-					if(mobileNoCheck.startsWith("Welcome")) {
-						
-					
-						try {
-							System.out.println(api.mobileNoBooking(ticket,mobileNum));
-							conditioner = false;
-							
-						
-						} catch(ManualException e) {
-							conditioner = false;
-							System.out.println(e.getMessage());
-						}
-					}
-				}
-				
-		
-				if(conditioner) {
-				Customer customer = new Customer();
-				
-                customer.setName(input.string("Name..."));
-				
-				customer.setMobile(mobileNum);
-				
-				try {
-				api.addCustomer(customer);
-				
-				System.out.println(api.newCustomer(customer,ticket));
+			int noOfPassengers = input.number("Enter number of Passenger's");
 			
-				System.out.println();
-					
-		     	System.out.println(api.newCustomerBooking(ticket,customer));
-		     	
-		    	conditioner = false;
-				}
-				catch(ManualException e) {
-					conditioner = false;
-					System.out.println(e.getMessage());
-				}		
-				}
+			if(noOfPassengers < 1) {
+				flag = false;
+				System.out.println("Invalid number of passengers");
 			}
-			}
-		if(select == 2) {
-			try {
-			System.out.println(api.ticketList());
-			} catch(ManualException e) {
-				System.out.println(e.getMessage());
-			}
-		}
-		if(select == 3) {
-			int customerId = input.number("Enter customerId");
-			try {
+			
+			boolean berthB = true;
+			
+			while(berthB) {
+				berth();
+				int select = input.number("select berth here");
 				
-				System.out.println(api.customerInfoPortal(customerId));
-				
-				boolean condit = true;
-				
-				while(condit) {
-					System.out.println("1) Would you like to deposit ?");
-					System.out.println("2) Exit the Portal");
-					System.out.println();
-					int number = input.number("Enter here");
-					if(number == 1) {
-						double wallet = input.doubleVal("Enter dollar");
-						System.out.println(api.payCustomerPortal(customerId, wallet));
-					}
-					if(number == 2) {
-						condit = false;
-						System.out.println("Have a nice day");
-					}
+				if(select == 1) {
+					berth = "LowerBerth";
+					berthB = false;
 				}
 				
-			}
-			catch(ManualException e) {
-				System.out.println(e.getMessage());
-			}
-	
-		}
-		if(select == 4) {
-			try {
-			System.out.println(api.premiumVehicle());
-			}
-			catch(ManualException e) {
-				System.out.println(e.getMessage());
-			}
-		}
-		if(select == 5) {
-		try {
-			int ticketId = input.number("Enter ticketId: ");
-			String result = api.getTicket(ticketId);
-			System.out.println(result);
-			if(result.endsWith("needed")) {
-				
-				boolean flag = true;
-				
-				while(flag) {
-					payment();
-					int pay = input.number("");
-					if(pay ==1 ) {
-						double cash = input.doubleVal("enter cash ");
-						System.out.println(api.cashPay(cash));
-						flag = false;
-					}
-					if(pay == 2) {
-						String credit = input.string("Enter credit card no.");
-						double amount = input.doubleVal("amount");
-						System.out.println(api.creditPay(ticketId, amount, credit));
-						flag = false;
-					}
+				if(select == 2) {
+					berth = "MiddleBerth";
+					berthB = false;
+				}
+				if(select == 3) {
+					berth = "UpperBerth";
+					berthB = false;
+				}
+				if(select == 4) {
+					berth = "RAC";
+					berthB = false;
+				}
+				if(select == 5) {
+					berth = "SideUpperBerth";
+					berthB = false;
+				}
+				if(select < 1 || select > 6) {
+					flag = false;
+					berthB = false;
+					System.out.println("Invalid selection");
 				}
 			}
-		}catch(ManualException e) {
-			System.out.println(e.getMessage());
+			
+			for(int i = 0 ; i < noOfPassengers ; i++) {
+				
+				Passenger passenger = new Passenger();
+				
+				passenger.setName(input.stringInput("name please"));
+				int age = input.number("age");
+				passenger.setAge(age);
+				passenger.setGender(input.stringInput("gender"));
+				api.passenger(passenger, berth);
+			}
+			
+			Ticket ticket = new Ticket();
+			ticket.setNoOfPassenger(noOfPassengers);
+			System.out.println(api.bookTicket(ticket));
 		}
-		}
-		
-		if(select == 6) {
-			System.out.println(api.showBluePrint());
+		if(operation == 2) {
 			
 		}
-		
-		if(select >6) {
-			condition = false;
+		if(operation == 3) {
+			System.out.println(api.showBookedTickets());
+		}
+		if(operation == 4) {
+			System.out.println(api.showAvailableTickets());
+		}
+		if(operation == 5) {
+			flag = false;
 			System.out.println("Have a nice day");
 		}
-		}
-	
-		
 	}
-
-	  }
-
+	
+}
+}
